@@ -15,8 +15,8 @@ class UserController extends CI_Controller {
 	function index() {
 		$data['title'] = 'User Management';
 		
-		$data['view'] = 'admin/User';
-		$this->load->view('templates/Header', $data);
+		$data['view'] = 'admin/user';
+		$this->load->view('templates/header', $data);
 	}
 
 	function list() {
@@ -36,7 +36,7 @@ class UserController extends CI_Controller {
 				$key_user->name,
 				auth_level($key_user->level),
 				'<a title="Edit" href="" style="color:orange;"><i class="nav-icon fas fa-user-edit"></i></a>
-      			 <a title="Delete" href="javascript:void(0);" class="item_delete" style="color:red;" data-user_id="'.$key_user->id.'"><i class="nav-icon fas fas fa-user-alt-slash"></i></a>'
+      			 <a href="javascript:void(0);" class="item_user_delete" data-user_id="'.$key_user->id.'"><i class="nav-icon fas fas fa-user-alt-slash"></i></a>'
 			);
 		}
 

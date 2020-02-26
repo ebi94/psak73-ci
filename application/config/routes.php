@@ -61,7 +61,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	$route['user/management/list'] = 'auth/UserController/list';
 	$route['user/management/add'] = 'auth/UserController/add_user';
 	$route['user/management/edit'] = 'auth/UserController/edit';
-	$route['user/management/delete'] = 'auth/UserController/delete';
+	$route['user/management/delete'] = 'auth/UserController/delete_user';
 // END AUTH
 
 $route['admin'] = 'admin/AdminController';

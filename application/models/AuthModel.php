@@ -13,7 +13,7 @@ class AuthModel extends CI_Model{
 	}
 
 	function auth_get_all() {
-		$query = $this->db->query("SELECT * FROM users");
+		$query = $this->db->query("SELECT * FROM users WHERE active = 1");
 		return $query;
 	}
 
