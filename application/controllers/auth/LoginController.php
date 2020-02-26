@@ -39,7 +39,7 @@ class LoginController extends CI_Controller {
 		$this->form_validation->set_rules('password','password','required');
 
 		$this->form_validation->set_message('required', '<div class="alert alert-danger" style="margin-top: 3px">
-		            <div class="header"><b><i class="fa fa-exclamation-circle"></i> {field}</b> harus diisi</div></div>');
+		            <div class="header"><b><i class="fa fa-exclamation-circle"></i> {field}</b> Required!</div></div>');
 
 		if ($this->form_validation->run() == TRUE) {
 			$username = $this->input->post('username');
@@ -54,15 +54,16 @@ class LoginController extends CI_Controller {
 				$this->session->set_userdata('level',$auth->level);
 			    $this->session->set_userdata('ses_id',$auth->id);
 			    $this->session->set_userdata('ses_nama',$auth->name);
+			    $this->session->set_userdata('ses_email',$auth->email);
+			    $this->session->set_userdata('ses_username',$auth->email);
 			    redirect('admin');
 			} else {
 				$data['error'] = '<div class="alert alert-danger" style="margin-top: 3px">
-                        <div class="header"><b><i class="fas fa-exclamation-circle"></i> ERROR </b> Username atau Password Anda Salah!</div></div>';
+                        <div class="header"><b><i class="fas fa-exclamation-circle"></i> ERROR </b> Wrong Username or Password!</div></div>';
 	            $this->load->view('auth/login', $data);
 			}
 		} else {
 			$this->load->view('auth/Login');
 		}
 	}
-
 }

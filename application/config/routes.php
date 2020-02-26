@@ -54,6 +54,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	$route['log/do/login'] = 'auth/LoginController/do_login';
 	$route['log/regis'] = 'auth/LoginController/regis';
 	$route['log/do/regis'] = 'auth/LoginController/do_regis';
+	$route['log/out'] = 'auth/LogoutController/log_out';
+	
+
+	$route['user/management'] = 'auth/UserController';
+	$route['user/management/list'] = 'auth/UserController/list';
+	$route['user/management/add'] = 'auth/UserController/add_user';
+	$route['user/management/edit'] = 'auth/UserController/edit';
+	$route['user/management/delete'] = 'auth/UserController/delete';
 // END AUTH
 
 $route['admin'] = 'admin/AdminController';

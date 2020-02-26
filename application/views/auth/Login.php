@@ -24,7 +24,7 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Masuk untuk memulai sesi</p>
+      <p class="login-box-msg">Sign In to Start Session</p>
       <?php if(isset($error)) { echo $error; }; ?>
       <form action="<?php echo base_url('log/do/login') ?>" method="post">
         <div class="input-group mb-3">
@@ -47,8 +47,8 @@
         <?php echo form_error('password'); ?>
         <div class="row">
           <!-- /.col -->
-          <div class="col-6">
-            <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-block btn-flat "><i class="nav-icon fas fa-sign-in-alt"></i> Sign In</button>
           </div>
           <!-- /.col -->
         </div>
