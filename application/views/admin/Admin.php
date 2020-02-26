@@ -1,9 +1,7 @@
-<?php $this->load->view('templates/Header'); ?>
-<?php $this->load->view('templates/SideBar'); ?>
+
 
 <!-- Contents -->
 	<!-- Main content -->
-	<section class="content">
 	  <div class="row">
 	    <div class="col-md-12">
 
@@ -187,7 +185,6 @@
 	    <!-- /.col -->
 	  </div>
 	  <!-- /.row -->
-	</section>
 	<!-- /.content -->
 
 	<!-- Modal Edit -->
@@ -399,4 +396,3 @@
 	//  Function Delete
 	</script>
 <!-- End Contents -->
-<?php $this->load->view('templates/Footer'); ?>
