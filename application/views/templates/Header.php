@@ -111,28 +111,30 @@
     <!-- AdminLTE for demo purposes -->
     <script src="<?php echo base_url('assets/AdminLTE'); ?>/dist/js/demo.js"></script>
     <script>
-      $("#user-success-alert").hide();
-      fill_datatable_user();
-      function fill_datatable_user(){
-        $('#user_list').DataTable({
-          "paging": false,
-          "lengthChange": false,
-          "searching": false,
-          "ordering": false,
-          "info": true,
-          "autoWidth": true,
-          "scrollX": true,
-          "scrollY": true,
-          "ajax": {
-            url : "<?php echo base_url('user/management/list') ?>",
-            type : "GET",
-          },
-        });
-      }
+      // USER MANAGEMENT
+        $("#user-success-alert").hide();
+        $("#user-delete-alert").hide();
+        fill_datatable_user();
+        function fill_datatable_user(){
+          $('#user_list').DataTable({
+            "paging": false,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": false,
+            "info": true,
+            "autoWidth": true,
+            "scrollX": true,
+            "scrollY": true,
+            "ajax": {
+              url : "<?php echo base_url('user/management/list') ?>",
+              type : "GET",
+            },
+          });
+        }
 
-      //Add User
-      $('#add_user').on('click',function(){
-          var email = $('#Auth_email').val();
+        //Add User
+        $('#add_user').on('click',function(){
+          var email    = $('#Auth_email').val();
           var password = $('#Auth_password').val();
           var name     = $('#Auth_name').val();
           var level    = $('#Auth_level').val();
@@ -156,6 +158,36 @@
           });
           return false;
         });
+
+        // Delete User
+        $('#show_data_user').on('click','.item_user_delete',function(){
+          var id_user = $(this).data('user_id');
+               
+          $('#deleteUserModal').modal('show');
+          $('[name="id_user_delete"]').val(id_user);
+        });
+
+        //delete record to database
+         $('#btn_user_delete').on('click',function(){
+            var id_user = $('#id_user_delete').val();
+            $.ajax({
+                type : "POST",
+                url  : "<?php echo site_url('user/management/delete')?>",
+                dataType : "JSON",
+                data : {auth_id:id_user},
+                success: function(data){
+                    $('[name="id_user_delete"]').val("");
+                    $('#deleteUserModal').modal('hide');
+                    $('#user_list').DataTable().destroy();
+                    fill_datatable_user();
+                    $("#user-delete-alert").fadeTo(2000, 500).slideUp(500, function() {
+                      $("#user-delete-alert").slideUp(500);
+                    });
+                }
+            });
+            return false;
+        });
+      // END USER MANAGEMENT
     </script>
   </body>
 </html>

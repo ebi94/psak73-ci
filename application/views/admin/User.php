@@ -11,6 +11,10 @@
       	  <button type="button" class="close" data-dismiss="alert">x</button>
       	  <strong>Success! </strong> User Successfuly added.
       	</div>
+      	<div class="alert alert-success" id="user-delete-alert" role="alert">
+      	  <button type="button" class="close" data-dismiss="alert">x</button>
+      	  <strong>Success! </strong> User Successfuly deleted.
+      	</div>
       	<table id="user_list" class="table table-bordered table-striped table-hover" cellspacing="0" style="width: 100%;">
       		<thead>
       			<tr>
@@ -21,7 +25,7 @@
       				<th style="vertical-align: top; text-align: center;">Action</th>
       			</tr>
       		</thead>
-      		<tbody>
+      		<tbody id="show_data_user">
 
       		</tbody>
       	</table>
@@ -30,3 +34,4 @@
   </div>
 </div>
 <?php $this->load->view('modal/AddUser.php'); ?>
+<?php $this->load->view('modal/DeleteUser.php'); ?>

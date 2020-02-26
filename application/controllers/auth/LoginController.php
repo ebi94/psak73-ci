@@ -13,11 +13,11 @@ class LoginController extends CI_Controller {
 	}
 
 	function index() {
-		$this->load->view('auth/Login');
+		$this->load->view('auth/login');
 	}
 
 	function regis() {
-		$this->load->view('auth/Regis');	
+		$this->load->view('auth/regis');	
 	}
 
 	function do_regis() {
