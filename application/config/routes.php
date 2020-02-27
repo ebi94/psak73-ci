@@ -71,6 +71,8 @@ $route['admin/do/add'] = 'admin/AdminController/do_add_summary';
 $route['admin/edit'] = 'admin/AdminController/edit_summary';
 $route['admin/delete'] = 'admin/AdminController/delete_summary';
 
+$route['export/kkp'] = 'admin/ExportController/kkp_export';
+
 
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
