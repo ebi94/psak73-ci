@@ -12,8 +12,8 @@
 			  	<a href="<?php echo base_url('admin/add'); ?>">
 					<button class="btn btn-info add_user" type="button"><span class="fas fa-plus"> Add</span></button>
 				</a>
-				<a href="<?php echo base_url(''); ?>">
-					<button class="btn btn-success export_kkp" type="button"><span class="fas fa-plus"> Export KKP</span></button>
+				<a href="<?php echo base_url('export/kkp'); ?>">
+					<button class="btn btn-success export_kkp" type="button"><span class="far fa-file-excel"> Export KKP</span></button>
 				</a>
 			  </div>
 	        </div>
