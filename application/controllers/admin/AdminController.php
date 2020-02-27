@@ -17,7 +17,7 @@ class AdminController extends CI_Controller{
 	function index() {
 		$data['title'] = 'Summary';
 		// $data['data_summary'] = $this->db->query('SELECT * FROM abm_summary')->result();
-		$data['view'] = 'admin/admin';
+		$data['view'] = 'admin/Admin';
 		$this->load->view('templates/header', $data);
 	}
 
