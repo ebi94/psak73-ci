@@ -40,9 +40,29 @@
         <!-- Navbar -->
         <!-- <nav class="main-header navbar navbar-expand navbar-white navbar-light">
       </nav> -->
-        <!-- /.navbar -->
-        <!-- Main Sidebar Container -->
-        <?php $this->load->view('templates/SideBar'); ?>
+      <!-- /.navbar -->
+      <!-- Main Sidebar Container -->
+      <?php $this->load->view('templates/sideBar'); ?>
+          
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1 class="m-0 text-dark"><?php echo $title; ?></h1>
+              </div><!-- /.col -->
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>">Home</a></li>
+                  <li class="breadcrumb-item active"><?php echo $title; ?></li>
+                </ol>
+              </div><!-- /.col -->
+            </div><!-- /.row -->
+          </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
@@ -126,42 +146,22 @@
         $("#user-success-alert").hide();
         $("#user-delete-alert").hide();
         fill_datatable_user();
-
-        function fill_datatable_user() {
-            $('#user_list').DataTable({
-                "paging": false,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": false,
-                "info": true,
-                "autoWidth": true,
-                "scrollX": true,
-                "scrollY": true,
-                "ajax": {
-                    url: "<?php echo base_url('user/management/list') ?>",
-                    type: "GET",
-                },
-            });
-        }
-
-        // SUMMARY MANAGEMENT
-        fill_datatable_summary();
-
-        function fill_datatable_summary() {
-            $('#user_list').DataTable({
-                "paging": false,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": false,
-                "info": true,
-                "autoWidth": true,
-                "scrollX": true,
-                "scrollY": true,
-                "ajax": {
-                    url: "<?php echo base_url('user/admin') ?>",
-                    type: "GET",
-                },
-            });
+        // Show User List
+        function fill_datatable_user(){
+          $('#user_list').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": false,
+            "info": true,
+            "autoWidth": true,
+            "scrollX": true,
+            "scrollY": true,
+            "ajax": {
+              url : "<?php echo base_url('user/management/list') ?>",
+              type : "GET",
+            },
+          });
         }
 
         //Add User
@@ -196,16 +196,16 @@
             return false;
         });
 
-        // Delete User
-        $('#show_data_user').on('click', '.item_user_delete', function() {
-            var id_user = $('user_id');
-
-            $('#deleteUserModal').modal('show');
-            $('[name="id_user_delete"]').val(id_user);
+        // Show Delete User Modal & Set Value
+        $('#show_data_user').on('click','.item_user_delete',function(){
+          var id_user = $('user_id');
+               
+          $('#deleteUserModal').modal('show');
+          $('[name="id_user_delete"]').val(id_user);
         });
 
-        //delete record to database
-        $('#btn_user_delete').on('click', function() {
+        //Do Delete User
+         $('#btn_user_delete').on('click',function(){
             var id_user = $('#id_user_delete').val();
             $.ajax({
                 type: "POST",
@@ -319,11 +319,90 @@
                     alert('success');
                 },
 
-            });
-            return false;
+      // ABM SUMMARY MANAGEMENT
+        
+        fill_datatable_summary();
+        function fill_datatable_summary(){
+          $('#summary_list').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": false,
+            "info": true,
+            "autoWidth": true,
+            "scrollX": true,
+            "scrollY": true,
+            "ajax": {
+              url : "<?php echo base_url('admin/list') ?>",
+              type : "GET",
+            },
+          });
+        }
+        
+        //Add Summary
+        $('#add_summary').on('click',function(){
+          // alert('click');
+          var namapt = $('#namapt').val();
+          var nomorkontrak = $('#nomorkontrak').val();
+          var vendor = $('#vendor').val();
+          var jenissewa = $('#jenissewa').val();
+          var nsa = $('#nsa').val();
+          var nsb = $('#nsb').val();
+          var nsc1 = $('#nsc1').val();
+          var nsc2 = $('#nsc2').val();
+          var nsd1 = $('#nsd1').val();
+          var nsd2 = $('#nsd2').val();
+          var is1 = $('#is1').val();
+          var is2 = $('#is2').val();
+          var is3 = $('#is3').val();
+          var is4 = $('#is4').val();
+          var is5 = $('#is5').val();
+          var is6 = $('#is6').val();
+          var is7 = $('#is7').val();
+          var komponen = $('#komponen').val();
+          var lokasi = $('#lokasi').val();
+          var startdate = $('#startdate').val();
+          var enddate = $('#enddate').val();
+          var nilaikontrak = $('nilaikontrak').val();
+          // alert(nomorkontrak);
+          $.ajax({
+              type : "POST",
+              url  : "<?php echo site_url('admin/do/add')?>",
+              dataType : "JSON",
+              data : {
+                summary_namapt:namapt, 
+                summary_nomorkontrak:nomorkontrak, 
+                summary_vendor:vendor,
+                summary_jenissewa:jenissewa,
+                summary_nsa:nsa,
+                summary_nsb:nsb,
+                summary_nsc1:nsc1,
+                summary_nsc2:nsc2,
+                summary_nsd1:nsd1,
+                summary_nsd2:nsd2,
+                summary_is1:is1,
+                summary_is2:is2,
+                summary_is3:is3,
+                summary_is4:is4,
+                summary_is5:is5,
+                summary_is6:is6,
+                summary_is7:is7,
+                summary_komponen:komponen,
+                summary_lokasi:lokasi,
+                summary_startdate:startdate,
+                summary_enddate:enddate,
+                summary_nilaikontrak:nilaikontrak
+              },
+              success: function(data){
+                  // fill_datatable_summary();
+                  $("#add-summary-success-alert").fadeTo(2000, 500).slideUp(500, function() {
+                    $("#add-summary-success-alert").slideUp(500).show();
+                  });
+              },
+          });
+          return false;
         });
-
-        // END CALCULATION MANAGEMENT
+      // END SUMMARY MANAGEMENT
     </script>
 </body>
 

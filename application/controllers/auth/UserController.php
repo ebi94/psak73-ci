@@ -35,8 +35,7 @@ class UserController extends CI_Controller {
 				$key_user->email,
 				$key_user->name,
 				auth_level($key_user->level),
-				'<a title="Edit" href="" style="color:orange;"><i class="nav-icon fas fa-user-edit"></i></a>
-      			 <a href="javascript:void(0);" class="item_user_delete" data-user_id="'.$key_user->id.'"><i class="nav-icon fas fas fa-user-alt-slash"></i></a>'
+				'<a title="Delete User" href="javascript:void(0);" class="item_user_delete" data-user_id="'.$key_user->id.'" style="color:red;"><i class="nav-icon fas fas fa-user-alt-slash"></i></a>'
 			);
 		}
 
