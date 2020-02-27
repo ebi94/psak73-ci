@@ -11,6 +11,7 @@ class AdminController extends CI_Controller{
 		}
 
 		$this->load->model('AuthModel');
+		$this->load->model('SummaryModel');
 	}
 
 	function index() {
@@ -18,6 +19,17 @@ class AdminController extends CI_Controller{
 		$data['data_summary'] = $this->db->query('SELECT * FROM abm_summary')->result();
 		$data['view'] = 'admin/admin';
 		$this->load->view('templates/header', $data);
+	}
+
+	function add_summary() {
+		$data['title'] = 'Add Summary';
+		$data['view'] = 'admin/add';
+		$this->load->view('templates/header', $data);
+	}
+
+	function do_add_summary() {
+		$data=$this->SummaryModel->summary_add();
+		echo json_encode($data);
 	}
 
 	function edit_summary() {

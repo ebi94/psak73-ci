@@ -7,7 +7,10 @@
 
 	      <div class="card">
 	        <div class="card-header">
-	          <h3 class="card-title">Data list</h3>
+			  <h3 class="card-title">Data list</h3>
+			  	<a href="<?php echo base_url(''); ?>admin/add">
+					<button class="btn btn-info add_user float-right" type="button"><span class="fas fa-plus"> Add</span></button>
+				</a>
 	        </div>
 	        <!-- /.card-header -->
 	        <div class="card-body">
@@ -263,7 +266,10 @@
 	        <!-- /.modal-dialog -->
 	      </div>
 	<!-- Modal Hapus -->
-
+				
+	<!-- Modal Tambah -->
+		<?php $this->load->view('modal/AddSummary.php'); ?>
+	<!-- Modal Tambah -->
 
 	<script src="<?php echo base_url('assets/AdminLTE'); ?>/plugins/jquery/jquery.min.js"></script>
 	<!-- Bootstrap 4 -->
