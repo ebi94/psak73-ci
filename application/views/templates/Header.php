@@ -38,7 +38,7 @@
       </nav> -->
       <!-- /.navbar -->
       <!-- Main Sidebar Container -->
-      <?php $this->load->view('templates/SideBar'); ?>
+      <?php $this->load->view('templates/sideBar'); ?>
           
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -115,6 +115,7 @@
         $("#user-success-alert").hide();
         $("#user-delete-alert").hide();
         fill_datatable_user();
+        // Show User List
         function fill_datatable_user(){
           $('#user_list').DataTable({
             "paging": false,
@@ -179,7 +180,7 @@
           return false;
         });
 
-        // Delete User
+        // Show Delete User Modal & Set Value
         $('#show_data_user').on('click','.item_user_delete',function(){
           var id_user = $('user_id');
                
@@ -187,7 +188,7 @@
           $('[name="id_user_delete"]').val(id_user);
         });
 
-        //delete record to database
+        //Do Delete User
          $('#btn_user_delete').on('click',function(){
             var id_user = $('#id_user_delete').val();
             $.ajax({
