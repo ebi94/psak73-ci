@@ -25,12 +25,12 @@ class ExportModel extends CI_Model{
 				is_5 AS contract_price,
 				is_6 AS output_used_by_third_party,
 				is_7 AS right_control,
-				'lease / non lease' AS lease,
+				CASE WHEN is_1 = 'Yes' AND is_7 = 'Yes' AND is_2 = 'Yes' AND is_3 = 'Yes' AND is_4 = 'Yes' AND is_6= 'Yes' THEN 'Lease' ELSE 'Non Lease' END AS lease,
 				komponen AS multi_komponen,
-				'komponen kontrak' AS komponen_dalam_kontrak,
-				'1' AS komponen_sewa,
-				'1' AS penyewa_dapat_manfaat,
-				'1' AS ketergantungan_tinggi_asset,
+				CASE komponen WHEN 'YES' THEN 'Jasa' ELSE '' END AS komponen_dalam_kontrak,
+				CASE '1' WHEN '1' THEN 'Yes' ELSE 'No' END AS komponen_sewa,
+				CASE '1' WHEN '1' THEN 'Yes' ELSE 'No' END AS penyewa_dapat_manfaat,
+				CASE '1' WHEN '1' THEN 'Yes' ELSE 'No' END AS ketergantungan_tinggi_asset,
 				/*CASE WHEN penyewa_dapat_manfaat = '1' AND ketergantungan_tinggi_asset = '1' THEN 'Terpisah' ELSE 'Tidak Terpisah' END AS komponen_terpisah*/
 				'1' AS komponen_terpisah,
 				nilai_kontrak AS nilai_kontrak_exclude_ppn,
@@ -53,6 +53,6 @@ class ExportModel extends CI_Model{
 	}
 
 	function calculation() {
-		
+
 	}
 }

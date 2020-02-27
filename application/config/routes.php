@@ -73,6 +73,8 @@ $route['admin/delete'] = 'admin/AdminController/delete_summary';
 
 $route['form/calculation'] = 'form/FormController/add_calculation';
 $route['form/do/calculation'] = 'form/FormController/do_add_calculation';
+$route['export/kkp'] = 'admin/ExportController/kkp_export';
+
 
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
