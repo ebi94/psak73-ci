@@ -66,7 +66,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['admin'] = 'admin/AdminController';
 $route['admin/add'] = 'admin/AdminController/add_summary';
+$route['admin/adddisc'] = 'admin/AdminController/add_summary_disc';
 $route['admin/do/add'] = 'admin/AdminController/do_add_summary';
+$route['admin/do/adddisc'] = 'admin/AdminController/do_add_summary_disc';
 $route['admin/edit'] = 'admin/AdminController/edit_summary';
 $route['admin/delete'] = 'admin/AdminController/delete_summary';
 

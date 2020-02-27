@@ -1,4 +1,4 @@
-    <div class="alert alert-success" style="display: none" id="add-summary-success-alert" role="alert">
+    <div class="alert alert-success" style="display: none; position: fixed; z-index: 1000; width: 70%;" id="add-summary-success-alert" role="alert">
       <button type="button" class="close" data-dismiss="alert">x</button>
       <strong>Success! </strong> Data Successfuly added.
     </div>

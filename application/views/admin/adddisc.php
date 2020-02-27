@@ -1,0 +1,213 @@
+<!-- <div class="alert alert-success" style="display: none; position: fixed; z-index: 1000; width: 70%;" id="add-summary-success-alert" role="alert">
+    <button type="button" class="close" data-dismiss="alert">x</button>
+    <strong>Success! </strong> Data Successfuly added.
+</div> -->
+<!-- Main content -->
+<form enctype="multipart/form-data" name="form" role="form">
+    <!-- Input Data  -->
+    <div class="card card-secondary">
+        <div class="card-header">
+            <h3 class="card-title">Discount Rate Form</h3>
+
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
+            </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Discount Rate</label>
+                        <input class="form-control" type="text" name="discount_rate" id="discountrate">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Payment Amount Term</label>
+                        <input class="form-control" type="text" name="pat" id="pat">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Payment Date</label>
+                        <input class="form-control" type="text" name="paymentdate" id="paymentdate">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Term of Payment</label>
+                        <select class="form-control" name="top" id="top">
+                            <option value="3">3 Bulan</option>
+                            <option value="6">6 Bulan</option>
+                            <option value="12">12 Bulan</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Awal Bulan / Akhir Bulan</label>
+                        <select class="form-control" name="awak" id="awak">
+                            <option value="start">Awal Bulan</option>
+                            <option value="end">Akhir Bulan</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            * Wajib diisi
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <button type="submit" id="add_summary_disc" class="btn btn-info col-md-12">Save</button>
+        </div>
+        <div class="col-md-2">
+            <input type="cancel" class="btn btn-block btn-primary" value="Batalkan">
+        </div>
+    </div>
+    <div class="col"></div>
+
+</form>
+<!-- /.content -->
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Select2 -->
+<script src="plugins/select2/js/select2.full.min.js"></script>
+<!-- Bootstrap4 Duallistbox -->
+<script src="plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+<!-- InputMask -->
+<script src="plugins/moment/moment.min.js"></script>
+<script src="plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+<!-- date-range-picker -->
+<script src="plugins/daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap color picker -->
+<script src="plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Bootstrap Switch -->
+<script src="plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<!-- Page script -->
+<script>
+    $(function() {
+        //Initialize Select2 Elements
+        $('.select2').select2()
+
+        //Initialize Select2 Elements
+        $('.select2bs4').select2({
+            theme: 'bootstrap4'
+        })
+
+        //Datemask dd/mm/yyyy
+        $('#datemask').inputmask('dd/mm/yyyy', {
+                'placeholder': 'dd/mm/yyyy'
+            })
+            //Datemask2 mm/dd/yyyy
+        $('#datemask2').inputmask('mm/dd/yyyy', {
+                'placeholder': 'mm/dd/yyyy'
+            })
+            //Money Euro
+        $('[data-mask]').inputmask()
+
+        //Date range picker
+        $('#reservation').daterangepicker()
+            //Date range picker with time picker
+        $('#reservationtime').daterangepicker({
+                timePicker: true,
+                timePickerIncrement: 30,
+                locale: {
+                    format: 'MM/DD/YYYY hh:mm A'
+                }
+            })
+            //Date range as a button
+        $('#daterange-btn').daterangepicker({
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                },
+                startDate: moment().subtract(29, 'days'),
+                endDate: moment()
+            },
+            function(start, end) {
+                $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+            }
+        )
+
+        //Timepicker
+        $('#timepicker').datetimepicker({
+            format: 'LT'
+        })
+
+        //Bootstrap Duallistbox
+        $('.duallistbox').bootstrapDualListbox()
+
+        //Colorpicker
+        $('.my-colorpicker1').colorpicker()
+            //color picker with addon
+        $('.my-colorpicker2').colorpicker()
+
+        $('.my-colorpicker2').on('colorpickerChange', function(event) {
+            $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
+        });
+
+        $("input[data-bootstrap-switch]").each(function() {
+            $(this).bootstrapSwitch('state', $(this).prop('checked'));
+        });
+
+    })
+</script>
+<script type="text/javascript">
+    function reverseNumber(input) {
+        return [].map.call(input, function(x) {
+            return x;
+        }).reverse().join('');
+    }
+
+    function plainNumber(number) {
+        return number.split('.').join('');
+    }
+
+    function splitInDots(input) {
+
+        var value = input.value,
+            plain = plainNumber(value),
+            reversed = reverseNumber(plain),
+            reversedWithDots = reversed.match(/.{1,3}/g).join('.'),
+            normal = reverseNumber(reversedWithDots);
+
+        console.log(plain, reversed, reversedWithDots, normal);
+        input.value = normal;
+    }
+
+    function oneDot(input) {
+        var value = input.value,
+            value = plainNumber(value);
+
+        if (value.length > 3) {
+            value = value.substring(0, value.length - 3) + '.' + value.substring(value.length - 3, value.length);
+        }
+        console.log(value);
+        input.value = value;
+    }
+</script>

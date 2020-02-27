@@ -31,6 +31,19 @@ class SummaryModel extends CI_Model{
 
 		$result = $this->db->insert('abm_summary',$summary_add_data);
 		return $result;
+      }
+      
+      function summary_add_disc() {
+		$summary_add_data = array(
+            'discountrate' => $this->input->post('calculation_discountrate'),
+            'top' => $this->input->post('calculation_top'),
+            'pat' => $this->input->post('calculation_pat'),
+            'paymentdate' => $this->input->post('calculation_paymentdate'),
+            'awak' => $this->input->post('calculation_awak')
+		);
+
+		$result = $this->db->insert('calculation',$summary_add_data);
+		return $result;
 	}
 
 }

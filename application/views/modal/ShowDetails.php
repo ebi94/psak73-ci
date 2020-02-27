@@ -23,18 +23,10 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-12">
             <div class="form-group">
               <label>Nomor Kontrak</label>
               <br/><span id="nomorkontrak"></span>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="exampleInputFile">Image</label>
-              <div class="custom-file">
-                -
-              </div>
             </div>
           </div>
         </div>
@@ -47,20 +39,13 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-12">
             <div class="form-group">
               <label>Jenis Sewa</label>
               <br/><span id="jenissewa"></span>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="exampleInputFile">Image</label>
-              <div class="custom-file">
-                -
-              </div>
-            </div>
-          </div>
+          
         </div>
         </div>
         <div class="card-footer">
@@ -79,100 +64,51 @@
       <!-- /.card-header -->
       <div class="card-body">
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-12">
             <div class="form-group">
               <label>a. Apakah terdapat modifikasi ?</label>
               <br/><span id="nsa"></span>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="exampleInputFile">Image</label>
-              <div class="custom-file">
-                <input type="file" class="custom-file-input" id="customFile">
-                -
-              </div>
-            </div>
-          </div>
         </div>
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-12">
             <div class="form-group">
               <label>b. Apakah kontrak dinegosiasikan dengan kontrak lain ?</label>
               <br/><span id="nsb"></span>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="exampleInputFile">Image</label>
-              <div class="custom-file">
-                <input type="file" class="custom-file-input" id="customFile">
-                -
-              </div>
-            </div>
-          </div>
         </div>
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-12">
             <div class="form-group">
               <label>c. 1. Apakah kontrak mengandung opsi perpanjangan ?</label>
               <br/><span id="nsc1"></span>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="exampleInputFile">Image</label>
-              <div class="custom-file">
-                -
-              </div>
-            </div>
-          </div>
+          
         </div>
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-12">
             <div class="form-group">
               <label>c. 2. Penyewa cukup pasti untuk mengeksekusi Opsi tersebut ?</label>
               <br/><span id="nsc2"></span>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="exampleInputFile">Image</label>
-              <div class="custom-file">
-                -
-              </div>
-            </div>
-          </div>
         </div>
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-12">
             <div class="form-group">
               <label>d. 1. Apakah kontrak mengandung Opsi terminasi ?</label>
               <br/><span id="ns-d1"></span>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="exampleInputFile">Image</label>
-              <div class="custom-file">
-                -
-              </div>
-            </div>
-          </div>
         </div>
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-12">
             <div class="form-group">
               <label>d. 2. Penyewa cukup pasti untuk tidak mengeksekusi Opsi tersebut ?</label>
               <br/><span id="nsd2"></span>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="exampleInputFile">Image</label>
-              <div class="custom-file">
-                -
-              </div>
             </div>
           </div>
         </div>
@@ -190,146 +126,76 @@
         <!--  -->
         <div class="col">
           <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-12">
               <div class="form-group">
                 <label>1. Certain Asset ? *</label>
                 <br/><span id="is1"></span>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="exampleInputFile">Image *</label>
-                <div class="custom-file">
-                  -
-                </div>
-              </div>
-            </div>
+            
           </div>
           <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-12">
               <div class="form-group">
                 <label>2. Right to Operate ? *</label>
                 <br/><span id="is2"></span>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="exampleInputFile">Image *</label>
-                <div class="custom-file">
-                  -
-                </div>
-              </div>
-            </div>
+            
           </div>
           <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-12">
               <div class="form-group">
                 <label>3. Control of the Output or other utility ? *</label>
                 <br/><span id="is3"></span>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="exampleInputFile">Image *</label>
-                <div class="custom-file">
-                  -
-                </div>
-              </div>
-            </div>
           </div>
           <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-12">
               <div class="form-group">
                 <label>4. Control Physical Asset ? *</label>
                 <br/><span id="is4"></span>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="exampleInputFile">Image *</label>
-                <div class="custom-file">
-                  -
-                </div>
-              </div>
-            </div>
           </div>
           <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-12">
               <div class="form-group">
                 <label>5. Contract Price ? *</label>
                 <br/><span id="is5"></span>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="exampleInputFile">Image *</label>
-                <div class="custom-file">
-                  -
-                </div>
-              </div>
-            </div>
           </div>
           <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-12">
               <div class="form-group">
                 <label>6. Output used by third party ? *</label>
                 <br/><span id="is6"></span>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="exampleInputFile">Image *</label>
-                <div class="custom-file">
-                  -
-                </div>
-              </div>
-            </div>
           </div>
           <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-12">
               <div class="form-group">
                 <label>7. Right to control the use of Asset ? *</label>
                 <br/><span id="is7"></span>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="exampleInputFile">Image*</label>
-                <div class="custom-file">
-                  -
-                </div>
-              </div>
-            </div>
           </div>
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
               <div class="form-group">
                 <label>Apakah kontrak Sewa terdiri dari beberapa komponen ?</label>
                 <br/><span id="komponen"></span>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="exampleInputFile">Image</label>
-                <div class="custom-file">
-                  -
-                </div>
-              </div>
-            </div>
           </div>
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
               <div class="form-group">
                 <label>Lokasi sewa ?</label>
                 <br/><span id="lokasi"></span>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="exampleInputFile">Image</label>
-                <div class="custom-file">
-                  -
-                </div>
               </div>
             </div>
           </div>
@@ -351,20 +217,13 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-12">
             <div class="form-group">
               <label>Besar nilai kontrak ?</label>
               <br/><span id="nilaikontrak"></span>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="exampleInputFile">Image</label>
-              <div class="custom-file">
-                -
-              </div>
-            </div>
-          </div>
+          
         </div>
       </div>
       <div class="card-footer">

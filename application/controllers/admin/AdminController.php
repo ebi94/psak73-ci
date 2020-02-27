@@ -27,8 +27,19 @@ class AdminController extends CI_Controller{
 		$this->load->view('templates/header', $data);
 	}
 
+	function add_summary_disc() {
+		$data['title'] = 'Add Discount Rate';
+		$data['view'] = 'admin/adddisc';
+		$this->load->view('templates/header', $data);
+	}
+
 	function do_add_summary() {
 		$data=$this->SummaryModel->summary_add();
+		echo json_encode($data);
+	}
+
+	function do_add_summary_disc() {
+		$data=$this->SummaryModel->summary_add_disc();
 		echo json_encode($data);
 	}
 
