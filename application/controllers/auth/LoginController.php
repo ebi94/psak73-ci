@@ -56,6 +56,7 @@ class LoginController extends CI_Controller {
 			    $this->session->set_userdata('ses_nama',$auth->name);
 			    $this->session->set_userdata('ses_email',$auth->email);
 			    $this->session->set_userdata('ses_username',$auth->email);
+			    $this->AuthModel->auth_up_login();
 			    redirect('admin');
 			} else {
 				$data['error'] = '<div class="alert alert-danger" style="margin-top: 3px">
