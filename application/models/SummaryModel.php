@@ -3,6 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class SummaryModel extends CI_Model{
 
+      function summary_get_all() {
+            $query = $this->db->query("SELECT * FROM abm_summary");
+            return $query;
+      }
+
 	function summary_add() {
 		$summary_add_data = array(
             'nama_pt' => $this->input->post('summary_namapt'),
