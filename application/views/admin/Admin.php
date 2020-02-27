@@ -8,13 +8,18 @@
 	      <div class="card">
 	        <div class="card-header">
 			  <h3 class="card-title">Data list</h3>
-			  	<a href="<?php echo base_url(''); ?>admin/add">
-					<button class="btn btn-info add_user float-right" type="button"><span class="fas fa-plus"> Add</span></button>
+			  <div class="float-right">
+			  	<a href="<?php echo base_url('admin/add'); ?>">
+					<button class="btn btn-info add_user" type="button"><span class="fas fa-plus"> Add</span></button>
 				</a>
+				<a href="<?php echo base_url(''); ?>">
+					<button class="btn btn-success export_kkp" type="button"><span class="fas fa-plus"> Export KKP</span></button>
+				</a>
+			  </div>
 	        </div>
 	        <!-- /.card-header -->
 	        <div class="card-body">
-	          <table id="example1" class="table table-bordered table-striped">
+	          <table id="summary_list" class="table table-bordered table-striped">
 	            <thead>
 	            <tr>
 	              <th>Nope</th>
@@ -43,103 +48,8 @@
 	              <th>Action</th>
 	            </tr>
 	            </thead>
-	            <tbody>
-	              <?php foreach($data_summary as $d): ?>
-	          		<tr>
-	          			<td><?php echo $d->id; ?></td>
-	          			<td><?php echo $d->nama_pt; ?></td>
-	          			<td><?php echo $d->nomor_kontrak; ?></td>
-	          			<td><?php echo $d->vendor; ?></td>
-	          			<td><?php echo $d->jenis_sewa; ?></td>
-	                <!-- <td><?php echo $d->ns_a; ?></td>
-	                <td><?php echo $d->ns_b; ?></td>
-	                <td><?php echo $d->ns_c1; ?></td>
-	                <td><?php echo $d->ns_c2; ?></td>
-	                <td><?php echo $d->ns_d1; ?></td>
-	                <td><?php echo $d->ns_d2; ?></td>
-	                <td><?php echo $d->is_1; ?></td>
-	                <td><?php echo $d->is_2; ?></td>
-	                <td><?php echo $d->is_3; ?></td>
-	                <td><?php echo $d->is_4; ?></td>
-	                <td><?php echo $d->is_5; ?></td>
-	                <td><?php echo $d->is_6; ?></td>
-	                <td><?php echo $d->is_7; ?></td>
-	                <td><?php echo $d->komponen; ?></td> -->
-	                <td><?php echo $d->lokasi; ?></td>
-	                <td><?php echo $d->start_date; ?></td>
-	                <td><?php echo $d->end_date; ?></td>
-	                <td><?php echo $d->nilai_kontrak; ?></td>
-	                <td>
-	                  <button 
-	                    type="button" 
-	                    class="modalihat btn btn-block btn-outline-primary btn-xs"  
-	                    data-toggle="modal" 
-	                    data-target="#modal-lihat" 
-	                    data-title="<?php echo $d->nama_pt; ?>" 
-	                    data-nomorkontrak="<?php echo $d->nomor_kontrak; ?>"
-	                    data-vendor="<?php echo $d->vendor; ?>"
-	          			    data-jenissewa="<?php echo $d->jenis_sewa; ?>"
-	                    data-nsa="<?php echo $d->ns_a; ?>"
-	                    data-nsb="<?php echo $d->ns_b; ?>"
-	                    data-nsc="<?php echo $d->ns_c1; ?>"
-	                    data-nsc2="<?php echo $d->ns_c2; ?>"
-	                    data-nsd1="<?php echo $d->ns_d1; ?>"
-	                    data-nsd2="<?php echo $d->ns_d2; ?>"
-	                    data-is1="<?php echo $d->is_1; ?>"
-	                    data-is2="<?php echo $d->is_2; ?>"
-	                    data-is3="<?php echo $d->is_3; ?>"
-	                    data-is4="<?php echo $d->is_4; ?>"
-	                    data-is5="<?php echo $d->is_5; ?>"
-	                    data-is6="<?php echo $d->is_6; ?>"
-	                    data-is7="<?php echo $d->is_7; ?>"
-	                    data-komponen="<?php echo $d->komponen; ?>"
-	                    data-lokasi="<?php echo $d->lokasi; ?>"
-	                    data-startdate="<?php echo $d->start_date; ?>"
-	                    data-enddate="<?php echo $d->end_date; ?>"
-	                    data-nilaikontrak="<?php echo $d->nilai_kontrak; ?>">
-	                      Lihat
-	                  </button>
-	                  <button 
-	                    type="button" 
-	                    class="modaedit btn btn-block btn-outline-info btn-xs"  
-	                    data-toggle="modal" 
-	                    data-target="#modal-edit" 
-	                    data-id="<?php echo $d->id; ?>"
-	                    data-title="<?php echo $d->nama_pt; ?>" 
-	                    data-nomorkontrak="<?php echo $d->nomor_kontrak; ?>"
-	                    data-vendor="<?php echo $d->vendor; ?>"
-	          			    data-jenissewa="<?php echo $d->jenis_sewa; ?>"
-	                    data-nsa="<?php echo $d->ns_a; ?>"
-	                    data-nsb="<?php echo $d->ns_b; ?>"
-	                    data-nsc="<?php echo $d->ns_c1; ?>"
-	                    data-nsc2="<?php echo $d->ns_c2; ?>"
-	                    data-nsd1="<?php echo $d->ns_d1; ?>"
-	                    data-nsd2="<?php echo $d->ns_d2; ?>"
-	                    data-is1="<?php echo $d->is_1; ?>"
-	                    data-is2="<?php echo $d->is_2; ?>"
-	                    data-is3="<?php echo $d->is_3; ?>"
-	                    data-is4="<?php echo $d->is_4; ?>"
-	                    data-is5="<?php echo $d->is_5; ?>"
-	                    data-is6="<?php echo $d->is_6; ?>"
-	                    data-is7="<?php echo $d->is_7; ?>"
-	                    data-komponen="<?php echo $d->komponen; ?>"
-	                    data-lokasi="<?php echo $d->lokasi; ?>"
-	                    data-startdate="<?php echo $d->start_date; ?>"
-	                    data-enddate="<?php echo $d->end_date; ?>"
-	                    data-nilaikontrak="<?php echo $d->nilai_kontrak; ?>">
-	                      Ubah
-	                  </button>
-	                  <button 
-	                    type="button" 
-	                    class="modahapus btn btn-block btn-outline-danger btn-xs" 
-	                    data-toggle="modal" 
-	                    data-id="<?php echo $d->id; ?>" 
-	                    data-target="#modal-hapus">
-	                      Hapus
-	                  </button>
-	                </td>
-	          		</tr>
-	          		<?php endforeach; ?>
+	            <tbody id="show_data_summary">
+
 	            </tbody>
 	            <tfoot>
 	            <tr>
@@ -180,11 +90,11 @@
 	        <button class="btn btn-block btn-primary">Export to Excel</button>
 	      </a>
 	    </div> -->
-	    <div  class="col-md-2">
+	    <!-- <div  class="col-md-2">
 	      <a href="export/export_excel" target="_blank">
 	        <button class="btn btn-block btn-success">Export to Excel</button>
 	      </a>
-	    </div>
+	    </div> -->
 	    <!-- /.col -->
 	  </div>
 	  <!-- /.row -->
@@ -266,10 +176,6 @@
 	        <!-- /.modal-dialog -->
 	      </div>
 	<!-- Modal Hapus -->
-				
-	<!-- Modal Tambah -->
-		<?php $this->load->view('modal/AddSummary.php'); ?>
-	<!-- Modal Tambah -->
 
 	<script src="<?php echo base_url('assets/AdminLTE'); ?>/plugins/jquery/jquery.min.js"></script>
 	<!-- Bootstrap 4 -->
@@ -283,17 +189,6 @@
 	<script src="<?php echo base_url('assets/AdminLTE'); ?>/dist/js/demo.js"></script>
 	<!-- page script -->
 	<script>
-	  $(function () {
-	    $("#example1").DataTable();
-	    $('#example2').DataTable({
-	      "paging": true,
-	      "lengthChange": false,
-	      "searching": false,
-	      "ordering": true,
-	      "info": true,
-	      "autoWidth": false,
-	    });
-	  });
 	// Function Show Detail
 	  $(document).on("click", ".modalihat", function () {
 	     
@@ -343,6 +238,7 @@
 	      $("#nilaikontrak").html( nilaikontrak );
 	  });
 	// Function Show Detail
+
 	// Function Edit
 	$(document).on("click", ".modaedit", function () {
 	     var id = $(this).data('id');
@@ -397,7 +293,6 @@
 	$(document).on("click", ".modahapus", function () {
 	     var did = $(this).data('id');
 	     $("#dhref a").attr("href", 'admin/delete/'+did)
-	     
 	 });
 	//  Function Delete
 	</script>
