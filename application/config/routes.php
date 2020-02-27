@@ -71,6 +71,8 @@ $route['admin/do/add'] = 'admin/AdminController/do_add_summary';
 $route['admin/edit'] = 'admin/AdminController/edit_summary';
 $route['admin/delete'] = 'admin/AdminController/delete_summary';
 
+$route['form/calculation'] = 'form/FormController/add_calculation';
+$route['form/do/calculation'] = 'form/FormController/do_add_calculation';
 
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
