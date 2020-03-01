@@ -10,7 +10,7 @@ class SummaryModel extends CI_Model{
 
 	function summary_add() {
             $y1 = date('Y',strtotime($this->input->post('summary_startdate')));
-            $y2 = date('Y',strtotime($this->input->post('summary_startdate')));
+            $y2 = date('Y',strtotime($this->input->post('summary_enddate')));
 
             $m1 = date('m',strtotime($this->input->post('summary_startdate')));
             $m2 = date('m',strtotime($this->input->post('summary_enddate')));
