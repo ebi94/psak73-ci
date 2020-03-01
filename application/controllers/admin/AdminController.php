@@ -47,7 +47,7 @@ class AdminController extends CI_Controller{
 	                class="modalihat btn btn-block btn-outline-primary btn-xs"  
 	                data-toggle="modal" 
 	                data-target="#modal-lihat"
-	                data-id="'.$key_summary->id.'"
+	                data-id="'.$key_summary->id_summary.'"
 	                data-title="'.$key_summary->nama_pt.'" 
 	                data-nomorkontrak="'.$key_summary->nomor_kontrak.'"
 	                data-vendor="'.$key_summary->vendor.'"
@@ -77,7 +77,7 @@ class AdminController extends CI_Controller{
                     class="modaedit btn btn-block btn-outline-info btn-xs"  
                     data-toggle="modal" 
                     data-target="#modal-edit" 
-                    data-id="'.$key_summary->id.'"
+                    data-id="'.$key_summary->id_summary.'"
 					data-title="'.$key_summary->nama_pt.'" 
 					data-nomorkontrak="'.$key_summary->nomor_kontrak.'"
 					data-vendor="'.$key_summary->vendor.'"
@@ -106,7 +106,7 @@ class AdminController extends CI_Controller{
 					type="button" 
 					class="modahapus btn btn-block btn-outline-danger btn-xs" 
 					data-toggle="modal" 
-					data-id="'.$key_summary->id.'" 
+					data-id="'.$key_summary->id_summary.'" 
 					data-target="#modal-hapus">
 					Hapus
 	               </button>'
