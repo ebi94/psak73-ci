@@ -66,6 +66,7 @@ class SummaryModel extends CI_Model{
                   'id_kontrak' => $id_kontrak,
                   'jenis_sewa' => $this->input->post('summary_jenissewa'),
                   'ns_a' => $this->input->post('summary_nsa'),
+                  'ns_a1' => $this->input->post('summary_nsa1'),
                   'ns_b' => $this->input->post('summary_nsb'),
                   'ns_c1' => $this->input->post('summary_nsc1'),
                   'ns_c2' => $this->input->post('summary_nsc2'),

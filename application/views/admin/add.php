@@ -94,11 +94,23 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>a. Apakah terdapat modifikasi ?</label>
-                        <input class="form-control" type="text" name="ns_a" id="nsa">
+                        <select class="form-control" name="nsa" id="nsa">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
                     </div>
                 </div>
-
             </div>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>a. 1. Tuliskan nomor kontrak original ?</label>
+                        <input class="form-control" type="text" name="nsa1" id="nsa1">
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
@@ -172,8 +184,8 @@
                         <div class="form-group">
                             <label>2. Right to Operate ? *</label>
                             <select class="form-control" name="is_2" id="is2">
-                                <option value="1">Yes</option>
-                                <option value="0">No</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
                             </select>
                         </div>
                     </div>
@@ -183,8 +195,8 @@
                         <div class="form-group">
                             <label>3. Control of the Output or other utility ? *</label>
                             <select class="form-control" name="is_3" id="is3">
-                                <option value="1">Yes</option>
-                                <option value="0">No</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
                             </select>
                         </div>
                     </div>
@@ -194,8 +206,8 @@
                         <div class="form-group">
                             <label>4. Control Physical Asset ? *</label>
                             <select class="form-control" name="is_4" id="is4">
-                                <option value="1">Yes</option>
-                                <option value="0">No</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
                             </select>
                         </div>
                     </div>
@@ -205,8 +217,8 @@
                         <div class="form-group">
                             <label>5. Contract Price ? *</label>
                             <select class="form-control" name="is_5" id="is5">
-                                <option value="1">Yes</option>
-                                <option value="0">No</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
                             </select>
                         </div>
                     </div>
@@ -216,8 +228,8 @@
                         <div class="form-group">
                             <label>6. Output used by third party ? *</label>
                             <select class="form-control" name=is_6 id=is6>
-                                <option value="1">Yes</option>
-                                <option value="0">No</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
                             </select>
                         </div>
                     </div>
@@ -227,8 +239,8 @@
                         <div class="form-group">
                             <label>7. Right to control the use of Asset ? *</label>
                             <select class="form-control" name="is_7" id="is7">
-                                <option value="1">Yes</option>
-                                <option value="0">No</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
                             </select>
                         </div>
                     </div>
@@ -248,8 +260,8 @@
                             <div class="form-group">
                                 <label>1. Kontrak terdiri dari beberapa komponen (lease dan nonlease) ?</label>
                                 <select class="form-control" name="kontrak_dari_beberapa_komponen" id="kontrak_dari_beberapa_komponen">
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
                                 </select>
                             </div>
                         </div>
@@ -267,8 +279,8 @@
                             <div class="form-group">
                                 <label>3. Komponen merupakan sewa ?</label>
                                 <select class="form-control" name="komponen_merupakan_sewa" id="komponen_merupakan_sewa">
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
                                 </select>
                             </div>
                         </div>
@@ -278,8 +290,8 @@
                             <div class="form-group">
                                 <label>4. Penyewa mendapat manfaat dari penggunaan aset pendasar secara terpisah atau bersamaan dengan sumber daya lain yang tersedia untuk penyewa ?</label>
                                 <select class="form-control" name="penyewa_mendapat_manfaat" id="penyewa_mendapat_manfaat">
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
                                 </select>
                             </div>
                         </div>
@@ -289,8 +301,8 @@
                             <div class="form-group">
                                 <label>5. Aset pendasar tersebut tidak memiliki ketergantungan yang tinggi dengan, maupun memiliki interelasi yang tinggi dengan, aset pendasar lainnya dalam kontrak ?</label>
                                 <select class="form-control" name="aset_dasar" id="aset_dasar">
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
                                 </select>
                             </div>
                         </div>
