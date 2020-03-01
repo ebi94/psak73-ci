@@ -58,7 +58,6 @@
     <div class="card card-secondary">
         <div class="card-header">
             <h3 class="card-title">Jenis Sewa *</h3>
-
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                 <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
@@ -71,6 +70,14 @@
                     <div class="form-group">
                         <label>Jenis Sewa</label>
                         <input class="form-control" name="jenis_sewa" type="text" id="jenissewa">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Serial Number / Nomor Polisi</label>
+                        <input class="form-control" name="serialnumber" type="text" id="serialnumber">
                     </div>
                 </div>
             </div>
@@ -115,7 +122,10 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>b. Apakah kontrak dinegosiasikan dengan kontrak lain ?</label>
-                        <input class="form-control" type="text" name="ns_b" id="nsb">
+                        <select class="form-control" name="nsb" id="nsb">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -123,7 +133,10 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>c. 1. Apakah kontrak mengandung opsi perpanjangan ?</label>
-                        <input class="form-control" type="text" name="ns_c1" id="nsc1">
+                        <select class="form-control" name="nsc1" id="nsc1">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -139,7 +152,10 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>d. 1. Apakah kontrak mengandung Opsi terminasi ?</label>
-                        <input class="form-control" type="text" name="ns_d1" id="nsd1">
+                        <select class="form-control" name="nsd1" id="nsd1">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
                     </div>
                 </div>
             </div>

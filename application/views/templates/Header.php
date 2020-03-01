@@ -216,6 +216,7 @@
           var nomorkontrak = $('#nomorkontrak').val();
           var vendor = $('#vendor').val();
           var jenissewa = $('#jenissewa').val();
+          var serialnumber = $('#serialnumber').val();
           var nsa = $('#nsa').val();
           var nsa1 = $('#nsa1').val();
           var nsb = $('#nsb').val();
@@ -248,6 +249,7 @@
                 summary_nomorkontrak:nomorkontrak, 
                 summary_vendor:vendor,
                 summary_jenissewa:jenissewa,
+                summary_serialnumber:serialnumber,
                 summary_nsa:nsa,
                 summary_nsa1:nsa1,
                 summary_nsb:nsb,
@@ -273,9 +275,11 @@
                 summary_nilaikontrak:nilaikontrak
               },
               success: function(data){
-                  $("#add-summary-success-alert").fadeTo(2000, 500).slideUp(500, function() {
-                    $("#add-summary-success-alert").slideUp(500).show();
-                  });
+                  var id = data;
+                  window.location.href=('<?php echo base_url('form/calculation/'); ?>' + id);
+                  // $("#add-summary-success-alert").fadeTo(2000, 500).slideUp(500, function() {
+                  // $("#add-summary-success-alert").slideUp(500).show();
+                  // });
               },
           });
           return false;
@@ -288,6 +292,14 @@
           var pat = $('#pat').val();
           var awak = $('#awak').val();
           var pd = $('#pd').val();
+          var id_summary = $('#id_summary').val();
+          var prepaid = $('#prepaid').val();
+          var status_ppn = $('#status_ppn').val();
+          var ppn = $('#ppn').val();
+          var jumlah_unit = $('#jumlah_unit').val();
+          var satuan = $('#satuan').val();
+          var nilai_asumsi_perpanjangan = $('#nilai_asumsi_perpanjangan').val();
+          var tgl_perpanjangan = $('#tgl_perpanjangan').val();
           $.ajax({
               type : "POST",
               url  : "<?php echo site_url('form/do/calculation')?>",
@@ -297,7 +309,15 @@
                 calculation_top:top, 
                 calculation_pat:pat,
                 calculation_awak:awak,
-                calculation_pd:pd
+                calculation_pd:pd,
+                calculation_id_summary:id_summary,
+                calculation_prepaid:prepaid,
+                calculation_status_ppn:status_ppn,
+                calculation_ppn:ppn,
+                calculation_jumlah_unit:jumlah_unit,
+                calculation_satuan:satuan,
+                calculation_nilai_asumsi_perpanjangan:nilai_asumsi_perpanjangan,
+                calculation_tgl_perpanjangan:tgl_perpanjangan
               },
               success: function(data){
                   alert('sukses');
