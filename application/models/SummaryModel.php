@@ -26,6 +26,7 @@ class SummaryModel extends CI_Model{
             $result_kontrak = $this->db->insert('t_kontrak',$kontrak_add_data);
             $id_kontrak = $this->db->insert_id();
 
+            $kontrak_int = str_replace(".", "", $this->input->post('summary_nilaikontrak'));
 		$summary_add_data = array(
                   'id_kontrak' => $id_kontrak,
                   'jenis_sewa' => $this->input->post('summary_jenissewa'),
@@ -46,12 +47,13 @@ class SummaryModel extends CI_Model{
                   'lokasi' => $this->input->post('summary_lokasi'),
                   'start_date' => $this->input->post('summary_startdate'),
                   'end_date' => $this->input->post('summary_enddate'),
-                  'nilai_kontrak' => $this->input->post('summary_nilaikontrak'),
+                  'nilai_kontrak' => $kontrak_int,
                   'periode_kontrak' => $diff
 		);
 
 		$result = $this->db->insert('abm_summary',$summary_add_data);
-		return $result;
+		$id_summary = $this->db->insert_id();
+            return $id_summary;
 	}
 
 }
