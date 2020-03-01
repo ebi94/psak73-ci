@@ -5,7 +5,7 @@
 
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Data Kontrak</h3>
+                <h3 class="card-title">Data Schedule</h3>
                 <div class="float-right">
                     <a href="<?php echo base_url('admin/add'); ?>">
                         <button class="btn btn-info add_user" type="button"><span class="fas fa-plus"> Add</span></button>

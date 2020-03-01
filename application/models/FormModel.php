@@ -24,4 +24,10 @@ class FormModel extends CI_Model{
 		return $result;
 	}
 
+	function calculation_get_contract($id_summary) {
+		// $query = $this->db->query("SELECT * FROM abm_summary");
+		$query = $this->db->query('select * from abm_summary, t_kontrak where abm_summary.id = ".$id_summary." and t_kontrak.id = abm_summary.id_kontrak');
+		return $query->result();
+  }
+
 }

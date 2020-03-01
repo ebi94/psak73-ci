@@ -19,12 +19,12 @@
 <body class="login-page" style="min-height: 512.8px;">
 <div class="login-box">
   <div class="login-logo">
-    <b>PSAK</b>73
+    <img src="<?php echo base_url('assets/image/Logo.png'); ?>" alt="Logo" height="55">
   </div>
   <!-- /.login-logo -->
   <div class="card">
-    <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign In to Start Session</p>
+    <div class="card-body login-card-body" style="border-radius: 10px;">
+      <p class="login-box-msg">Please Sign In !</p>
       <?php if(isset($error)) { echo $error; }; ?>
       <form action="<?php echo base_url('log/do/login') ?>" method="post">
         <div class="input-group mb-3">
@@ -48,7 +48,7 @@
         <div class="row">
           <!-- /.col -->
           <div class="col-12">
-            <button type="submit" class="btn btn-primary btn-block btn-flat "><i class="nav-icon fas fa-sign-in-alt"></i> Sign In</button>
+            <button type="submit" class="btn btn-primary btn-block btn-flat " style="border-radius: 8px;"><i class="nav-icon fas fa-sign-in-alt"></i> Sign In</button>
           </div>
           <!-- /.col -->
         </div>
