@@ -15,6 +15,9 @@
 				<a href="<?php echo base_url('export/kkp'); ?>">
 					<button class="btn btn-success export_kkp" type="button"><span class="far fa-file-excel"> Export KKP</span></button>
 				</a>
+				<a href="<?php echo base_url('export/calculation'); ?>">
+					<button class="btn btn-success export_kkp" type="button"><span class="far fa-file-excel"> Export Calculation</span></button>
+				</a>
 			  </div>
 	        </div>
 	        <!-- /.card-header -->

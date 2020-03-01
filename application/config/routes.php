@@ -75,6 +75,7 @@ $route['form/calculation/(:any)'] = 'form/FormController/add_calculation/$1';
 $route['form/do/calculation'] = 'form/FormController/do_add_calculation';
 
 $route['export/kkp'] = 'admin/ExportController/kkp_export';
+$route['export/calculation'] = 'admin/ExportController/calculation_export';
 
 
 $route['default_controller'] = 'welcome';
