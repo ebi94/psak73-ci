@@ -212,7 +212,6 @@
 
         //Add Summary
         $('#add_summary').on('click',function(){
-          // alert('click');
           var namapt = $('#namapt').val();
           var nomorkontrak = $('#nomorkontrak').val();
           var vendor = $('#vendor').val();
@@ -235,7 +234,6 @@
           var startdate = $('#startdate').val();
           var enddate = $('#enddate').val();
           var nilaikontrak = $('nilaikontrak').val();
-          // alert(nomorkontrak);
           $.ajax({
               type : "POST",
               url  : "<?php echo site_url('admin/do/add')?>",
@@ -265,7 +263,6 @@
                 summary_nilaikontrak:nilaikontrak
               },
               success: function(data){
-                  // fill_datatable_summary();
                   $("#add-summary-success-alert").fadeTo(2000, 500).slideUp(500, function() {
                     $("#add-summary-success-alert").slideUp(500).show();
                   });
