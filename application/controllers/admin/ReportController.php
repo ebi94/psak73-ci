@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class AdminController extends CI_Controller{
+class ReportController extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 
@@ -15,9 +15,8 @@ class AdminController extends CI_Controller{
 	}
 
 	function index() {
-		$data['title'] = 'List Kontrak';
-		// $data['data_summary'] = $this->db->query('SELECT * FROM abm_summary')->result();
-		$data['view'] = 'admin/Admin';
+		$data['title'] = 'Report';
+		$data['view'] = 'admin/report';
 		$this->load->view('templates/header', $data);
 	}
 
@@ -124,28 +123,4 @@ class AdminController extends CI_Controller{
 		exit();
 	}
 
-	function add_summary() {
-		$data['title'] = 'Add Summary';
-		$data['view'] = 'admin/add';
-		$this->load->view('templates/header', $data);
-	}
-
-	function do_add_summary() {
-		$data=$this->SummaryModel->summary_add();
-		echo json_encode($data);
-	}
-
-	function edit_summary() {
-		$data_edit = array(
-			'nama_pt' => $this->input->post('nama_pt'),
-		);
-
-		$this->db->where('id', $this->input->post('id'));
-		if (! $this->db->update('abm_summary', $data_edit)) {
-			return false;
-		} else {
-			return true;
-		}
-		
-	}
 }
