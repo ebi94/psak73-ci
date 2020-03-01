@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="form-group">
-                        <label>Nama Perusahaan / PT</label>
+                        <label>Nama Perusahaan / PT *</label>
                         <input class="form-control" type="text" name="nama_pt" id="namapt">
                     </div>
                 </div>
@@ -36,7 +36,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label>Nomor Kontrak</label>
+                        <label>Nomor Kontrak *</label>
                         <input class="form-control" type="text" name="nomor_kontrak" id="nomorkontrak">
                     </div>
                 </div>
@@ -44,7 +44,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label>Vendor</label>
+                        <label>Vendor *</label>
                         <input class="form-control" type="text" name="vendor" id="vendor">
                     </div>
                 </div>
@@ -57,7 +57,7 @@
 
     <div class="card card-secondary">
         <div class="card-header">
-            <h3 class="card-title">Jenis Sewa</h3>
+            <h3 class="card-title">Jenis Sewa *</h3>
 
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
@@ -233,40 +233,76 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>8. Aset pendasar tersebut tidak memiliki ketergantungan yang tinggi ?</label>
-                            <select class="form-control" name="komponen" id="komponenmulti">
-                                <option value="1">Yes</option>
-                                <option value="0">No</option>
-                            </select>
+                <div class="card card-secondary">
+                    <div class="card-header">
+                        <h3 class="card-title">Komponen Sewa</h3>
+
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
                         </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>1. Kontrak terdiri dari beberapa komponen (lease dan nonlease) ?</label>
+                                <select class="form-control" name="kontrak_dari_beberapa_komponen" id="kontrak_dari_beberapa_komponen">
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>2. Tuliskan komponen dalam kontrak ?</label>
+                                <input class="form-control" type="text" name="komponen_dalam_kontrak" id="komponen_dalam_kontrak">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>3. Komponen merupakan sewa ?</label>
+                                <select class="form-control" name="komponen_merupakan_sewa" id="komponen_merupakan_sewa">
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>4. Penyewa mendapat manfaat dari penggunaan aset pendasar secara terpisah atau bersamaan dengan sumber daya lain yang tersedia untuk penyewa ?</label>
+                                <select class="form-control" name="penyewa_mendapat_manfaat" id="penyewa_mendapat_manfaat">
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>5. Aset pendasar tersebut tidak memiliki ketergantungan yang tinggi dengan, maupun memiliki interelasi yang tinggi dengan, aset pendasar lainnya dalam kontrak ?</label>
+                                <select class="form-control" name="aset_dasar" id="aset_dasar">
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        * Wajib diisi
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label>9. Apakah kontrak Sewa terdiri dari beberapa komponen ?</label>
-                            <select class="form-control" name="komponen" id="komponenmulti">
-                                <option value="1">Yes</option>
-                                <option value="0">No</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>Komponen sewa ?</label>
-                            <input class="form-control" type="text" name="komponen" id="komponen">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>Lokasi sewa ?</label>
+                            <label>Lokasi sewa ? *</label>
                             <input class="form-control" type="text" name="lokasi" id="lokasi">
                         </div>
                     </div>
@@ -279,13 +315,13 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <label>Start Date</label>
+                        <label>Start Date *</label>
                         <input class="form-control" type="date" placeholder="01/01/20" name="start_date" id="startdate">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
-                        <label>End Date</label>
+                        <label>End Date *</label>
                         <input class="form-control" type="date" placeholder="01/01/20" name="end_date" id="enddate">
                     </div>
                 </div>
@@ -293,7 +329,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label>Besar nilai kontrak ?</label>
+                        <label>Besar nilai kontrak ? *</label>
                         <input class="form-control" type="text" onkeyup="splitInDots(this)" name="nilai_kontrak" id="nilaikontrak">
                     </div>
                 </div>
