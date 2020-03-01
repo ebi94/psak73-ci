@@ -271,6 +271,30 @@
           return false;
         });
       // END SUMMARY MANAGEMENT
+
+      $('#add_calculation').on('click',function(){
+          var dr = $('#dr').val();
+          var top = $('#top').val();
+          var pat = $('#pat').val();
+          var awak = $('#awak').val();
+          var pd = $('#pd').val();
+          $.ajax({
+              type : "POST",
+              url  : "<?php echo site_url('form/do/calculation')?>",
+              dataType : "JSON",
+              data : {
+                calculation_dr:dr, 
+                calculation_top:top, 
+                calculation_pat:pat,
+                calculation_awak:awak,
+                calculation_pd:pd
+              },
+              success: function(data){
+                  alert('sukses');
+              },
+          });
+          return false;
+        });
     </script>
   </body>
 </html>
