@@ -141,6 +141,7 @@
 	            </div>
 	            <div class="modal-footer justify-content-between">
 	              <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+	              <button type="button" class="btn btn-primary" id="tambah_aset">Tambah Asset</button>
 	            </div>
 	          </div>
 	          <!-- /.modal-content -->
@@ -190,7 +191,7 @@
 	<!-- page script -->
 	<script>
 	// Function Show Detail
-	  $(document).on("click", ".modalihat", function () {
+	$(document).on("click", ".modalihat", function () {
 	     
 	      var title = $(this).data('title');
 	      var nomorkontrak = $(this).data('nomorkontrak');
@@ -236,7 +237,7 @@
 	      $("#startdate").html( startdate );
 	      $("#enddate").html( enddate );
 	      $("#nilaikontrak").html( nilaikontrak );
-	  });
+	});
 	// Function Show Detail
 
 	// Function Edit
@@ -295,5 +296,11 @@
 	     $("#dhref a").attr("href", 'admin/delete/'+did)
 	 });
 	//  Function Delete
+
+	// Function Tambah Asset Melalui Modal
+	$(document).on("click", "#tambah_aset", function () {
+		var id = $(this).data('id');
+	});
+	// Function Tambah Asset Melalui Modal
 	</script>
 <!-- End Contents -->

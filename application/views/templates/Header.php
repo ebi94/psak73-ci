@@ -169,7 +169,7 @@
         });
 
         //Do Delete User
-         $('#btn_user_delete').on('click',function(){
+        $('#btn_user_delete').on('click',function(){
             var id_user = $('#id_user_delete').val();
             $.ajax({
                 type : "POST",
@@ -209,7 +209,7 @@
             },
           });
         }
-        
+
         //Add Summary
         $('#add_summary').on('click',function(){
           var namapt = $('#namapt').val();

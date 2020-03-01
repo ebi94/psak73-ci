@@ -6,7 +6,7 @@
     <div class="card card-secondary">
       <div class="card-header">
         <h3 class="card-title">Show Detail</h3>
-        
+        <input type="hidden" name="id" id="id">
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
           <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
