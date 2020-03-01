@@ -94,11 +94,23 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>a. Apakah terdapat modifikasi ?</label>
-                        <input class="form-control" type="text" name="ns_a" id="nsa">
+                        <select class="form-control" name="nsa" id="nsa">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
                     </div>
                 </div>
-
             </div>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>a. 1. Tuliskan nomor kontrak original ?</label>
+                        <input class="form-control" type="text" name="nsa1" id="nsa1">
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">

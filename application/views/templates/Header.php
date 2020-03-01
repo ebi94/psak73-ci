@@ -217,6 +217,7 @@
           var vendor = $('#vendor').val();
           var jenissewa = $('#jenissewa').val();
           var nsa = $('#nsa').val();
+          var nsa1 = $('#nsa1').val();
           var nsb = $('#nsb').val();
           var nsc1 = $('#nsc1').val();
           var nsc2 = $('#nsc2').val();
@@ -248,6 +249,7 @@
                 summary_vendor:vendor,
                 summary_jenissewa:jenissewa,
                 summary_nsa:nsa,
+                summary_nsa1:nsa1,
                 summary_nsb:nsb,
                 summary_nsc1:nsc1,
                 summary_nsc2:nsc2,
