@@ -79,6 +79,7 @@ $route['schedule'] = 'admin/ScheduleController';
 $route['report'] = 'admin/ReportController';
 
 $route['export/kkp'] = 'admin/ExportController/kkp_export';
+$route['export/calculation'] = 'admin/ExportController/calculation_export';
 
 
 $route['default_controller'] = 'welcome';

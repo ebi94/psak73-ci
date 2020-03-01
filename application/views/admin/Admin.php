@@ -2,30 +2,32 @@
 <!-- Main content -->
 <div class="row">
     <div class="col-md-12">
-
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Data Kontrak</h3>
-                <div class="float-right">
-                    <a href="<?php echo base_url('admin/add'); ?>">
-                        <button class="btn btn-info add_user" type="button"><span class="fas fa-plus"> Add</span></button>
-                    </a>
-                    <a href="<?php echo base_url('export/kkp'); ?>">
-                        <button class="btn btn-success export_kkp" type="button"><span class="far fa-file-excel"> Export KKP</span></button>
-                    </a>
-                </div>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-                <table id="summary_list" class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>Nope</th>
-                            <th>Nama PT</th>
-                            <th>Nomor Kontrak</th>
-                            <th>Vendor</th>
-                            <th>Jenis Sewa</th>
-                            <!-- <th>Apakah terdapat modifikasi ?</th>
+	      <div class="card">
+	        <div class="card-header">
+			  <h3 class="card-title">Data list</h3>
+			  <div class="float-right">
+			  	<a href="<?php echo base_url('admin/add'); ?>">
+					<button class="btn btn-info add_user" type="button"><span class="fas fa-plus"> Add</span></button>
+				</a>
+				<a href="<?php echo base_url('export/kkp'); ?>">
+					<button class="btn btn-success export_kkp" type="button"><span class="far fa-file-excel"> Export KKP</span></button>
+				</a>
+				<a href="<?php echo base_url('export/calculation'); ?>">
+					<button class="btn btn-success export_kkp" type="button"><span class="far fa-file-excel"> Export Calculation</span></button>
+				</a>
+			  </div>
+	        </div>
+	        <!-- /.card-header -->
+	        <div class="card-body">
+	          <table id="summary_list" class="table table-bordered table-striped">
+	            <thead>
+	            <tr>
+	              <th>Nope</th>
+	              <th>Nama PT</th>
+	              <th>Nomor Kontrak</th>
+	              <th>Vendor</th>
+	              <th>Jenis Sewa</th>
+	              <!-- <th>Apakah terdapat modifikasi ?</th>
 	              <th>Apakah kontrak dinegosiasikan dengan kontrak lain ?</th>
 	              <th>Apakah kontrak mengandung opsi perpanjangan ?</th>
 	              <th>Penyewa cukup pasti untuk mengeksekusi Opsi tersebut ?</th>
