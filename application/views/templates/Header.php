@@ -229,7 +229,11 @@
           var is5 = $('#is5').val();
           var is6 = $('#is6').val();
           var is7 = $('#is7').val();
-          var komponen = $('#komponen').val();
+          var k_1 = $('#kontrak_dari_beberapa_komponen').val();
+          var k_2 = $('#komponen_dalam_kontrak').val();
+          var k_3 = $('#komponen_merupakan_sewa').val();
+          var k_4 = $('#penyewa_mendapat_manfaat').val();
+          var k_5 = $('#aset_dasar').val();
           var lokasi = $('#lokasi').val();
           var startdate = $('#startdate').val();
           var enddate = $('#enddate').val();
@@ -256,7 +260,11 @@
                 summary_is5:is5,
                 summary_is6:is6,
                 summary_is7:is7,
-                summary_komponen:komponen,
+                summary_k_1:k_1,
+                summary_k_2:k_2,
+                summary_k_3:k_3,
+                summary_k_4:k_4,
+                summary_k_5:k_5,
                 summary_lokasi:lokasi,
                 summary_startdate:startdate,
                 summary_enddate:enddate,

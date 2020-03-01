@@ -199,7 +199,7 @@
 	      var jenissewa = $(this).data('jenissewa');
 	      var nsa = $(this).data('nsa');
 	      var nsb = $(this).data('nsb');
-	      var nsc = $(this).data('nsc1');
+	      var nsc1 = $(this).data('nsc1');
 	      var nsc2 = $(this).data('nsc2');
 	      var nsd1 = $(this).data('nsd1');
 	      var nsd2 = $(this).data('nsd2');
@@ -221,7 +221,7 @@
 	      $("#jenissewa").html( jenissewa );
 	      $("#nsa").html( nsa );
 	      $("#nsb").html( nsb );
-	      $("#nsc").html( nsc1 );
+	      $("#nsc1").html( nsc1 );
 	      $("#nsc2").html( nsc2 );
 	      $("#nsd1").html( nsd1 );
 	      $("#nsd2").html( nsd2 );

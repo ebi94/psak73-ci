@@ -143,7 +143,7 @@
 
     <div class="row">
         <div class="col-md-2">
-            <button type="submit" id="add_calculation" class="btn btn-block btn-info">Lanjutkan</button>
+            <button type="submit" id="add_calculation" class="btn btn-block btn-info">Simpan</button>
         </div>
         <div class="col-md-2">
             <input type="cancel" class="btn btn-block btn-primary" value="Batalkan">
