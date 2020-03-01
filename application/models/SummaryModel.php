@@ -4,7 +4,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class SummaryModel extends CI_Model{
 
       function summary_get_all() {
-            $query = $this->db->query("SELECT * FROM abm_summary");
+            // $query = $this->db->query("SELECT * FROM abm_summary");
+            $query = $this->db->query("
+                  SELECT
+                        k.id AS id_id_kontrak,
+                        k.nama_pt AS nama_pt,
+                        k.nomor_kontrak AS nomor_kontrak,
+                        k.vendor AS vendor,
+                        sum.id AS id_summary,
+                        sum.jenis_sewa AS jenis_sewa,
+                        sum.ns_a AS ns_a,
+                        sum.ns_b AS ns_b,
+                        sum.ns_c1 AS ns_c1,
+                        sum.ns_c2 AS ns_c2,
+                        sum.ns_d1 AS ns_d1,
+                        sum.ns_d2 AS ns_d2,
+                        sum.is_1 AS is_1,
+                        sum.is_2 AS is_2,
+                        sum.is_3 AS is_3,
+                        sum.is_4 AS is_4,
+                        sum.is_5 As is_5,
+                        sum.is_6 AS is_6,
+                        sum.is_7 AS is_7,
+                        sum.komponen AS komponen,
+                        sum.lokasi AS lokasi,
+                        sum.start_date AS start_date,
+                        sum.end_date AS end_date,
+                        sum.nilai_kontrak AS nilai_kontrak,
+                        sum.periode_kontrak AS periode_kontrak
+                  FROM
+                        `t_kontrak` k
+                        LEFT JOIN abm_summary sum ON sum.id_kontrak = k.id
+            ");
             return $query;
       }
 
