@@ -17,6 +17,7 @@ class FormController extends CI_Controller{
     function add_calculation($id_summary) {
 		$data['title'] = 'Add Calculation';
 		$data['id_summary'] = $id_summary;
+		$data['id_kontrak'] = json_encode($this->FormModel->calculation_get_contract($id_summary));
 		$data['view'] = 'form/calculation';
 		$this->load->view('templates/header', $data);
 	}

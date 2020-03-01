@@ -36,7 +36,12 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Term of Payment</label>
-                        <input class="form-control" type="text" name="top" id="top">
+                        <select class="form-control" name="top" id="top">
+                            <option value="1">1 Bulan</option>
+                            <option value="2">2 Bulan</option>
+                            <option value="4">4 Bulan</option>
+                            <option value="12">12 Bulan</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -44,7 +49,10 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Awal Bulan / Akhir Bulan</label>
-                        <input class="form-control" name="awak" type="text" id="awak">
+                        <select class="form-control" name="awak" id="awak">
+                            <option value="1">Awal Bulan</option>
+                            <option value="0">Akhir Bulan</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -52,7 +60,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Payment Date</label>
-                        <input class="form-control" name="pd" type="text" id="pd">
+                        <input class="form-control" name="pd" type="date" id="pd">
                     </div>
                 </div>
             </div>
@@ -84,7 +92,10 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Status PPN</label>
-                        <input class="form-control" type="text" name="status_ppn" id="status_ppn">
+                        <select class="form-control" name="status_ppn" id="status_ppn">
+                            <option value="0">Belum Termasuk PPN</option>
+                            <option value="1">Sudah Termasuk PPN</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -140,7 +151,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Tanggal Perpanjang</label>
-                        <input class="form-control" type="text" name="tgl_perpanjangan" id="tgl_perpanjangan">
+                        <input class="form-control" type="date" name="tgl_perpanjangan" id="tgl_perpanjangan">
                     </div>
                 </div>
             </div>
@@ -161,6 +172,35 @@
     <div class="col"></div>
 
 </form>
+
+
+<!-- Modal Alert Tambah Asset -->
+<div class="modal fade" id="modal-alert-tambah-aset">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Tambah Aset</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <section class="content">
+                <div class="container-fluid">
+                    <strong>Apakah ada penambahan aset dalam no kontrak "<?php echo $id_kontrak ?>" ?</strong>
+                </div>
+            </section>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                <button type="button" class="btn btn-primary" id="tambah_aset">Iya</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- Modal Alert Tambah Asset -->
 <!-- /.content -->
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
