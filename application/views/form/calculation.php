@@ -20,6 +20,7 @@
                     <div class="form-group">
                         <label>Discount Rate</label>
                         <input class="form-control" type="text" name="dr" id="dr">
+                        <input class="form-control" type="hidden" name="id_summary" id="id_summary" value="<?php echo $id_summary?>">
                     </div>
                 </div>
             </div>
@@ -55,6 +56,14 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Prepaid</label>
+                        <input class="form-control" name="prepaid" type="text" id="prepaid">
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="card-footer">
             * Wajib diisi
@@ -75,7 +84,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Status PPN</label>
-                        <input class="form-control" type="text" name="dr" id="dr">
+                        <input class="form-control" type="text" name="status_ppn" id="status_ppn">
                     </div>
                 </div>
             </div>
@@ -83,7 +92,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>PPN %</label>
-                        <input class="form-control" type="text" name="pat" id="pat">
+                        <input class="form-control" type="text" name="ppn" id="ppn">
                     </div>
                 </div>
             </div>
@@ -91,7 +100,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Jumlah Unit</label>
-                        <input class="form-control" type="text" name="top" id="top">
+                        <input class="form-control" type="text" name="jumlah_unit" id="jumlah_unit">
                     </div>
                 </div>
             </div>
@@ -99,7 +108,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Satuan</label>
-                        <input class="form-control" name="awak" type="text" id="awak">
+                        <input class="form-control" name="satuan" type="text" id="satuan">
                     </div>
                 </div>
             </div>
@@ -123,7 +132,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Nilai Asumsi Perpanjang</label>
-                        <input class="form-control" type="text" name="dr" id="dr">
+                        <input class="form-control" type="text" name="nilai_asumsi_perpanjangan" id="nilai_asumsi_perpanjangan">
                     </div>
                 </div>
             </div>
@@ -131,7 +140,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Tanggal Perpanjang</label>
-                        <input class="form-control" type="text" name="pat" id="pat">
+                        <input class="form-control" type="text" name="tgl_perpanjangan" id="tgl_perpanjangan">
                     </div>
                 </div>
             </div>

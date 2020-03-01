@@ -71,7 +71,7 @@ $route['admin/do/add'] = 'admin/AdminController/do_add_summary';
 $route['admin/edit'] = 'admin/AdminController/edit_summary';
 $route['admin/delete'] = 'admin/AdminController/delete_summary';
 
-$route['form/calculation'] = 'form/FormController/add_calculation';
+$route['form/calculation/(:any)'] = 'form/FormController/add_calculation/$1';
 $route['form/do/calculation'] = 'form/FormController/do_add_calculation';
 
 $route['export/kkp'] = 'admin/ExportController/kkp_export';

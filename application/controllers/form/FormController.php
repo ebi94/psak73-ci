@@ -14,8 +14,9 @@ class FormController extends CI_Controller{
 		$this->load->model('FormModel');
 	}
 
-    function add_calculation() {
+    function add_calculation($id_summary) {
 		$data['title'] = 'Add Calculation';
+		$data['id_summary'] = $id_summary;
 		$data['view'] = 'form/calculation';
 		$this->load->view('templates/header', $data);
 	}
