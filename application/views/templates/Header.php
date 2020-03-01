@@ -233,7 +233,7 @@
           var lokasi = $('#lokasi').val();
           var startdate = $('#startdate').val();
           var enddate = $('#enddate').val();
-          var nilaikontrak = $('nilaikontrak').val();
+          var nilaikontrak = $('#nilaikontrak').val();
           $.ajax({
               type : "POST",
               url  : "<?php echo site_url('admin/do/add')?>",
