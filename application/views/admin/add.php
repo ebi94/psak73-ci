@@ -49,6 +49,23 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="card-footer">
+            * Wajib diisi
+        </div>
+    </div>
+
+    <div class="card card-secondary">
+        <div class="card-header">
+            <h3 class="card-title">Jenis Sewa</h3>
+
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
+            </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
@@ -56,7 +73,6 @@
                         <input class="form-control" name="jenis_sewa" type="text" id="jenissewa">
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="card-footer">
@@ -132,6 +148,10 @@
     <div class="card card-secondary">
         <div class="card-header">
             <h3 class="card-title">Identifikasi Sewa</h3>
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
+            </div>
         </div>
         <div class="card-body">
             <!--  -->
@@ -216,7 +236,29 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label>Apakah kontrak Sewa terdiri dari beberapa komponen ?</label>
+                            <label>8. Aset pendasar tersebut tidak memiliki ketergantungan yang tinggi ?</label>
+                            <select class="form-control" name="komponen" id="komponenmulti">
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>9. Apakah kontrak Sewa terdiri dari beberapa komponen ?</label>
+                            <select class="form-control" name="komponen" id="komponenmulti">
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Komponen sewa ?</label>
                             <input class="form-control" type="text" name="komponen" id="komponen">
                         </div>
                     </div>
@@ -265,7 +307,7 @@
 
     <div class="row">
         <div class="col-md-2">
-            <button type="submit" id="add_summary" class="btn btn-info col-md-12">Save</button>
+            <button type="submit" id="add_summary" class="btn btn-info col-md-12">Lanjutkan</button>
         </div>
         <div class="col-md-2">
             <input type="cancel" class="btn btn-block btn-primary" value="Batalkan">
