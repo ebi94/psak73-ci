@@ -10,7 +10,7 @@ class ExportModel extends CI_Model{
 				jenis_sewa AS underlying_asset,
 				start_date AS tgl_mulai_kontrak,
 				end_date AS tgl_berakhir_kontrak,
-				'tgl_akhir_kontrak - tgl_awal_kontrak dalam bulan' AS periode_kontrak,
+				periode_kontrak AS periode_kontrak,
 				ns_a AS modifikasi_kontrak,
 				'kontrak original kalau modifikasi kontrak itu yes' AS kontrak_original,
 				ns_b AS negosiasi_dengan_kontrak_lain,
@@ -27,22 +27,22 @@ class ExportModel extends CI_Model{
 				is_7 AS right_control,
 				CASE WHEN is_1 = 'Yes' AND is_7 = 'Yes' AND is_2 = 'Yes' AND is_3 = 'Yes' AND is_4 = 'Yes' AND is_6= 'Yes' THEN 'Lease' ELSE 'Non Lease' END AS lease,
 				komponen AS multi_komponen,
-				CASE komponen WHEN 'YES' THEN 'Jasa' ELSE '' END AS komponen_dalam_kontrak,
-				CASE '1' WHEN '1' THEN 'Yes' ELSE 'No' END AS komponen_sewa,
-				CASE '1' WHEN '1' THEN 'Yes' ELSE 'No' END AS penyewa_dapat_manfaat,
-				CASE '1' WHEN '1' THEN 'Yes' ELSE 'No' END AS ketergantungan_tinggi_asset,
-				/*CASE WHEN penyewa_dapat_manfaat = '1' AND ketergantungan_tinggi_asset = '1' THEN 'Terpisah' ELSE 'Tidak Terpisah' END AS komponen_terpisah*/
-				'1' AS komponen_terpisah,
+				'Jasa' AS komponen_dalam_kontrak,
+				'Yes' AS komponen_sewa,
+				'Yes' AS penyewa_dapat_manfaat,
+				'Yes' AS ketergantungan_tinggi_asset,
+				/*CASE WHEN penyewa_dapat_manfaat = 'Yes' AND ketergantungan_tinggi_asset = 'Yes' THEN 'Terpisah' ELSE 'Tidak Terpisah' END AS komponen_terpisah*/
+				'Terpisah' AS komponen_terpisah,
 				nilai_kontrak AS nilai_kontrak_exclude_ppn,
 				'3' AS termin_bayar,
-				'1' AS akhir_awal_bulan_bayar,
+				'Akhir' AS akhir_awal_bulan_bayar,
 				'4' AS frekuensi_pembayaran,
 				/*(nilai_kontrak/frekuensi_pembayaran) AS nilai_sewa_per_pembayaran*/
 				(nilai_kontrak / 4) AS nilai_sewa_per_pembayaran,
 				'Belum Termasuk PPN' AS status_ppn,
 				'10%' AS ppn,
-				/*(nilai_kontrak/periode_kontrak) AS nilai_sewa_per_bulan*/
-				(nilai_kontrak/24) AS nilai_sewa_per_bulan,
+				(nilai_kontrak/periode_kontrak) AS nilai_sewa_per_bulan,
+				-- (nilai_kontrak/24) AS nilai_sewa_per_bulan,
 				'1' AS jumlah_unit_jumlah,
 				'unit' AS jumlah_unit_satuan
 			FROM
