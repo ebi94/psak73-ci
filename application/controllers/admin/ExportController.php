@@ -799,7 +799,7 @@ class ExportController extends CI_Controller{
 		$excel->setActiveSheetIndex(0)->setCellValue('F'.$start_row, '=C'.$start_row.'-(D'.$start_row.'-E'.$start_row.')');
 
 		$excel->setActiveSheetIndex(0)->setCellValue('G'.$start_row, '=ABS(C'.$start_row.')');	
-		$excel->setActiveSheetIndex(0)->setCellValue('H'.$start_row, '=AF9*(-1)');	
+		$excel->setActiveSheetIndex(0)->setCellValue('H'.$start_row, '=AF9');	
 		$excel->setActiveSheetIndex(0)->setCellValue('I'.$start_row, '=G'.$start_row.'+H'.$start_row.'');
 
 
@@ -819,8 +819,8 @@ class ExportController extends CI_Controller{
 			$excel->setActiveSheetIndex(0)->setCellValue('E'.$row, '=(C'.$row.')*('.$effective_monthly_dr.')');
 			$excel->setActiveSheetIndex(0)->setCellValue('F'.$row, '=C'.$row.'-(D'.$row.'-E'.$row.')');
 
-			$excel->setActiveSheetIndex(0)->setCellValue('G'.$row, '=ABS(C'.$row.')');	
-			$excel->setActiveSheetIndex(0)->setCellValue('H'.$row, '=AF9*(-1)');	
+			$excel->setActiveSheetIndex(0)->setCellValue('G'.$row, '=I'.$row_2.'');	
+			$excel->setActiveSheetIndex(0)->setCellValue('H'.$row, '=AF9');	
 			$excel->setActiveSheetIndex(0)->setCellValue('I'.$row, '=G'.$row.'+H'.$row.'');
 
 		// $ix++;
