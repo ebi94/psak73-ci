@@ -320,6 +320,7 @@
                 calculation_tgl_perpanjangan:tgl_perpanjangan
               },
               success: function(data){
+                $('#modal-alert-tambah-aset').modal({backdrop: 'static', keyboard: false});
                 $('#modal-alert-tambah-aset').modal('show');
               },
           });

@@ -74,6 +74,9 @@ $route['admin/delete'] = 'admin/AdminController/delete_summary';
 $route['form/calculation/(:any)'] = 'form/FormController/add_calculation/$1';
 $route['form/do/calculation'] = 'form/FormController/do_add_calculation';
 
+$route['admin/summary/(:any)'] = 'admin/SummaryController/add_summary/$1';
+$route['admin/do/summary'] = 'admin/SummaryController/do_add_summary';
+
 $route['schedule'] = 'admin/ScheduleController';
 
 $route['report'] = 'admin/ReportController';

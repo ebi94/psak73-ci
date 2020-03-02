@@ -180,20 +180,23 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Tambah Aset</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
             <div class="modal-body">
             <section class="content">
                 <div class="container-fluid">
-                    <strong>Apakah ada penambahan aset dalam no kontrak "<?php echo $id_kontrak ?>" ?</strong>
+                    <strong>Anda telah berhasil menambahkan aset</strong></br>
+                    <strong>Apakah ada penambahan aset dalam no kontrak "<?php echo $nomor_kontrak ?>" ?</strong></br></br>
+                    <strong>WAJIB DI PILIH SALAH SATU ! ! !</strong>
                 </div>
             </section>
             </div>
             <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                <button type="button" class="btn btn-primary" id="tambah_aset">Iya</button>
+                <a href="<?php echo base_url('admin'); ?>">
+                    <button type="button" class="btn btn-secondary">Tidak</button>
+                </a>
+                <a href="<?php echo base_url('admin/summary/'); echo $id_summary ?>">
+                    <button type="button" class="btn btn-primary" id="tambah_aset">Iya</button>
+                </a>
             </div>
         </div>
         <!-- /.modal-content -->
