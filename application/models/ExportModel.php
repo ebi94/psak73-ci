@@ -12,7 +12,7 @@ class ExportModel extends CI_Model{
 				end_date AS tgl_berakhir_kontrak,
 				periode_kontrak AS periode_kontrak,
 				ns_a AS modifikasi_kontrak,
-				'kontrak original kalau modifikasi kontrak itu yes' AS kontrak_original,
+				ns_a AS kontrak_original,
 				ns_b AS negosiasi_dengan_kontrak_lain,
 				ns_c1 AS opsi_perpanjangan,
 				ns_c2 AS cukup_pasti_perpanjang,
@@ -31,7 +31,7 @@ class ExportModel extends CI_Model{
 				k_3 AS komponen_sewa,
 				k_4 AS penyewa_dapat_manfaat,
 				k_5 AS ketergantungan_tinggi_asset,
-				CASE WHEN k_4 = 'Yes' AND k_5 = 'Yes' THEN 'Terpisah' ELSE 'Tidak Terpisah' END AS komponen_terpisah
+				CASE WHEN k_4 = 'Yes' AND k_5 = 'Yes' THEN 'Terpisah' ELSE 'Tidak Terpisah' END AS komponen_terpisah,
 				-- 'Terpisah' AS komponen_terpisah,
 				nilai_kontrak AS nilai_kontrak_exclude_ppn,
 				'3' AS termin_bayar,
@@ -53,6 +53,10 @@ class ExportModel extends CI_Model{
 	}
 
 	function calculation() {
+		$where = '';
+		if (isset($param['id_summary'])) {
+			$where = 'WHERE sum.id = '.$param['id_summary'];
+		}
 		$query = $this->db->query(
 			"SELECT
 				sum.serialnumber AS serial_number,
@@ -97,7 +101,8 @@ class ExportModel extends CI_Model{
 			FROM
 				t_calculation cal
 				LEFT JOIN abm_summary sum ON cal.id_summary = sum.id
-				LEFT JOIN t_kontrak kon ON sum.id_kontrak = kon.id"
+				LEFT JOIN t_kontrak kon ON sum.id_kontrak = kon.id
+			$where"
 		);
 
 		return $query;

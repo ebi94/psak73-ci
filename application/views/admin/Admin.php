@@ -304,5 +304,13 @@
         var id = $(this).data('id');
     });
     // Function Tambah Asset Melalui Modal
+
+    // Function Export Schedule
+    $(document).on("click", ".export_schedule", function() {
+    	var id_sum = $(this).data('id');
+    	// alert(id_sum);
+    	window.open('export/schedule?id_summary='+id_sum);
+    });
+    // Function Export Schedule
 </script>
 <!-- End Contents -->
