@@ -591,12 +591,17 @@ class ExportController extends CI_Controller{
 			$excel->getActiveSheet()->getStyle('T'.$start_row)->applyFromArray($style_row);
 			$excel->getActiveSheet()->getStyle('U'.$start_row)->applyFromArray($style_row);
 			$excel->getActiveSheet()->getStyle('V'.$start_row)->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('W'.$start_row)->applyFromArray($style_row)->getProtection()->setHidden(PHPExcel_Style_Protection::PROTECTION_PROTECTED);
+			// $excel->getActiveSheet()->getStyle('W'.$start_row)->applyFromArray($style_row)->getProtection()->setHidden(PHPExcel_Style_Protection::PROTECTION_PROTECTED);
+			$excel->getActiveSheet()->getStyle('W'.$start_row)->applyFromArray($style_row);
 			$excel->getActiveSheet()->getStyle('X'.$start_row)->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('Y'.$start_row)->applyFromArray($style_row)->getProtection()->setHidden(PHPExcel_Style_Protection::PROTECTION_PROTECTED);
-			$excel->getActiveSheet()->getStyle('Z'.$start_row)->applyFromArray($style_row)->getProtection()->setHidden(PHPExcel_Style_Protection::PROTECTION_PROTECTED);
-			$excel->getActiveSheet()->getStyle('AA'.$start_row)->applyFromArray($style_row)->getProtection()->setHidden(PHPExcel_Style_Protection::PROTECTION_PROTECTED);
-			$excel->getActiveSheet()->getStyle('AB'.$start_row)->applyFromArray($style_row)->getProtection()->setHidden(PHPExcel_Style_Protection::PROTECTION_PROTECTED);
+			// $excel->getActiveSheet()->getStyle('Y'.$start_row)->applyFromArray($style_row)->getProtection()->setHidden(PHPExcel_Style_Protection::PROTECTION_PROTECTED);
+			$excel->getActiveSheet()->getStyle('Y'.$start_row)->applyFromArray($style_row);
+			// $excel->getActiveSheet()->getStyle('Z'.$start_row)->applyFromArray($style_row)->getProtection()->setHidden(PHPExcel_Style_Protection::PROTECTION_PROTECTED);
+			$excel->getActiveSheet()->getStyle('Z'.$start_row)->applyFromArray($style_row);
+			// $excel->getActiveSheet()->getStyle('AA'.$start_row)->applyFromArray($style_row)->getProtection()->setHidden(PHPExcel_Style_Protection::PROTECTION_PROTECTED);
+			$excel->getActiveSheet()->getStyle('AA'.$start_row)->applyFromArray($style_row);
+			// $excel->getActiveSheet()->getStyle('AB'.$start_row)->applyFromArray($style_row)->getProtection()->setHidden(PHPExcel_Style_Protection::PROTECTION_PROTECTED);
+			$excel->getActiveSheet()->getStyle('AB'.$start_row)->applyFromArray($style_row);
 
 			$i++;
 			$start_row++;
