@@ -568,7 +568,7 @@ class ExportController extends CI_Controller{
 			$excel->setActiveSheetIndex(0)->setCellValue('AB'.$start_row, $kosongan_dua);
 
 			// apply isian style
-			$excel->getActiveSheet()->getProtection()->setSheet(true);
+			// $excel->getActiveSheet()->getProtection()->setSheet(true);
 			$excel->getActiveSheet()->getStyle('A'.$start_row)->applyFromArray($style_row);
 			$excel->getActiveSheet()->getStyle('B'.$start_row)->applyFromArray($style_row);
 			$excel->getActiveSheet()->getStyle('C'.$start_row)->applyFromArray($style_row);
@@ -591,12 +591,17 @@ class ExportController extends CI_Controller{
 			$excel->getActiveSheet()->getStyle('T'.$start_row)->applyFromArray($style_row);
 			$excel->getActiveSheet()->getStyle('U'.$start_row)->applyFromArray($style_row);
 			$excel->getActiveSheet()->getStyle('V'.$start_row)->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('W'.$start_row)->applyFromArray($style_row)->getProtection()->setHidden(PHPExcel_Style_Protection::PROTECTION_PROTECTED);
+			// $excel->getActiveSheet()->getStyle('W'.$start_row)->applyFromArray($style_row)->getProtection()->setHidden(PHPExcel_Style_Protection::PROTECTION_PROTECTED);
+			$excel->getActiveSheet()->getStyle('W'.$start_row)->applyFromArray($style_row);
 			$excel->getActiveSheet()->getStyle('X'.$start_row)->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('Y'.$start_row)->applyFromArray($style_row)->getProtection()->setHidden(PHPExcel_Style_Protection::PROTECTION_PROTECTED);
-			$excel->getActiveSheet()->getStyle('Z'.$start_row)->applyFromArray($style_row)->getProtection()->setHidden(PHPExcel_Style_Protection::PROTECTION_PROTECTED);
-			$excel->getActiveSheet()->getStyle('AA'.$start_row)->applyFromArray($style_row)->getProtection()->setHidden(PHPExcel_Style_Protection::PROTECTION_PROTECTED);
-			$excel->getActiveSheet()->getStyle('AB'.$start_row)->applyFromArray($style_row)->getProtection()->setHidden(PHPExcel_Style_Protection::PROTECTION_PROTECTED);
+			// $excel->getActiveSheet()->getStyle('Y'.$start_row)->applyFromArray($style_row)->getProtection()->setHidden(PHPExcel_Style_Protection::PROTECTION_PROTECTED);
+			$excel->getActiveSheet()->getStyle('Y'.$start_row)->applyFromArray($style_row);
+			// $excel->getActiveSheet()->getStyle('Z'.$start_row)->applyFromArray($style_row)->getProtection()->setHidden(PHPExcel_Style_Protection::PROTECTION_PROTECTED);
+			$excel->getActiveSheet()->getStyle('Z'.$start_row)->applyFromArray($style_row);
+			// $excel->getActiveSheet()->getStyle('AA'.$start_row)->applyFromArray($style_row)->getProtection()->setHidden(PHPExcel_Style_Protection::PROTECTION_PROTECTED);
+			$excel->getActiveSheet()->getStyle('AA'.$start_row)->applyFromArray($style_row);
+			// $excel->getActiveSheet()->getStyle('AB'.$start_row)->applyFromArray($style_row)->getProtection()->setHidden(PHPExcel_Style_Protection::PROTECTION_PROTECTED);
+			$excel->getActiveSheet()->getStyle('AB'.$start_row)->applyFromArray($style_row);
 
 			$i++;
 			$start_row++;
@@ -792,6 +797,19 @@ class ExportController extends CI_Controller{
 		$excel->setActiveSheetIndex(0)->setCellValue('AE'.$start_row, $effective_monthly_dr);
 		$excel->setActiveSheetIndex(0)->setCellValue('AF'.$start_row, $depresiasi_exp_per_month);
 
+		$excel->setActiveSheetIndex(0)->setCellValue('A'.$start_row, '2020');		
+		$excel->setActiveSheetIndex(0)->setCellValue('B'.$start_row, 'Januari');
+		$excel->setActiveSheetIndex(0)->setCellValue('B10', 'Februari');
+		$excel->setActiveSheetIndex(0)->setCellValue('B11', 'Maret');
+		$excel->setActiveSheetIndex(0)->setCellValue('B12', 'April');
+		$excel->setActiveSheetIndex(0)->setCellValue('B13', 'Mei');
+		$excel->setActiveSheetIndex(0)->setCellValue('B14', 'Juni');
+		$excel->setActiveSheetIndex(0)->setCellValue('B15', 'Juli');
+		$excel->setActiveSheetIndex(0)->setCellValue('B16', 'Agustus');
+		$excel->setActiveSheetIndex(0)->setCellValue('B17', 'September');
+		$excel->setActiveSheetIndex(0)->setCellValue('B18', 'Oktober');
+		$excel->setActiveSheetIndex(0)->setCellValue('B19', 'November');
+		$excel->setActiveSheetIndex(0)->setCellValue('B20', 'Desember');
 
 		$excel->setActiveSheetIndex(0)->setCellValue('C'.$start_row, '=PV((Z'.$start_row.'),AA'.$start_row.',AB'.$start_row.',AC'.$start_row.',AD'.$start_row.')');
 		$excel->setActiveSheetIndex(0)->setCellValue('D'.$start_row, '=('.$data_data->payment_amount_per_term.')*(-1)');
@@ -826,10 +844,6 @@ class ExportController extends CI_Controller{
 		// $ix++;
 		}
 		
-		
-			
-		
-
 		// apply isian style
 		$excel->getActiveSheet()->getStyle('A'.$start_row)->applyFromArray($style_row);
 		$excel->getActiveSheet()->getStyle('B'.$start_row)->applyFromArray($style_row);
