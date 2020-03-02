@@ -527,17 +527,13 @@ class ExportController extends CI_Controller{
 
 				$effective_dr = (pow((1 + $effective_monthly_dr), 1))-1;
 
-
-			$pv_mlp = '=PV((V'.$start_row.'),O'.$start_row.',R'.$start_row.',S'.$start_row.',Q'.$start_row.')';
+			// PV MLP
+				$pv_mlp = '=PV((V'.$start_row.'),O'.$start_row.',R'.$start_row.',S'.$start_row.',Q'.$start_row.')';
 
 			// ( (pv_mlp - cal.prepaid) / sisa_periode_31_des_2019)
-				// $depresiasi_exp_per_month = (($pv_mlp - $key_calculation->prepaid) / $sisa_periode_31_des_2019);
-				
 				$depresiasi_exp_per_month = '=(W'.$start_row.'-X'.$start_row.')/O'.$start_row.'';
 
 			// ((pv_mlp-cal.prepaid)+rou_as_of_31_12_2019)
-				// $kosongan_dua = (($pv_mlp - $key_calculation->prepaid) + $rou_as_of_31_12_2019);
-				
 				$kosongan_dua = '=(W'.$start_row.'-X'.$start_row.')+AA'.$start_row.'';
 
 			$excel->setActiveSheetIndex(0)->setCellValue('A'.$start_row, $i);
@@ -572,6 +568,7 @@ class ExportController extends CI_Controller{
 			$excel->setActiveSheetIndex(0)->setCellValue('AB'.$start_row, $kosongan_dua);
 
 			// apply isian style
+			$excel->getActiveSheet()->getProtection()->setSheet(true);
 			$excel->getActiveSheet()->getStyle('A'.$start_row)->applyFromArray($style_row);
 			$excel->getActiveSheet()->getStyle('B'.$start_row)->applyFromArray($style_row);
 			$excel->getActiveSheet()->getStyle('C'.$start_row)->applyFromArray($style_row);
@@ -594,12 +591,12 @@ class ExportController extends CI_Controller{
 			$excel->getActiveSheet()->getStyle('T'.$start_row)->applyFromArray($style_row);
 			$excel->getActiveSheet()->getStyle('U'.$start_row)->applyFromArray($style_row);
 			$excel->getActiveSheet()->getStyle('V'.$start_row)->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('W'.$start_row)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('W'.$start_row)->applyFromArray($style_row)->getProtection()->setHidden(PHPExcel_Style_Protection::PROTECTION_PROTECTED);
 			$excel->getActiveSheet()->getStyle('X'.$start_row)->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('Y'.$start_row)->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('Z'.$start_row)->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('AA'.$start_row)->applyFromArray($style_row);
-			$excel->getActiveSheet()->getStyle('AB'.$start_row)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('Y'.$start_row)->applyFromArray($style_row)->getProtection()->setHidden(PHPExcel_Style_Protection::PROTECTION_PROTECTED);
+			$excel->getActiveSheet()->getStyle('Z'.$start_row)->applyFromArray($style_row)->getProtection()->setHidden(PHPExcel_Style_Protection::PROTECTION_PROTECTED);
+			$excel->getActiveSheet()->getStyle('AA'.$start_row)->applyFromArray($style_row)->getProtection()->setHidden(PHPExcel_Style_Protection::PROTECTION_PROTECTED);
+			$excel->getActiveSheet()->getStyle('AB'.$start_row)->applyFromArray($style_row)->getProtection()->setHidden(PHPExcel_Style_Protection::PROTECTION_PROTECTED);
 
 			$i++;
 			$start_row++;
@@ -629,20 +626,253 @@ class ExportController extends CI_Controller{
 		$write->save('php://output');
 	}
 
-	function presentValue($rate, $nper, $pmt, $fv = 0, $type = 0)
-    {
-        // if ($nper < 0) {
-        //     return PEAR::raiseError('Number of periods must be positive');
-        // }
-        // if ($type != FINANCE_PAY_END && $type != FINANCE_PAY_BEGIN) {
-        //     return PEAR::raiseError('Payment type must be FINANCE_PAY_END or FINANCE_PAY_BEGIN');
-        // }
+	function schedule_export(){
+		$id_summary = $this->input->get('id_summary');
+		// print_r($id_summary);
+		// die();
+		$param = array('id_summary'=>$id_summary);
+		$data_calculation = $this->ExportModel->calculation($param);
 
-        if ($rate) {
-            $pv = (-$pmt * (1 + $rate * $type) * ((pow(1 + $rate, $nper) - 1) / $rate) - $fv) / pow(1 + $rate, $nper);
-        } else {
-            $pv = -$fv - $pmt * $nper;
-        }
-        return $pv;
-    }
+		$data_data = $data_calculation->row();
+		// print_r($data_data);
+		// die();
+		$creator = $this->session->userdata('ses_nama');
+		$title_excel = "Schedule ".$data_data->nomor_kontrak."- PSAK73";
+		$date_export = date('d/m/Y');
+
+		require_once FCPATH."/assets/phpexcel/Classes/PHPExcel.php";
+		$excel = new PHPExcel();
+		// print_r($excel);
+		// die();
+		// settingan awal
+		$excel->getProperties()->setCreator($creator)->setLastModifiedBy($creator)->setTitle($title_excel)->setSubject("Schedule")->setDescription("Schedule")->setKeywords($title_excel);
+
+		// pengaturan style header tabel
+		$style_col = array(
+			'font' => array('bold' => true), //set font bold
+			'alignment' => array(
+				// 'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER, //set text center horizontal
+				'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER //set text center vertical
+			),
+			'borders' => array(
+				'top' => array(
+					'style' => PHPExcel_Style_Border::BORDER_THIN
+				), //set border top tipis
+				'right' => array(
+					'style' => PHPExcel_Style_Border::BORDER_THIN
+				), //set border right tipis
+				'bottom' => array(
+					'style' => PHPExcel_Style_Border::BORDER_THIN
+				), //set border bottom tipis
+				'left' => array(
+					'style' => PHPExcel_Style_Border::BORDER_THIN
+				), //set border left tipis
+			)
+		);
+
+		// pengaturan style isi tabel
+		$style_row = array(
+			'font' => array('bold' => true), //set font bold
+			'alignment' => array(
+				'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER //set text center vertical
+			),
+			'borders' => array(
+				'top' => array(
+					'style' => PHPExcel_Style_Border::BORDER_THIN
+				), //set border top tipis
+				'right' => array(
+					'style' => PHPExcel_Style_Border::BORDER_THIN
+				), //set border right tipis
+				'bottom' => array(
+					'style' => PHPExcel_Style_Border::BORDER_THIN
+				), //set border bottom tipis
+				'left' => array(
+					'style' => PHPExcel_Style_Border::BORDER_THIN
+				), //set border left tipis
+			)
+		);
+
+		$excel->setActiveSheetindex(0)->setCellValue('B2', 'No'); //isian B2 (title)
+		$excel->getActiveSheet()->getStyle('B2')->getFont()->setBold(TRUE);
+		$excel->getActiveSheet()->getStyle('B2')->getFont()->setSize(20); //set FontSize
+
+		$excel->setActiveSheetindex(0)->setCellValue('C2', $data_data->serial_number); //isian C2 (title)
+		$excel->getActiveSheet()->getStyle('C2')->getFont()->setBold(TRUE);
+		$excel->getActiveSheet()->getStyle('C2')->getFont()->setSize(20); //set FontSize
+
+		$excel->setActiveSheetindex(0)->setCellValue('B3', 'Jenis Sewa'); //isian B3 (title)
+		$excel->getActiveSheet()->getStyle('B3')->getFont()->setBold(TRUE);
+		$excel->getActiveSheet()->getStyle('B3')->getFont()->setSize(20); //set FontSize
+
+		$excel->setActiveSheetindex(0)->setCellValue('C3', $data_data->jenis_sewa); //isian C3 (title)
+		$excel->getActiveSheet()->getStyle('C3')->getFont()->setBold(TRUE);
+		$excel->getActiveSheet()->getStyle('C3')->getFont()->setSize(20); //set FontSize
+
+		$excel->setActiveSheetindex(0)->setCellValue('B4', 'No Kontrak'); //isian B4 (title)
+		$excel->getActiveSheet()->getStyle('B4')->getFont()->setBold(TRUE);
+		$excel->getActiveSheet()->getStyle('B4')->getFont()->setSize(20); //set FontSize
+
+		$excel->setActiveSheetindex(0)->setCellValue('C4', $data_data->nomor_kontrak); //isian C4 (title)
+		$excel->getActiveSheet()->getStyle('C4')->getFont()->setBold(TRUE);
+		$excel->getActiveSheet()->getStyle('C4')->getFont()->setSize(20); //set FontSize
+
+		// header tabel dimulai dari baris ke 7
+		$excel->setActiveSheetindex(0)->setCellValue('B7', "Periode");
+		$excel->getActiveSheet()->mergeCells('B7:B8');
+		$excel->getActiveSheet()->getStyle('B7')->getFont()->setBold(TRUE);
+		$excel->getActiveSheet()->getStyle('B7')->getFont()->setSize(20); //set FontSize
+
+		$excel->setActiveSheetindex(0)->setCellValue('C7', "LEASE LIABILITY");
+		$excel->getActiveSheet()->mergeCells('C7:F7');
+		$excel->getActiveSheet()->getStyle('C7')->getFont()->setBold(TRUE);
+		$excel->getActiveSheet()->getStyle('C7')->getFont()->setSize(20); //set FontSize
+
+		$excel->setActiveSheetindex(0)->setCellValue('C8', "Beg.Balance");
+		$excel->setActiveSheetindex(0)->setCellValue('D8', "Payment");
+		$excel->setActiveSheetindex(0)->setCellValue('E8', "Interest");
+		$excel->setActiveSheetindex(0)->setCellValue('F8', "End.Balance");
+
+		$excel->setActiveSheetindex(0)->setCellValue('G7', "RIGHT OF USE ASSET");
+		$excel->getActiveSheet()->mergeCells('G7:I7');
+		$excel->getActiveSheet()->getStyle('G7')->getFont()->setBold(TRUE);
+		$excel->getActiveSheet()->getStyle('G7')->getFont()->setSize(20); //set FontSize
+
+		$excel->setActiveSheetindex(0)->setCellValue('G8', "Beg.Balance");
+		$excel->setActiveSheetindex(0)->setCellValue('H8', "Depreciation Expense");
+		$excel->setActiveSheetindex(0)->setCellValue('I8', "End.Bal");
+
+		// apply header style
+		$excel->getActiveSheet()->getStyle('A7')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('B7')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('C7')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('D7')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('E7')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('F7')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('G7')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('H7')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('I7')->applyFromArray($style_col);
+
+		// isi tabel
+		$start_row = 9; //set isian dimulai dari baris ke 9
+		$i = 1;
+		// (((1+cal.dr)^(1/12))-1)
+			$effective_monthly_dr = "";
+
+			$get_decimal = $data_data->discount_rate/100;
+
+			$get_decimal_plus_1 = 1+$get_decimal;
+
+			$effective_monthly_dr_pangkat = pow($get_decimal_plus_1, 1/12);
+
+			$effective_monthly_dr = $effective_monthly_dr_pangkat - 1;
+
+		// ((1+effective_monthly_dr)^1-1)
+			$dr_dr = 1 + $effective_monthly_dr;
+
+			$effective_dr = (pow((1 + $effective_monthly_dr), 1))-1;
+
+		// ((cal.tgl_perpanjangan - 12/31/2019--bisa berubah hardcode) / 30)
+			$y1_sisa = date('Y',strtotime($data_data->tgl_perpanjangan));
+			$y2_sisa = date('Y',strtotime('2019-12-31'));
+
+			$m1_sisa = date('m',strtotime($data_data->tgl_perpanjangan));
+			$m2_sisa = date('m',strtotime('2019-12-31'));
+
+			$sisa_periode_31_des_2019 = (($y1_sisa - $y2_sisa) * 12) + ($m1_sisa - $m2_sisa);
+
+		// ( (pv_mlp - cal.prepaid) / sisa_periode_31_des_2019)
+			$depresiasi_exp_per_month = '=(C'.$start_row.'-'.$data_data->prepaid.')/'.$sisa_periode_31_des_2019.'';
+
+		$excel->setActiveSheetIndex(0)->setCellValue('Z'.$start_row, $effective_dr);
+		$excel->setActiveSheetIndex(0)->setCellValue('AA'.$start_row, $sisa_periode_31_des_2019);
+		$excel->setActiveSheetIndex(0)->setCellValue('AB'.$start_row, $data_data->payment_amount_per_term);
+		$excel->setActiveSheetIndex(0)->setCellValue('AC'.$start_row, $data_data->nilai_residu);
+		$excel->setActiveSheetIndex(0)->setCellValue('AD'.$start_row, $data_data->awal_akhir_bulan);
+
+		$excel->setActiveSheetIndex(0)->setCellValue('AE'.$start_row, $effective_monthly_dr);
+		$excel->setActiveSheetIndex(0)->setCellValue('AF'.$start_row, $depresiasi_exp_per_month);
+
+
+		$excel->setActiveSheetIndex(0)->setCellValue('C'.$start_row, '=PV((Z'.$start_row.'),AA'.$start_row.',AB'.$start_row.',AC'.$start_row.',AD'.$start_row.')');
+		$excel->setActiveSheetIndex(0)->setCellValue('D'.$start_row, '=('.$data_data->payment_amount_per_term.')*(-1)');
+		$excel->setActiveSheetIndex(0)->setCellValue('E'.$start_row, '=(C'.$start_row.')*('.$effective_monthly_dr.')');	
+		$excel->setActiveSheetIndex(0)->setCellValue('F'.$start_row, '=C'.$start_row.'-(D'.$start_row.'-E'.$start_row.')');
+
+		$excel->setActiveSheetIndex(0)->setCellValue('G'.$start_row, '=ABS(C'.$start_row.')');	
+		$excel->setActiveSheetIndex(0)->setCellValue('H'.$start_row, '=AF9*(-1)');	
+		$excel->setActiveSheetIndex(0)->setCellValue('I'.$start_row, '=G'.$start_row.'+H'.$start_row.'');
+
+
+		for ($ix=1; $ix < 100; $ix++) {
+		// PAKE IF INI LEBIH PAS XUMAN KAGAK BISA W DAPET VALUE DARI CELL NYA
+		// $highestRow = ($excel->setActiveSheetindex(0)->getHighestRow())+1;
+		// $cell_f_high_row = $excel->setActiveSheetindex()->getCell('F'.$highestRow);
+		// $cell_f = $end_balance_pertama_high_row->getValue();
+		// $ix=1; 
+		// if ($cell_f <= 0) { 
+		// 
+			$row = $start_row+$ix;
+			$row_2 = ($start_row+$ix)-1;
+
+			$excel->setActiveSheetIndex(0)->setCellValue('C'.$row, '=F'.$row_2);
+			$excel->setActiveSheetIndex(0)->setCellValue('D'.$row, '=('.$data_data->payment_amount_per_term.')*(-1)');
+			$excel->setActiveSheetIndex(0)->setCellValue('E'.$row, '=(C'.$row.')*('.$effective_monthly_dr.')');
+			$excel->setActiveSheetIndex(0)->setCellValue('F'.$row, '=C'.$row.'-(D'.$row.'-E'.$row.')');
+
+			$excel->setActiveSheetIndex(0)->setCellValue('G'.$row, '=ABS(C'.$row.')');	
+			$excel->setActiveSheetIndex(0)->setCellValue('H'.$row, '=AF9*(-1)');	
+			$excel->setActiveSheetIndex(0)->setCellValue('I'.$row, '=G'.$row.'+H'.$row.'');
+
+		// $ix++;
+		}
+		
+		
+			
+		
+
+		// apply isian style
+		$excel->getActiveSheet()->getStyle('A'.$start_row)->applyFromArray($style_row);
+		$excel->getActiveSheet()->getStyle('B'.$start_row)->applyFromArray($style_row);
+		$excel->getActiveSheet()->getStyle('C'.$start_row)->applyFromArray($style_row);
+		$excel->getActiveSheet()->getStyle('D'.$start_row)->applyFromArray($style_row);
+		$excel->getActiveSheet()->getStyle('E'.$start_row)->applyFromArray($style_row);
+		$excel->getActiveSheet()->getStyle('F'.$start_row)->applyFromArray($style_row);
+		$excel->getActiveSheet()->getStyle('G'.$start_row)->applyFromArray($style_row);
+		$excel->getActiveSheet()->getStyle('H'.$start_row)->applyFromArray($style_row);
+		$excel->getActiveSheet()->getStyle('I'.$start_row)->applyFromArray($style_row);
+
+		// set column width to auto
+			foreach (range('A','I') as $columnIndex) {
+			  # code...
+			  $excel->getActiveSheet()->getColumnDimension($columnIndex)->setAutoSize(true);
+			}
+
+			// set row height to auto
+			$excel->getActiveSheet()->getDefaultRowDimension()->setRowHeight(-1);
+
+			// set orientation to landscape
+			$excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+
+			// set judul excel
+			$excel->getActiveSheet(0)->setTitle("Schedule");
+			$excel->setActiveSheetindex(0);
+
+			// PHP dibawah 7
+				// proses file excel
+				// header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+				// header('Content-Disposition: attachment; filename="'.$title_excel.'.xlsx"'); // set nama file excel nya
+				// header('Cache-Control: max-age=0');
+
+				// $write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
+
+			// PHP 7
+				// proses file excel
+				header('Content-Type: application/vnd.ms-excel');
+				header('Content-Disposition: attachment; filename="'.$title_excel.'.xls"'); // set nama file excel nya
+				header('Cache-Control: max-age=0');
+
+				$write = PHPExcel_IOFactory::createWriter($excel, 'Excel5');
+			$write->save('php://output');
+
+	}
 }

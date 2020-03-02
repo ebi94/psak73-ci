@@ -102,6 +102,13 @@ class AdminController extends CI_Controller{
 					data-nilaikontrak="'.$key_summary->nilai_kontrak.'">
                     Ubah
 	               </button>
+	               <button
+	               type="button"
+	               class="export_schedule btn btn-block btn-outline-success btn-xs"
+	               data-id="'.$key_summary->id_summary.'"
+	               >
+	               Export Schedule
+	               </button>
 	               <button 
 					type="button" 
 					class="modahapus btn btn-block btn-outline-danger btn-xs" 
