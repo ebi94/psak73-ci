@@ -37,10 +37,10 @@
                     <div class="form-group">
                         <label>Term of Payment</label>
                         <select class="form-control" name="top" id="top">
-                            <option value="1">1 Bulan</option>
-                            <option value="2">2 Bulan</option>
-                            <option value="4">4 Bulan</option>
-                            <option value="12">12 Bulan</option>
+                            <option value="1">1 (Tahunan)</option>
+                            <option value="2">2 (Semester)</option>
+                            <option value="4">4 (Kuartal)</option>
+                            <option value="12">12 (Bulanan)</option>
                         </select>
                     </div>
                 </div>
@@ -53,6 +53,14 @@
                             <option value="1">Awal Bulan</option>
                             <option value="0">Akhir Bulan</option>
                         </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Frekuensi Pembayaran</label>
+                        <input type="number" class="form-control" name="frekuensi" id="frekuensi">
                     </div>
                 </div>
             </div>
