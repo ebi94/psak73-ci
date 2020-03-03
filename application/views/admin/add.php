@@ -2,6 +2,10 @@
     <button type="button" class="close" data-dismiss="alert">x</button>
     <strong>Success! </strong> Data Successfuly added.
 </div>
+<div class="alert alert-success" style="display: none" id="add-summary-success-edit" role="alert">
+    <button type="button" class="close" data-dismiss="alert">x</button>
+    <strong>Success! </strong> Data Successfuly Updated.
+</div>
 <!-- Main content -->
 <form enctype="multipart/form-data" name="form" role="form">
     <!-- Input Data  -->
