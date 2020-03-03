@@ -132,14 +132,25 @@ class SummaryController extends CI_Controller{
 	}
 
 	function add_summary($id_summary) {
-        $data['title'] = 'Add Summary';
+        $data['title'] = 'Add Summary New';
         $data['id_summary'] = $id_summary;
         $query =
-        $this->db->query('SELECT sum.id, cont.id, cont.nama_pt, cont.nomor_kontrak, cont.vendor FROM abm_summary AS sum, t_kontrak AS cont WHERE sum.id = '.$id_summary.' AND cont.id = sum.id_kontrak');
+        // $this->db->query('SELECT sum.id, cont.id, cont.nama_pt, cont.nomor_kontrak, cont.vendor FROM abm_summary AS sum, t_kontrak AS cont WHERE sum.id = '.$id_summary.' AND cont.id = sum.id_kontrak');
+        $this->db->query(
+        	'SELECT
+	        	sum.id AS sum_id,
+	        	kon.id AS kon_id,
+	        	kon.nama_pt AS kon_nama_pt,
+	        	kon.nomor_kontrak AS kon_nomor_kontrak,
+	        	kon.vendor AS kon_vendor
+	        FROM
+	        	abm_summary sum
+		        LEFT JOIN t_kontrak kon ON sum.id_kontrak = kon.id');
         $row = $query->row();
-        $data['nama_pt'] = $row->nama_pt;
-        $data['nomor_kontrak'] = $row->nomor_kontrak;
-        $data['vendor'] = $row->vendor;
+        $data['nama_pt'] = $row->kon_nama_pt;
+        $data['nomor_kontrak'] = $row->kon_nomor_kontrak;
+        $data['vendor'] = $row->kon_vendor;
+        $data['id_kontrak'] = $row->kon_id;
 		$data['view'] = 'admin/summary';
 		$this->load->view('templates/header', $data);
 	}

@@ -12,7 +12,7 @@ class ExportModel extends CI_Model{
 				sum.end_date AS tgl_berakhir_kontrak,
 				sum.periode_kontrak AS periode_kontrak,
 				sum.ns_a AS modifikasi_kontrak,
-				sum.ns_a AS kontrak_original,
+				sum.ns_a1 AS kontrak_original,
 				sum.ns_b AS negosiasi_dengan_kontrak_lain,
 				sum.ns_c1 AS opsi_perpanjangan,
 				sum.ns_c2 AS cukup_pasti_perpanjang,
@@ -25,7 +25,6 @@ class ExportModel extends CI_Model{
 				sum.is_5 AS contract_price,
 				sum.is_6 AS output_used_by_third_party,
 				sum.is_7 AS right_control,
-				-- certain_asset = YES AND right_control = YES AND right_to_operate = YES AND control_utility = YES AND control_physical_asset = YES AND output_used_by_third_party = NO
 				CASE WHEN sum.is_1 = 'Yes' AND sum.is_7 = 'Yes' AND sum.is_2 = 'Yes' AND sum.is_3 = 'Yes' AND sum.is_4 = 'Yes' AND sum.is_6 = 'No' THEN 'Lease' ELSE 'Non Lease' END AS lease,
 				sum.k_1 AS multi_komponen,
 				sum.k_2 AS komponen_dalam_kontrak,
@@ -33,17 +32,14 @@ class ExportModel extends CI_Model{
 				sum.k_4 AS penyewa_dapat_manfaat,
 				sum.k_5 AS ketergantungan_tinggi_asset,
 				CASE WHEN sum.k_4 = 'Yes' AND sum.k_5 = 'Yes' THEN 'Terpisah' ELSE 'Tidak Terpisah' END AS komponen_terpisah,
-				-- 'Terpisah' AS komponen_terpisah,
 				sum.nilai_kontrak AS nilai_kontrak_exclude_ppn,
 				cal.top AS termin_bayar,
 				cal.awak AS akhir_awal_bulan_bayar,
-				'4' AS frekuensi_pembayaran,
-				/*(nilai_kontrak/frekuensi_pembayaran) AS nilai_sewa_per_pembayaran*/
-				(sum.nilai_kontrak / 4) AS nilai_sewa_per_pembayaran,
+				cal.frekuensi_pembayaran AS frekuensi_pembayaran,
+				(sum.nilai_kontrak / cal.frekuensi_pembayaran) AS nilai_sewa_per_pembayaran,
 				cal.status_ppn AS status_ppn,
 				cal.ppn AS ppn,
 				(sum.nilai_kontrak/sum.periode_kontrak) AS nilai_sewa_per_bulan,
-				-- (nilai_kontrak/24) AS nilai_sewa_per_bulan,
 				cal.jumlah_unit AS jumlah_unit_jumlah,
 				cal.satuan AS jumlah_unit_satuan
 			FROM

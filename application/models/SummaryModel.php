@@ -39,6 +39,7 @@ class SummaryModel extends CI_Model{
                   FROM
                         `t_kontrak` k
                         LEFT JOIN abm_summary sum ON sum.id_kontrak = k.id
+                        ORDER BY k.created_at ASC
             ");
             return $query;
       }
@@ -52,48 +53,85 @@ class SummaryModel extends CI_Model{
 
             $diff = (($y2 - $y1) * 12) + ($m2 - $m1);
 
-            $kontrak_add_data = array(
-                  'nama_pt' => $this->input->post('summary_namapt'),
-                  'nomor_kontrak' => $this->input->post('summary_nomorkontrak'),
-                  'vendor' => $this->input->post('summary_vendor'),
-                  'created_by' => $this->session->userdata('ses_id')
-            );
-            $result_kontrak = $this->db->insert('t_kontrak',$kontrak_add_data);
-            $id_kontrak = $this->db->insert_id();
+            if ($this->input->post('title') == 'Add Summary New') {
+                  $id_kontrak = $this->input->post('id_kontrak');
+                  $kontrak_int = str_replace(".", "", $this->input->post('summary_nilaikontrak'));
+                  $summary_add_data = array(
+                          'id_kontrak' => $id_kontrak,
+                          'jenis_sewa' => $this->input->post('summary_jenissewa'),
+                          'serialnumber' => $this->input->post('summary_serialnumber'),
+                          'ns_a' => $this->input->post('summary_nsa'),
+                          'ns_a1' => $this->input->post('summary_nsa1'),
+                          'ns_b' => $this->input->post('summary_nsb'),
+                          'ns_c1' => $this->input->post('summary_nsc1'),
+                          'ns_c2' => $this->input->post('summary_nsc2'),
+                          'ns_d1' => $this->input->post('summary_nsd1'),
+                          'ns_d2' => $this->input->post('summary_nsd2'),
+                          'is_1' => $this->input->post('summary_is1'),
+                          'is_2' => $this->input->post('summary_is2'),
+                          'is_3' => $this->input->post('summary_is3'),
+                          'is_4' => $this->input->post('summary_is4'),
+                          'is_5' => $this->input->post('summary_is5'),
+                          'is_6' => $this->input->post('summary_is6'),
+                          'is_7' => $this->input->post('summary_is7'),
+                          'k_1' => $this->input->post('summary_k_1'),
+                          'k_2' => $this->input->post('summary_k_2'),
+                          'k_3' => $this->input->post('summary_k_3'),
+                          'k_4' => $this->input->post('summary_k_4'),
+                          'k_5' => $this->input->post('summary_k_5'),
+                          'lokasi' => $this->input->post('summary_lokasi'),
+                          'start_date' => $this->input->post('summary_startdate'),
+                          'end_date' => $this->input->post('summary_enddate'),
+                          'nilai_kontrak' => $kontrak_int,
+                          'periode_kontrak' => $diff
+                  );
 
-            $kontrak_int = str_replace(".", "", $this->input->post('summary_nilaikontrak'));
-		$summary_add_data = array(
-                  'id_kontrak' => $id_kontrak,
-                  'jenis_sewa' => $this->input->post('summary_jenissewa'),
-                  'serialnumber' => $this->input->post('summary_serialnumber'),
-                  'ns_a' => $this->input->post('summary_nsa'),
-                  'ns_a1' => $this->input->post('summary_nsa1'),
-                  'ns_b' => $this->input->post('summary_nsb'),
-                  'ns_c1' => $this->input->post('summary_nsc1'),
-                  'ns_c2' => $this->input->post('summary_nsc2'),
-                  'ns_d1' => $this->input->post('summary_nsd1'),
-                  'ns_d2' => $this->input->post('summary_nsd2'),
-                  'is_1' => $this->input->post('summary_is1'),
-                  'is_2' => $this->input->post('summary_is2'),
-                  'is_3' => $this->input->post('summary_is3'),
-                  'is_4' => $this->input->post('summary_is4'),
-                  'is_5' => $this->input->post('summary_is5'),
-                  'is_6' => $this->input->post('summary_is6'),
-                  'is_7' => $this->input->post('summary_is7'),
-                  'k_1' => $this->input->post('summary_k_1'),
-                  'k_2' => $this->input->post('summary_k_2'),
-                  'k_3' => $this->input->post('summary_k_3'),
-                  'k_4' => $this->input->post('summary_k_4'),
-                  'k_5' => $this->input->post('summary_k_5'),
-                  'lokasi' => $this->input->post('summary_lokasi'),
-                  'start_date' => $this->input->post('summary_startdate'),
-                  'end_date' => $this->input->post('summary_enddate'),
-                  'nilai_kontrak' => $kontrak_int,
-                  'periode_kontrak' => $diff
-		);
+                  $result = $this->db->insert('abm_summary',$summary_add_data);
+                  $id_summary = $this->db->insert_id();
+            } else {
+                  $kontrak_add_data = array(
+                    'nama_pt' => $this->input->post('summary_namapt'),
+                    'nomor_kontrak' => $this->input->post('summary_nomorkontrak'),
+                    'vendor' => $this->input->post('summary_vendor'),
+                    'created_by' => $this->session->userdata('ses_id')
+                  );
+                  $result_kontrak = $this->db->insert('t_kontrak',$kontrak_add_data);
+                  $id_kontrak = $this->db->insert_id();
 
-		$result = $this->db->insert('abm_summary',$summary_add_data);
-		$id_summary = $this->db->insert_id();
+                  $kontrak_int = str_replace(".", "", $this->input->post('summary_nilaikontrak'));
+                  $summary_add_data = array(
+                          'id_kontrak' => $id_kontrak,
+                          'jenis_sewa' => $this->input->post('summary_jenissewa'),
+                          'serialnumber' => $this->input->post('summary_serialnumber'),
+                          'ns_a' => $this->input->post('summary_nsa'),
+                          'ns_a1' => $this->input->post('summary_nsa1'),
+                          'ns_b' => $this->input->post('summary_nsb'),
+                          'ns_c1' => $this->input->post('summary_nsc1'),
+                          'ns_c2' => $this->input->post('summary_nsc2'),
+                          'ns_d1' => $this->input->post('summary_nsd1'),
+                          'ns_d2' => $this->input->post('summary_nsd2'),
+                          'is_1' => $this->input->post('summary_is1'),
+                          'is_2' => $this->input->post('summary_is2'),
+                          'is_3' => $this->input->post('summary_is3'),
+                          'is_4' => $this->input->post('summary_is4'),
+                          'is_5' => $this->input->post('summary_is5'),
+                          'is_6' => $this->input->post('summary_is6'),
+                          'is_7' => $this->input->post('summary_is7'),
+                          'k_1' => $this->input->post('summary_k_1'),
+                          'k_2' => $this->input->post('summary_k_2'),
+                          'k_3' => $this->input->post('summary_k_3'),
+                          'k_4' => $this->input->post('summary_k_4'),
+                          'k_5' => $this->input->post('summary_k_5'),
+                          'lokasi' => $this->input->post('summary_lokasi'),
+                          'start_date' => $this->input->post('summary_startdate'),
+                          'end_date' => $this->input->post('summary_enddate'),
+                          'nilai_kontrak' => $kontrak_int,
+                          'periode_kontrak' => $diff
+                  );
+
+                  $result = $this->db->insert('abm_summary',$summary_add_data);
+                  $id_summary = $this->db->insert_id();
+            }
             return $id_summary;
       }
       

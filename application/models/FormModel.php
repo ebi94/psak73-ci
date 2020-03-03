@@ -17,7 +17,8 @@ class FormModel extends CI_Model{
 			'jumlah_unit' => $this->input->post('calculation_jumlah_unit'),
 			'satuan' => $this->input->post('calculation_satuan'),
 			'nilai_asumsi_perpanjangan' => $this->input->post('calculation_nilai_asumsi_perpanjangan'),
-			'tgl_perpanjangan' => $this->input->post('calculation_tgl_perpanjangan')
+			'tgl_perpanjangan' => $this->input->post('calculation_tgl_perpanjangan'),
+			'frekuensi_pembayaran' => $this->input->post('calculation_frekuensi_pembayaran')
 		);
 
 		$result = $this->db->insert('t_calculation',$data);

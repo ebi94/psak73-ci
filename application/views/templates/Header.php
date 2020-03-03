@@ -381,6 +381,7 @@
           var satuan = $('#satuan').val();
           var nilai_asumsi_perpanjangan = $('#nilai_asumsi_perpanjangan').val();
           var tgl_perpanjangan = $('#tgl_perpanjangan').val();
+          var frekuensi_pembayaran = $('#frekuensi').val();
           $.ajax({
               type : "POST",
               url  : "<?php echo site_url('form/do/calculation')?>",
@@ -398,7 +399,8 @@
                 calculation_jumlah_unit:jumlah_unit,
                 calculation_satuan:satuan,
                 calculation_nilai_asumsi_perpanjangan:nilai_asumsi_perpanjangan,
-                calculation_tgl_perpanjangan:tgl_perpanjangan
+                calculation_tgl_perpanjangan:tgl_perpanjangan,
+                calculation_frekuensi_pembayaran:frekuensi_pembayaran
               },
               success: function(data){
                 $('#modal-alert-tambah-aset').modal({backdrop: 'static', keyboard: false});
