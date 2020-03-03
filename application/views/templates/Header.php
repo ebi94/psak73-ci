@@ -286,6 +286,87 @@
         });
       // END SUMMARY MANAGEMENT
 
+      //Edit Summary
+      $('#edit_summary').on('click',function(){
+          var idsummary = $('#eidsummary').val();
+          var namapt = $('#enamapt').val();
+          var nomorkontrak = $('#enomorkontrak').val();
+          var vendor = $('#evendor').val();
+          var jenissewa = $('#ejenissewa').val();
+          var serialnumber = $('#eserialnumber').val();
+          var nsa = $('#ensa').val();
+          var nsa1 = $('#ensa1').val();
+          var nsb = $('#ensb').val();
+          var nsc1 = $('#ensc1').val();
+          var nsc2 = $('#ensc2').val();
+          var nsd1 = $('#ensd1').val();
+          var nsd2 = $('#ensd2').val();
+          var is1 = $('#eis1').val();
+          var is2 = $('#eis2').val();
+          var is3 = $('#eis3').val();
+          var is4 = $('#eis4').val();
+          var is5 = $('#eis5').val();
+          var is6 = $('#eis6').val();
+          var is7 = $('#eis7').val();
+          var k_1 = $('#ekontrak_dari_beberapa_komponen').val();
+          var k_2 = $('#ekomponen_dalam_kontrak').val();
+          var k_3 = $('#ekomponen_merupakan_sewa').val();
+          var k_4 = $('#epenyewa_mendapat_manfaat').val();
+          var k_5 = $('#easet_dasar').val();
+          var lokasi = $('#elokasi').val();
+          var startdate = $('#estartdate').val();
+          var enddate = $('#eenddate').val();
+          var nilaikontrak = $('#enilaikontrak').val();
+          $.ajax({
+              type : "POST",
+              url  : "<?php echo site_url('admin/do/edit')?>",
+              dataType : "JSON",
+              data : {
+                summary_idsummary:idsummary, 
+                summary_namapt:namapt, 
+                summary_nomorkontrak:nomorkontrak, 
+                summary_vendor:vendor,
+                summary_jenissewa:jenissewa,
+                summary_serialnumber:serialnumber,
+                summary_nsa:nsa,
+                summary_nsa1:nsa1,
+                summary_nsb:nsb,
+                summary_nsc1:nsc1,
+                summary_nsc2:nsc2,
+                summary_nsd1:nsd1,
+                summary_nsd2:nsd2,
+                summary_is1:is1,
+                summary_is2:is2,
+                summary_is3:is3,
+                summary_is4:is4,
+                summary_is5:is5,
+                summary_is6:is6,
+                summary_is7:is7,
+                summary_k_1:k_1,
+                summary_k_2:k_2,
+                summary_k_3:k_3,
+                summary_k_4:k_4,
+                summary_k_5:k_5,
+                summary_lokasi:lokasi,
+                summary_startdate:startdate,
+                summary_enddate:enddate,
+                summary_nilaikontrak:nilaikontrak
+              },
+              success: function(data){
+                  $('#modal-edit').modal('hide');
+                  $('#summary_list').DataTable().destroy();
+                  fill_datatable_summary();
+                  window.alert('Data berhasil di ubah !');
+                  window.location.href=('<?php echo base_url('admin'); ?>');
+                  // $("#add-summary-success-edit").fadeTo(2000, 500).slideUp(500, function() {
+                  // $("#add-summary-success-edit").slideUp(500).show();
+                  // });
+              },
+          });
+          return false;
+        });
+      // END EDIT SUMMARY MANAGEMENT
+
       $('#add_calculation').on('click',function(){
           var dr = $('#dr').val();
           var top = $('#top').val();
