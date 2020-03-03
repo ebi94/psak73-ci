@@ -47,7 +47,8 @@ class AuthModel extends CI_Model{
 			'name' => $this->input->post('auth_name'),
 			'email' => $this->input->post('auth_email'),
 			'level' => $this->input->post('auth_level'),
-			'password' => do_hash($this->input->post('auth_email')),
+			// 'password' => do_hash($this->input->post('auth_email')),
+			'password' => do_hash($this->input->post('auth_password')),
 			'created_by' => $id,
 		);
 

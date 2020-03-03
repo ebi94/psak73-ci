@@ -820,9 +820,9 @@ class ExportController extends CI_Controller{
 		$excel->setActiveSheetIndex(0)->setCellValue('H'.$start_row, '=AF9');	
 		$excel->setActiveSheetIndex(0)->setCellValue('I'.$start_row, '=G'.$start_row.'+H'.$start_row.'');
 
-
+		$formatCodeF = '_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-';
 		for ($ix=1; $ix < 100; $ix++) {
-		// PAKE IF INI LEBIH PAS XUMAN KAGAK BISA W DAPET VALUE DARI CELL NYA
+		// PAKE IF INI LEBIH PAS CUMAN KAGAK BISA W DAPET VALUE DARI CELL NYA
 		// $highestRow = ($excel->setActiveSheetindex(0)->getHighestRow())+1;
 		// $cell_f_high_row = $excel->setActiveSheetindex()->getCell('F'.$highestRow);
 		// $cell_f = $end_balance_pertama_high_row->getValue();
@@ -850,7 +850,8 @@ class ExportController extends CI_Controller{
 		$excel->getActiveSheet()->getStyle('C'.$start_row)->applyFromArray($style_row);
 		$excel->getActiveSheet()->getStyle('D'.$start_row)->applyFromArray($style_row);
 		$excel->getActiveSheet()->getStyle('E'.$start_row)->applyFromArray($style_row);
-		$excel->getActiveSheet()->getStyle('F'.$start_row)->applyFromArray($style_row);
+		// $excel->getActiveSheet()->getStyle('F'.$start_row)->applyFromArray($style_row);
+		$excel->getActiveSheet()->getStyle('F'.$start_row)->getNumberFormat()->setFormatCode($formatCodeF);
 		$excel->getActiveSheet()->getStyle('G'.$start_row)->applyFromArray($style_row);
 		$excel->getActiveSheet()->getStyle('H'.$start_row)->applyFromArray($style_row);
 		$excel->getActiveSheet()->getStyle('I'.$start_row)->applyFromArray($style_row);

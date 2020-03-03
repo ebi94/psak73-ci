@@ -25,7 +25,8 @@ class ExportModel extends CI_Model{
 				sum.is_5 AS contract_price,
 				sum.is_6 AS output_used_by_third_party,
 				sum.is_7 AS right_control,
-				CASE WHEN sum.is_1 = 'Yes' AND sum.is_7 = 'Yes' AND sum.is_2 = 'Yes' AND sum.is_3 = 'Yes' AND sum.is_4 = 'Yes' AND sum.is_6= 'Yes' THEN 'Lease' ELSE 'Non Lease' END AS lease,
+				-- certain_asset = YES AND right_control = YES AND right_to_operate = YES AND control_utility = YES AND control_physical_asset = YES AND output_used_by_third_party = NO
+				CASE WHEN sum.is_1 = 'Yes' AND sum.is_7 = 'Yes' AND sum.is_2 = 'Yes' AND sum.is_3 = 'Yes' AND sum.is_4 = 'Yes' AND sum.is_6 = 'No' THEN 'Lease' ELSE 'Non Lease' END AS lease,
 				sum.k_1 AS multi_komponen,
 				sum.k_2 AS komponen_dalam_kontrak,
 				sum.k_3 AS komponen_sewa,
