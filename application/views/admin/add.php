@@ -374,7 +374,9 @@
             <button type="submit" id="add_summary" class="btn btn-info col-md-12">Lanjutkan</button>
         </div>
         <div class="col-md-2">
-            <input type="cancel" class="btn btn-block btn-primary" value="Batalkan">
+			<a href="<?php echo base_url(''); ?>">
+            	<button class="btn btn-block btn-primary">Batalkan</button>
+			</a>
         </div>
     </div>
     <div class="col"></div>

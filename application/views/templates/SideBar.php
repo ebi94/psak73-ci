@@ -49,14 +49,14 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+				<!-- <li class="nav-item">
                     <a href="<?php echo base_url('report'); ?>" class="nav-link <?php if($title == 'Report'):?> active <?php endif; ?>">
                         <i class="nav-icon fas fa-file"></i>
                         <p>
                             Report
                         </p>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a href="<?php echo base_url('user/management'); ?>" class="nav-link <?php if($title == 'User Management'):?> active <?php endif; ?>">
                         <i class="nav-icon fas fa-user-cog"></i>
