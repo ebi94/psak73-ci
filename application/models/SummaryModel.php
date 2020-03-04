@@ -36,10 +36,24 @@ class SummaryModel extends CI_Model{
                     sum.end_date AS end_date,
                     sum.nilai_kontrak AS nilai_kontrak,
                     sum.periode_kontrak AS periode_kontrak,
-                    k.created_by AS dibuat_kontrak
+                    k.created_by AS dibuat_kontrak,
+                    c.dr AS dr,
+                    c.pat AS pat,
+                    c.top AS top,
+                    c.awak AS awak,
+                    c.frekuensi_pembayaran AS frekuensi_pembayaran,
+                    c.pd AS pd,
+                    c.prepaid AS prepaid,
+                    c.status_ppn AS status_ppn,
+                    c.ppn AS ppn,
+                    c.jumlah_unit AS jumlah_unit,
+                    c.satuan AS satuan,
+                    c.nilai_asumsi_perpanjangan AS nilai_asumsi_perpanjangan,
+                    c.tgl_perpanjangan AS tgl_perpanjangan
               FROM
                     abm_summary sum
                     LEFT JOIN t_kontrak k ON sum.id_kontrak = k.id
+                    LEFT JOIN t_calculation c ON c.id_summary = sum.id
                     ORDER BY k.created_at ASC
         ");
         return $query;
@@ -137,6 +151,7 @@ class SummaryModel extends CI_Model{
       }
       
       function summary_edit() {
+            $id_kontrak = $this->input->post('summary_idkontrak');
             $id_summary = $this->input->post('summary_idsummary');
             $y1 = date('Y',strtotime($this->input->post('summary_startdate')));
             $y2 = date('Y',strtotime($this->input->post('summary_enddate')));
@@ -152,8 +167,26 @@ class SummaryModel extends CI_Model{
                   'vendor' => $this->input->post('summary_vendor'),
                   'created_by' => $this->session->userdata('ses_id')
             );
-            $result_kontrak = $this->db->insert('t_kontrak',$kontrak_edit_data);
-            $id_kontrak = $this->db->insert_id();
+            $this->db->where('id', $id_kontrak);
+            $result_kontrak = $this->db->update('t_kontrak',$kontrak_edit_data);
+
+            $calculation_edit_data = array(
+                  'dr' => $this->input->post('summary_dr'),
+                  'pat' => $this->input->post('summary_pat'),
+                  'top' => $this->input->post('summary_top'),
+                  'awak' => $this->input->post('summary_awak'),
+                  'frekuensi_pembayaran' => $this->input->post('summary_frekuensi'),
+                  'pd' => $this->input->post('summary_pd'),
+                  'prepaid' => $this->input->post('summary_prepaid'),
+                  'status_ppn' => $this->input->post('summary_status_ppn'),
+                  'ppn' => $this->input->post('summary_ppn'),
+                  'jumlah_unit' => $this->input->post('summary_jumlah_unit'),
+                  'satuan' => $this->input->post('summary_satuan'),
+                  'nilai_asumsi_perpanjangan' => $this->input->post('summary_nilai_asumsi_perpanjangan'),
+                  'tgl_perpanjangan' => $this->input->post('summary_tgl_perpanjangan')
+            );
+            $this->db->where('id_summary', $id_summary);
+            $result_calculation = $this->db->update('t_calculation',$calculation_edit_data);
 
             $kontrak_int = str_replace(".", "", $this->input->post('summary_nilaikontrak'));
 		$summary_edit_data = array(
