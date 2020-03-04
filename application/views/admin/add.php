@@ -8,7 +8,8 @@
     <div class="card card-secondary">
         <div class="card-header">
             <h3 class="card-title">Contract Form</h3>
-            <input type="hidden" name="title" value="<?php echo $title; ?>">
+            <input type="text" name="title" value="<?php echo $title; ?>">
+            <input type="hidden" id="id_kontrak" name="id_kontrak" value="0">
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                 <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>

@@ -145,7 +145,7 @@ class SummaryController extends CI_Controller{
 	        	kon.vendor AS kon_vendor
 	        FROM
 	        	abm_summary sum
-		        LEFT JOIN t_kontrak kon ON sum.id_kontrak = kon.id');
+		        LEFT JOIN t_kontrak kon ON sum.id_kontrak = kon.id WHERE sum.id = '.$id_summary);
         $row = $query->row();
         $data['nama_pt'] = $row->kon_nama_pt;
         $data['nomor_kontrak'] = $row->kon_nomor_kontrak;
