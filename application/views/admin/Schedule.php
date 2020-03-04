@@ -242,7 +242,7 @@
 
     // Function Edit
     $(document).on("click", ".modaedit", function() {
-        var id = $(this).data('id');
+        var idsummary = $(this).data('idsummary');
         var title = $(this).data('title');
         var nomorkontrak = $(this).data('nomorkontrak');
         var vendor = $(this).data('vendor');
@@ -265,7 +265,7 @@
         var startdate = $(this).data('startdate');
         var enddate = $(this).data('enddate');
         var nilaikontrak = $(this).data('nilaikontrak');
-        $("#id").val(id);
+        $("#eid_summary").val(idsummary);
         $("#etitle").val(title);
         $("#enomorkontrak").val(nomorkontrak);
         $("#evendor").val(vendor);

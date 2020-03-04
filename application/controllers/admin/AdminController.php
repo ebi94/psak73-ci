@@ -48,7 +48,7 @@ class AdminController extends CI_Controller{
 	                class="modalihat btn btn-block btn-outline-primary btn-xs"  
 	                data-toggle="modal" 
 	                data-target="#modal-lihat"
-	                data-id="'.$key_summary->id_summary.'"
+	                data-idsummary="'.$key_summary->id_summary.'"
 	                data-title="'.$key_summary->nama_pt.'" 
 	                data-nomorkontrak="'.$key_summary->nomor_kontrak.'"
 	                data-vendor="'.$key_summary->vendor.'"
@@ -78,8 +78,8 @@ class AdminController extends CI_Controller{
                     class="modaedit btn btn-block btn-outline-info btn-xs"  
                     data-toggle="modal" 
                     data-target="#modal-edit" 
-                    data-id="'.$key_summary->id_summary.'"
-					data-title="'.$key_summary->nama_pt.'" 
+                    data-idsummary="'.$key_summary->id_summary.'"
+					data-namapt="'.$key_summary->nama_pt.'" 
 					data-nomorkontrak="'.$key_summary->nomor_kontrak.'"
 					data-vendor="'.$key_summary->vendor.'"
 					data-jenissewa="'.$key_summary->jenis_sewa.'"
@@ -139,6 +139,10 @@ class AdminController extends CI_Controller{
 
 	function delete_summary(){
 		$data=$this->SummaryModel->summary_delete();
+	}
+
+	function do_edit_summary() {
+		$data=$this->SummaryModel->summary_edit();
 		echo json_encode($data);
 	}
 

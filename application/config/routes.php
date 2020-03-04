@@ -68,6 +68,7 @@ $route['admin'] = 'admin/AdminController';
 $route['admin/list'] = 'admin/AdminController/list_summary';
 $route['admin/add'] = 'admin/AdminController/add_summary';
 $route['admin/do/add'] = 'admin/AdminController/do_add_summary';
+$route['admin/do/edit'] = 'admin/AdminController/do_edit_summary';
 $route['admin/edit'] = 'admin/AdminController/edit_summary';
 $route['admin/delete'] = 'admin/AdminController/delete_summary';
 

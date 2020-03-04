@@ -212,8 +212,8 @@
 
     // Function Edit
     $(document).on("click", ".modaedit", function() {
-        var id = $(this).data('id');
-        var title = $(this).data('title');
+        var idsummary = $(this).data('idsummary');
+        var namapt = $(this).data('namapt');
         var nomorkontrak = $(this).data('nomorkontrak');
         var vendor = $(this).data('vendor');
         var jenissewa = $(this).data('jenissewa');
@@ -235,8 +235,8 @@
         var startdate = $(this).data('startdate');
         var enddate = $(this).data('enddate');
         var nilaikontrak = $(this).data('nilaikontrak');
-        $("#id").val(id);
-        $("#etitle").val(title);
+        $("#eidsummary").val(idsummary);
+        $("#enamapt").val(namapt);
         $("#enomorkontrak").val(nomorkontrak);
         $("#evendor").val(vendor);
         $("#ejenissewa").val(jenissewa);
