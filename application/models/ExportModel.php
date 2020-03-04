@@ -2,6 +2,110 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ExportModel extends CI_Model{
+	function summary(){
+		$query = $this->db->query(
+			"SELECT
+				kon.nama_pt AS kon_nama_pt,
+				kon.nomor_kontrak AS kon_nomor_kontrak,
+				kon.vendor AS kon_vendor,
+				sum.jenis_sewa AS sum_jenis_sewa,
+				sum.ns_a AS sum_ns_a,
+			CASE
+				
+				WHEN sum.ns_a = 'Yes' THEN
+				CONCAT( 'Terdapat Notifikasi Dengan Kontrak No: ', sum.ns_a1 ) ELSE 'Tidak Terdapat Modifikasi' 
+				END AS sum_modifikasi,
+				sum.ns_b AS sum_ns_b,
+				sum.ns_c1 AS sum_ns_c_1,
+				sum.ns_c2 AS sum_ns_c_2,
+				sum.ns_d1 AS sum_ns_d_1,
+				sum.ns_d2 AS sum_ns_d_2,
+				sum.is_1 AS sum_is_1,
+				sum.is_2 AS sum_is_2,
+				sum.is_3 AS sum_is_3,
+				sum.is_4 AS sum_is_4,
+				sum.is_5 AS sum_is_5,
+				sum.is_6 AS sum_is_6,
+				sum.is_7 AS sum_is_7,
+				sum.k_1 AS sum_k_1,
+				sum.lokasi AS sum_lokasi,
+				CONCAT(
+					sum.periode_kontrak,
+					' bulan (',
+					DAY ( sum.start_date ),
+					' ',
+				CASE
+						MONTH ( sum.start_date ) 
+						WHEN 1 THEN
+						'Januari' 
+						WHEN 2 THEN
+						'Februari' 
+						WHEN 3 THEN
+						'Maret' 
+						WHEN 4 THEN
+						'April' 
+						WHEN 5 THEN
+						'Mei' 
+						WHEN 6 THEN
+						'Juni' 
+						WHEN 7 THEN
+						'Juli' 
+						WHEN 8 THEN
+						'Agustus' 
+						WHEN 9 THEN
+						'September' 
+						WHEN 10 THEN
+						'Oktober' 
+						WHEN 11 THEN
+						'November' 
+						WHEN 12 THEN
+						'Desember' 
+					END,
+					' ',
+					YEAR ( sum.start_date ),
+					' s.d ',
+					DAY ( sum.end_date ),
+					' ',
+				CASE
+						MONTH ( sum.end_date ) 
+						WHEN 1 THEN
+						'Januari' 
+						WHEN 2 THEN
+						'Februari' 
+						WHEN 3 THEN
+						'Maret' 
+						WHEN 4 THEN
+						'April' 
+						WHEN 5 THEN
+						'Mei' 
+						WHEN 6 THEN
+						'Juni' 
+						WHEN 7 THEN
+						'Juli' 
+						WHEN 8 THEN
+						'Agustus' 
+						WHEN 9 THEN
+						'September' 
+						WHEN 10 THEN
+						'Oktober' 
+						WHEN 11 THEN
+						'November' 
+						WHEN 12 THEN
+						'Desember' 
+					END,
+					' ',
+					YEAR ( sum.end_date ),
+					' )' 
+				) AS periode,
+				sum.nilai_kontrak AS sum_nilai_kontrak 
+			FROM
+				abm_summary sum
+			LEFT JOIN t_kontrak kon ON sum.id_kontrak = kon.id"
+		);
+
+		return $query;
+	}
+
 	function kkp(){
 		$query = $this->db->query(
 			"SELECT

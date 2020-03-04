@@ -14,11 +14,192 @@ class ExportController extends CI_Controller{
 		$this->load->model('ExportModel');
 	}
 
+	function summary_export(){
+		$data_summary = $this->ExportModel->summary();
+
+		$creator = $this->session->userdata('ses_nama');
+		$title_excel = "ABM Summary Contract Leasse";
+		$date_export = date('d/m/Y');
+		$row_data_summary = 
+
+		require_once FCPATH."/assets/phpexcel/Classes/PHPExcel.php";
+		$excel = new PHPExcel();
+
+		$i = 0;
+		foreach ($data_summary->result() as $key_summary) {
+			$excel->createSheet($i);
+			// settingan awal
+			$excel->getProperties()->setCreator($creator)->setLastModifiedBy($creator)->setTitle($title_excel)->setSubject("Summary")->setDescription($key_summary->kon_nama_pt)->setKeywords($key_summary->kon_nama_pt);
+
+			$excel->setActiveSheetindex($i)->setCellValue('A1', 'Leasse '.$key_summary->kon_nama_pt); //isian A1 (title)
+			$excel->getActiveSheet()->mergeCells('A1:D1');
+			$excel->getActiveSheet()->getStyle('A1')->getFont()->setBold(TRUE);
+			$excel->getActiveSheet()->getStyle('A1')->getFont()->setSize(20); //set FontSize
+
+			$excel->setActiveSheetindex($i)->setCellValue('A2', 'No. Kontrak :'); //isian A2 (title)
+			$excel->getActiveSheet()->mergeCells('A2:B2');
+			$excel->getActiveSheet()->getStyle('A2')->getFont()->setBold(TRUE);
+			$excel->getActiveSheet()->getStyle('A2')->getFont()->setSize(20); //set FontSize
+
+			$excel->setActiveSheetindex($i)->setCellValue('C2', 'Nomor : '.$key_summary->kon_nomor_kontrak); //isian C2 (title)
+			$excel->getActiveSheet()->mergeCells('C2:D2');
+			$excel->getActiveSheet()->getStyle('C2')->getFont()->setBold(TRUE);
+			$excel->getActiveSheet()->getStyle('C2')->getFont()->setSize(20); //set FontSize
+
+			$excel->setActiveSheetindex($i)->setCellValue('A3', 'Vendor : '); //isian A3 (title)
+			$excel->getActiveSheet()->mergeCells('A3:B3');
+			$excel->getActiveSheet()->getStyle('A3')->getFont()->setBold(TRUE);
+			$excel->getActiveSheet()->getStyle('A3')->getFont()->setSize(20); //set FontSize
+
+			$excel->setActiveSheetindex($i)->setCellValue('C3', $key_summary->kon_vendor); //isian C3 (title)
+			$excel->getActiveSheet()->mergeCells('C3:D3');
+			$excel->getActiveSheet()->getStyle('C3')->getFont()->setBold(TRUE);
+			$excel->getActiveSheet()->getStyle('C3')->getFont()->setSize(20); //set FontSize
+
+			// HEAD
+			$excel->setActiveSheetindex($i)->setCellValue('A4', 'No'); //isian A4 (title)
+			$excel->getActiveSheet()->mergeCells('A4:A5');
+			$excel->getActiveSheet()->getStyle('A4')->getFont()->setBold(TRUE);
+			$excel->getActiveSheet()->getStyle('A4')->getFont()->setSize(20); //set FontSize
+
+			$excel->setActiveSheetindex($i)->setCellValue('B4', 'Kriteria'); //isian B4 (title)
+			$excel->getActiveSheet()->mergeCells('B4:C4');
+			$excel->getActiveSheet()->mergeCells('B4:B5');
+			$excel->getActiveSheet()->mergeCells('C4:C5');
+			$excel->getActiveSheet()->getStyle('B4')->getFont()->setBold(TRUE);
+			$excel->getActiveSheet()->getStyle('B4')->getFont()->setSize(20); //set FontSize
+
+			$excel->setActiveSheetindex($i)->setCellValue('D4', 'Based on Contract'); //isian D4 (title)
+			$excel->getActiveSheet()->mergeCells('D4:D5');
+			$excel->getActiveSheet()->getStyle('D4')->getFont()->setBold(TRUE);
+			$excel->getActiveSheet()->getStyle('D4')->getFont()->setSize(20); //set FontSize
+
+			// ISIAN
+			$excel->setActiveSheetindex($i)->setCellValue('A6', '1'); //isian A6 (title)
+			
+			$excel->setActiveSheetindex($i)->setCellValue('B6', 'Jenis Sewa'); //isian B6 (title)
+			$excel->getActiveSheet()->mergeCells('B6:C6');
+
+			$excel->setActiveSheetindex($i)->setCellValue('D6', $key_summary->sum_jenis_sewa); //isian D4 (title)
+			
+			$excel->setActiveSheetindex($i)->setCellValue('A7', '2'); //isian D4 (title)
+
+			$excel->setActiveSheetindex($i)->setCellValue('B7', 'Nature Sewa'); //isian B7 (title)
+			$excel->getActiveSheet()->mergeCells('B7:C7');
+
+			$excel->setActiveSheetindex($i)->setCellValue('D7', ''); //isian D7 (title)
+
+			$excel->setActiveSheetindex($i)->setCellValue('A8', ''); //isian A8 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('B8', 'a'); //isian B8 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('C8', 'Apakah Terdapat Modifikasi ?'); //isian C8 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('D8', $key_summary->sum_modifikasi); //isian D8 (title)
+
+			$excel->setActiveSheetindex($i)->setCellValue('A9', ''); //isian A9 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('B9', 'b'); //isian B9 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('C9', 'Apakah Kontrak Dinegosiasikan Dengan Kontrak Lain ?'); //isian C9 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('D9', $key_summary->sum_ns_b); //isian D9 (title)
+			
+			$excel->setActiveSheetindex($i)->setCellValue('A10', ''); //isian A10 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('B10', 'c.1'); //isian B10 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('C10', 'Apakah Kontrak Mengandung Opsi Perpanjangan ?'); //isian C10 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('D10', $key_summary->sum_ns_c_1); //isian D10 (title)
+			
+			$excel->setActiveSheetindex($i)->setCellValue('A11', ''); //isian A11 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('B11', 'c.2'); //isian B11 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('C11', 'Penyewa Cukup Pasti Untuk Mengeksekusi Opsi Tersebut ?'); //isian C11 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('D11', $key_summary->sum_ns_c_2); //isian D11 (title)
+			
+			$excel->setActiveSheetindex($i)->setCellValue('A12', ''); //isian A12 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('B12', 'd.1'); //isian B12 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('C12', 'Apakah Kontrak Mengandung Opsi Terminasi ?'); //isian C12 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('D12', $key_summary->sum_ns_d_1); //isian D12 (title)
+			
+			$excel->setActiveSheetindex($i)->setCellValue('A13', ''); //isian A13 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('B13', 'd.2'); //isian B13 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('C13', 'Penyewa Cukup Pasti Untuk Tidak Mengeksekusi Opsi Tersebut ?'); //isian C13 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('D13', $key_summary->sum_ns_d_2); //isian D13 (title)
+			
+			$excel->setActiveSheetindex($i)->setCellValue('A14', ''); //isian A14 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('B14', 'e'); //isian B14 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('C14', 'Identifikasi Sewa'); //isian C14 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('D14', ''); //isian D14 (title)
+			
+			$excel->setActiveSheetindex($i)->setCellValue('A15', ''); //isian A15 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('B15', 'e.2'); //isian B15 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('C15', 'Certain Asset'); //isian C15 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('D15', $key_summary->sum_is_1); //isian D15 (title)
+			
+			$excel->setActiveSheetindex($i)->setCellValue('A16', ''); //isian A16 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('B16', 'e.3'); //isian B16 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('C16', 'Right to Operate'); //isian C16 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('D16', $key_summary->sum_is_2); //isian D16 (title)
+			
+			$excel->setActiveSheetindex($i)->setCellValue('A17', ''); //isian A17 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('B17', 'e.4'); //isian B17 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('C17', 'Control of The Output or Other Utility'); //isian C17 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('D17', $key_summary->sum_is_3); //isian D17 (title)
+			
+			$excel->setActiveSheetindex($i)->setCellValue('A18', ''); //isian A18 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('B18', 'e.5'); //isian B18 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('C18', 'Control Physical Asset'); //isian C18 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('D18', $key_summary->sum_is_4); //isian D18 (title)
+			
+			$excel->setActiveSheetindex($i)->setCellValue('A19', ''); //isian A19 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('B19', 'e.6'); //isian B19 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('C19', 'Contract Price (tergantung pada output yang dihasilkan atau tidak)'); //isian C19 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('D19', $key_summary->sum_is_5); //isian D19 (title)
+			
+			$excel->setActiveSheetindex($i)->setCellValue('A20', ''); //isian A20 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('B20', 'e.7'); //isian B20 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('C20', 'Output Used by Third Party'); //isian C20 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('D20', $key_summary->sum_is_6); //isian D20 (title)
+			
+			$excel->setActiveSheetindex($i)->setCellValue('A21', ''); //isian A21 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('B21', 'e.8'); //isian B21 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('C21', 'Right to Control The Use of The Asset'); //isian C21 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('D21', $key_summary->sum_is_7); //isian D21 (title)
+			
+			$excel->setActiveSheetindex($i)->setCellValue('A22', ''); //isian A22 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('B22', 'f'); //isian B22 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('C22', 'Apakah Kontrak Sewa Terdiri Dari Beberapa Komponen (lease dan nonlease)'); //isian C22 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('D22', $key_summary->sum_k_1); //isian D22 (title)
+			
+			$excel->setActiveSheetindex($i)->setCellValue('A23', ''); //isian A23 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('B23', 'g'); //isian B23 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('C23', 'Lokasi Sewa'); //isian C23 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('D23', $key_summary->sum_lokasi); //isian D23 (title)
+			
+			$excel->setActiveSheetindex($i)->setCellValue('A24', ''); //isian A24 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('B24', 'h'); //isian B24 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('C24', 'Panjang Kontrak'); //isian C24 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('D24', $key_summary->periode); //isian D24 (title)
+			
+			$excel->setActiveSheetindex($i)->setCellValue('A25', ''); //isian A25 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('B25', 'i'); //isian B25 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('C25', 'Besar Nilai Kontrak'); //isian C25 (title)
+			$excel->setActiveSheetindex($i)->setCellValue('D25', $key_summary->sum_nilai_kontrak); //isian D25 (title)
+
+			// set judul excel
+			$excel->getActiveSheet($i)->setTitle($key_summary->kon_nama_pt);
+			$i++;
+		}
+
+		$excel->setActiveSheetindex(0);
+
+		// proses file excel
+		header('Content-Type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment; filename="'.$title_excel.'.xls"'); // set nama file excel nya
+		header('Cache-Control: max-age=0');
+
+		$write = PHPExcel_IOFactory::createWriter($excel, 'Excel5');
+		$write->save('php://output');
+	}
+
 	function kkp_export(){
 		$data_kkp = $this->ExportModel->kkp();
 
 		$creator = $this->session->userdata('ses_nama');
-		$title_excel = "KKP Assessment Leasing - PT ABM Investama";
+		$title_excel = "KKP Assessment Leasing";
 		$date_export = date('d/m/Y');
 
 		require_once FCPATH."/assets/phpexcel/Classes/PHPExcel.php";
