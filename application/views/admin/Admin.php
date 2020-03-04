@@ -17,12 +17,16 @@
 				</a>
 			  </div>
 	        </div>
+            <div class="alert alert-success" style="display: none" id="delete-summary-success-alert" role="alert">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <strong>Success! </strong> Data Berhasil Dihapus!
+            </div>
 	        <!-- /.card-header -->
 	        <div class="card-body">
 	          <table id="summary_list" class="table table-bordered table-striped">
 	            <thead>
 	            <tr>
-	              <th>Nope</th>
+	              <th>No</th>
 	              <th>Nama PT</th>
 	              <th>Nomor Kontrak</th>
 	              <th>Vendor</th>
@@ -45,40 +49,13 @@
                             <th>Start Date</th>
                             <th>End Date</th>
                             <th>Besar nilai kontrak ?</th>
+                            <th>Dibuat Oleh</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody id="show_data_summary">
 
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama PT</th>
-                            <th>Nomor Kontrak</th>
-                            <th>Vendor</th>
-                            <th>Jenis Sewa</th>
-                            <!-- <th>Apakah terdapat modifikasi ?</th>
-	              <th>Apakah kontrak dinegosiasikan dengan kontrak lain ?</th>
-	              <th>Apakah kontrak mengandung opsi perpanjangan ?</th>
-	              <th>Penyewa cukup pasti untuk mengeksekusi Opsi tersebut ?</th>
-	              <th>Apakah kontrak mengandung Opsi terminasi ?</th>
-	              <th>Penyewa cukup pasti untuk tidak mengeksekusi Opsi tersebut ?</th>
-	              <th>Certain Asset ?</th>
-	              <th>Right to Operate ?</th>
-	              <th>Control of the Output or other utility ?</th>
-	              <th>Control Physical Asset ?</th>
-	              <th>Contract Price ?</th>
-	              <th>Output used by third party ?</th>
-	              <th>Right to control the use of Asset ?</th>
-	              <th>Apakah kontrak Sewa terdiri dari beberapa komponen ?</th> -->
-                            <th>Lokasi sewa ?</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
-                            <th>Besar nilai kontrak ?</th>
-                            <th>Action</th>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
             <!-- /.card-body -->
@@ -150,35 +127,7 @@
 </div>
 <!-- Modal Lihat -->
 
-<!-- Modal Hapus -->
-<div class="modal fade" id="modal-hapus">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Hapus Data !</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Apakah anda yakin untuk menghapus data ini ?</p>
-            </div>
-            <div class="modal-footer justify-content-between">
-                <div class="col-md-2" id="dhref">
-                    <a href="">
-                        <button type="button" class="btn btn-block btn-success btn-md">Iya</button>
-                    </a>
-                </div>
-                <div class="col-md-2">
-                    <button type="button" class="btn btn-block btn-secondary btn-md" data-dismiss="modal">Tidak</button>
-                </div>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-<!-- Modal Hapus -->
+<?php $this->load->view('modal/deleteSummary.php'); ?>
 
 <script src="<?php echo base_url('assets/AdminLTE'); ?>/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -192,6 +141,25 @@
 <script src="<?php echo base_url('assets/AdminLTE'); ?>/dist/js/demo.js"></script>
 <!-- page script -->
 <script>
+
+    fill_datatable_summary();
+    function fill_datatable_summary(){
+      $('#summary_list').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        // "ordering": false,
+        "ordering" :[[9, "asc"]],
+        "info": true,
+        "autoWidth": true,
+        "scrollX": true,
+        "scrollY": true,
+        "ajax": {
+          url : "<?php echo base_url('admin/list') ?>",
+          type : "GET",
+        },
+      });
+    }
     // Function Show Detail
     $(document).on("click", ".modalihat", function() {
 
@@ -292,18 +260,35 @@
         $("#enilaikontrak").val(nilaikontrak);
     });
     // Function Edit
-    // Function Delete
-    $(document).on("click", ".modahapus", function() {
-        var did = $(this).data('id');
-        $("#dhref a").attr("href", 'admin/delete/' + did)
+    
+    // Show Delete Summary Modal & Set Value
+    $('#show_data_summary').on('click','.modahapus',function(){
+      var id_summary = $(this).data('id');
+           
+      $('#modal-hapus').modal('show');
+      $('[name="id_summary_delete"]').val(id_summary);
     });
-    //  Function Delete
 
-    // Function Tambah Asset Melalui Modal
-    $(document).on("click", "#tambah_aset", function() {
-        var id = $(this).data('id');
+    //Do Delete Summary
+    $('#btn_summary_delete').on('click',function(){
+        var id_summary = $('#id_summary_delete').val();
+        $.ajax({
+            type : "POST",
+            url  : "<?php echo site_url('admin/delete')?>",
+            dataType : "JSON",
+            data : {idSummary:id_summary},
+            success: function(data){
+                $('[name="id_summary_delete"]').val("");
+                $('#modal-hapus').modal('hide');
+                $('#summary_list').DataTable().destroy();
+                fill_datatable_summary();
+                $("#delete-summary-success-alert").fadeTo(2000, 500).slideUp(500, function() {
+                  $("#delete-summary-success-alert").slideUp(500);
+                });
+            }
+        });
+        return false;
     });
-    // Function Tambah Asset Melalui Modal
 
     // Function Export Schedule
     $(document).on("click", ".export_schedule", function() {
