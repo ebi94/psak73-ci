@@ -367,6 +367,30 @@
         });
       // END EDIT SUMMARY MANAGEMENT
 
+      //Edit Summary
+      $('#delete_summary').on('click',function(){
+          var idsummary = $('#idsummary').val();
+          $.ajax({
+              type : "POST",
+              url  : "<?php echo site_url('admin/do/delete')?>",
+              dataType : "JSON",
+              data : {
+                summary_idsummary:idsummary
+},
+              success: function(data){
+                  $('#modal-hapus').modal('hide');
+                  $('#summary_list').DataTable().destroy();
+                  fill_datatable_summary();
+                  window.alert('Data berhasil di Hapus !');
+                  window.location.href=('<?php echo base_url('admin'); ?>');
+              },
+          });
+          return false;
+        });
+      // END EDIT SUMMARY MANAGEMENT
+
+      
+
       $('#add_calculation').on('click',function(){
           var dr = $('#dr').val();
           var top = $('#top').val();

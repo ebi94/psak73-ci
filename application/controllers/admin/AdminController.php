@@ -105,7 +105,7 @@ class AdminController extends CI_Controller{
 	               <button
 	               type="button"
 	               class="export_schedule btn btn-block btn-outline-success btn-xs"
-	               data-id="'.$key_summary->id_summary.'"
+	               data-idsummary="'.$key_summary->id_summary.'"
 	               >
 	               Export Schedule
 	               </button>
@@ -144,6 +144,11 @@ class AdminController extends CI_Controller{
 
 	function do_edit_summary() {
 		$data=$this->SummaryModel->summary_edit();
+		echo json_encode($data);
+	}
+
+	function do_delete_summary() {
+		$data=$this->SummaryModel->summary_delete();
 		echo json_encode($data);
 	}
 

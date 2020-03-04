@@ -188,6 +188,13 @@ class SummaryModel extends CI_Model{
             $this->db->where('id', $id_summary);
 		$result = $this->db->update('abm_summary',$summary_edit_data);
             return true;
+      }
+      
+      function summary_delete(){
+            $id_summary = $this->input->post('summary_idsummary');
+		$this->db->where('id', $id_summary);
+		$result = $this->db->delete('abm_summary');
+            return true;
 	}
 
 }

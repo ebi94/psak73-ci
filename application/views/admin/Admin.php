@@ -161,12 +161,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Apakah anda yakin untuk menghapus data ini ?</p>
+                <p>Apakah anda yakin untuk menghapus data ini ?</p></br>
+                <p>id: </p>
             </div>
             <div class="modal-footer justify-content-between">
                 <div class="col-md-2" id="dhref">
                     <a href="">
-                        <button type="button" class="btn btn-block btn-success btn-md">Iya</button>
+                        <button type="button" class="btn btn-block btn-success btn-md" id="delete_summary">Iya</button>
                     </a>
                 </div>
                 <div class="col-md-2">
