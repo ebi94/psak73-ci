@@ -42,6 +42,7 @@ class AdminController extends CI_Controller{
 				$key_summary->start_date,
 				$key_summary->end_date,
 				$key_summary->nilai_kontrak,
+				auth_name($key_summary->dibuat_kontrak),
 				'<button 
 	                type="button" 
 	                class="modalihat btn btn-block btn-outline-primary btn-xs"  
@@ -109,14 +110,8 @@ class AdminController extends CI_Controller{
 	               >
 	               Export Schedule
 	               </button>
-	               <button 
-					type="button" 
-					class="modahapus btn btn-block btn-outline-danger btn-xs" 
-					data-toggle="modal" 
-					data-id="'.$key_summary->id_summary.'" 
-					data-target="#modal-hapus">
-					Hapus
-	               </button>'
+	               <a title="Delete Data" href="javascript:void(0);" class="modahapus btn btn-block btn-outline-danger btn-xs" data-id="'.$key_summary->id_summary.'"">Hapus</a>
+	               '
 			);
 		}
 
@@ -140,6 +135,10 @@ class AdminController extends CI_Controller{
 	function do_add_summary() {
 		$data=$this->SummaryModel->summary_add();
 		echo json_encode($data);
+	}
+
+	function delete_summary(){
+		$data=$this->SummaryModel->summary_delete();
 	}
 
 	function do_edit_summary() {

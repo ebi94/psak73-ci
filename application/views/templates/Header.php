@@ -194,24 +194,6 @@
       // END USER MANAGEMENT
 
       // ABM SUMMARY MANAGEMENT
-        
-        fill_datatable_summary();
-        function fill_datatable_summary(){
-          $('#summary_list').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": false,
-            "info": true,
-            "autoWidth": true,
-            "scrollX": true,
-            "scrollY": true,
-            "ajax": {
-              url : "<?php echo base_url('admin/list') ?>",
-              type : "GET",
-            },
-          });
-        }
 
         //Add Summary
         $('#add_summary').on('click',function(){

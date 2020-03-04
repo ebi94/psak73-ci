@@ -3,46 +3,47 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class SummaryModel extends CI_Model{
 
-      function summary_get_all() {
-            // $query = $this->db->query("SELECT * FROM abm_summary");
-            $query = $this->db->query("
-                  SELECT
-                        k.id AS id_id_kontrak,
-                        k.nama_pt AS nama_pt,
-                        k.nomor_kontrak AS nomor_kontrak,
-                        k.vendor AS vendor,
-                        sum.id AS id_summary,
-                        sum.jenis_sewa AS jenis_sewa,
-                        sum.ns_a AS ns_a,
-                        sum.ns_b AS ns_b,
-                        sum.ns_c1 AS ns_c1,
-                        sum.ns_c2 AS ns_c2,
-                        sum.ns_d1 AS ns_d1,
-                        sum.ns_d2 AS ns_d2,
-                        sum.is_1 AS is_1,
-                        sum.is_2 AS is_2,
-                        sum.is_3 AS is_3,
-                        sum.is_4 AS is_4,
-                        sum.is_5 As is_5,
-                        sum.is_6 AS is_6,
-                        sum.is_7 AS is_7,
-                        sum.k_1 AS komponen,
-                        sum.k_2 AS komponen_dalam_kontrak,
-                        sum.k_3 AS komponen_sewa,
-                        sum.k_4 AS penyewa_dapat_manfaat,
-                        sum.k_5 AS ketergantungan_tinggi_asset,
-                        sum.lokasi AS lokasi,
-                        sum.start_date AS start_date,
-                        sum.end_date AS end_date,
-                        sum.nilai_kontrak AS nilai_kontrak,
-                        sum.periode_kontrak AS periode_kontrak
-                  FROM
-                        `t_kontrak` k
-                        LEFT JOIN abm_summary sum ON sum.id_kontrak = k.id
-                        ORDER BY k.created_at ASC
-            ");
-            return $query;
-      }
+  function summary_get_all() {
+        // $query = $this->db->query("SELECT * FROM abm_summary");
+        $query = $this->db->query("
+              SELECT
+                    k.id AS id_id_kontrak,
+                    k.nama_pt AS nama_pt,
+                    k.nomor_kontrak AS nomor_kontrak,
+                    k.vendor AS vendor,
+                    sum.id AS id_summary,
+                    sum.jenis_sewa AS jenis_sewa,
+                    sum.ns_a AS ns_a,
+                    sum.ns_b AS ns_b,
+                    sum.ns_c1 AS ns_c1,
+                    sum.ns_c2 AS ns_c2,
+                    sum.ns_d1 AS ns_d1,
+                    sum.ns_d2 AS ns_d2,
+                    sum.is_1 AS is_1,
+                    sum.is_2 AS is_2,
+                    sum.is_3 AS is_3,
+                    sum.is_4 AS is_4,
+                    sum.is_5 As is_5,
+                    sum.is_6 AS is_6,
+                    sum.is_7 AS is_7,
+                    sum.k_1 AS komponen,
+                    sum.k_2 AS komponen_dalam_kontrak,
+                    sum.k_3 AS komponen_sewa,
+                    sum.k_4 AS penyewa_dapat_manfaat,
+                    sum.k_5 AS ketergantungan_tinggi_asset,
+                    sum.lokasi AS lokasi,
+                    sum.start_date AS start_date,
+                    sum.end_date AS end_date,
+                    sum.nilai_kontrak AS nilai_kontrak,
+                    sum.periode_kontrak AS periode_kontrak,
+                    k.created_by AS dibuat_kontrak
+              FROM
+                    abm_summary sum
+                    LEFT JOIN t_kontrak k ON sum.id_kontrak = k.id
+                    ORDER BY k.created_at ASC
+        ");
+        return $query;
+  }
 
 	function summary_add() {
             $y1 = date('Y',strtotime($this->input->post('summary_startdate')));
@@ -189,5 +190,15 @@ class SummaryModel extends CI_Model{
 		$result = $this->db->update('abm_summary',$summary_edit_data);
             return true;
 	}
+
+  function summary_delete(){
+    $id_summary = $this->input->post('idSummary');
+    $this->db->where('id', $id_summary);
+    if (! $this->db->delete('abm_summary')) {
+      return false;
+    }
+    
+    return true;
+  }
 
 }
