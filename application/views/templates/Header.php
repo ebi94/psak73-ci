@@ -277,6 +277,7 @@
 
       //Edit Summary
       $('#edit_summary').on('click',function(){
+          var idkontrak = $('#idkontrak').val();
           var idsummary = $('#eidsummary').val();
           var namapt = $('#enamapt').val();
           var nomorkontrak = $('#enomorkontrak').val();
@@ -306,11 +307,25 @@
           var startdate = $('#estartdate').val();
           var enddate = $('#eenddate').val();
           var nilaikontrak = $('#enilaikontrak').val();
+          var dr = $('#edr').val();
+          var pat = $('#epat').val();
+          var top = $('#etop').val();
+          var awak = $('#eawak').val();
+          var frekuensi = $('#efrekuensi').val();
+          var pd = $('#epd').val();
+          var prepaid = $('#eprepaid').val();
+          var status_ppn = $('#estatus_ppn').val();
+          var ppn = $('#eppn').val();
+          var jumlah_unit = $('#ejumlah_unit').val();
+          var satuan = $('#esatuan').val();
+          var nilai_asumsi_perpanjangan = $('#enilai_asumsi_perpanjangan').val();
+          var tgl_perpanjangan = $('#etgl_perpanjangan').val();
           $.ajax({
               type : "POST",
               url  : "<?php echo site_url('admin/do/edit')?>",
               dataType : "JSON",
               data : {
+                summary_idkontrak:idkontrak, 
                 summary_idsummary:idsummary, 
                 summary_namapt:namapt, 
                 summary_nomorkontrak:nomorkontrak, 
@@ -339,7 +354,20 @@
                 summary_lokasi:lokasi,
                 summary_startdate:startdate,
                 summary_enddate:enddate,
-                summary_nilaikontrak:nilaikontrak
+                summary_nilaikontrak:nilaikontrak,
+                summary_dr:dr,
+                summary_pat:pat,
+                summary_top:top,
+                summary_awak:awak,
+                summary_frekuensi:frekuensi,
+                summary_pd:pd,
+                summary_prepaid:prepaid,
+                summary_status_ppn:status_ppn,
+                summary_ppn:ppn,
+                summary_jumlah_unit:jumlah_unit,
+                summary_satuan:satuan,
+                summary_nilai_asumsi_perpanjangan:nilai_asumsi_perpanjangan,
+                summary_tgl_perpanjangan:tgl_perpanjangan
               },
               success: function(data){
                   $('#modal-edit').modal('hide');

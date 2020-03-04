@@ -77,7 +77,8 @@ class AdminController extends CI_Controller{
                     type="button" 
                     class="modaedit btn btn-block btn-outline-info btn-xs"  
                     data-toggle="modal" 
-                    data-target="#modal-edit" 
+					data-target="#modal-edit" 
+					data-idkontrak="'.$key_summary->id_id_kontrak.'"
                     data-idsummary="'.$key_summary->id_summary.'"
 					data-namapt="'.$key_summary->nama_pt.'" 
 					data-nomorkontrak="'.$key_summary->nomor_kontrak.'"
@@ -100,8 +101,21 @@ class AdminController extends CI_Controller{
 					data-lokasi="'.$key_summary->lokasi.'"
 					data-startdate="'.$key_summary->start_date.'"
 					data-enddate="'.$key_summary->end_date.'"
-					data-nilaikontrak="'.$key_summary->nilai_kontrak.'">
-                    Ubah
+					data-nilaikontrak="'.$key_summary->nilai_kontrak.'"
+					data-dr="'.$key_summary->dr.'"
+                    data-pat="'.$key_summary->pat.'"
+                    data-top="'.$key_summary->top.'"
+                    data-awak="'.$key_summary->awak.'"
+                    data-frekuensi_pembayaran="'.$key_summary->frekuensi_pembayaran.'"
+                    data-pd="'.$key_summary->pd.'"
+                    data-prepaid="'.$key_summary->prepaid.'"
+                    data-status_ppn="'.$key_summary->status_ppn.'"
+                    data-ppn="'.$key_summary->ppn.'"
+                    data-jumlah_unit="'.$key_summary->jumlah_unit.'"
+                    data-satuan="'.$key_summary->satuan.'"
+                    data-nilai_asumsi_perpanjangan="'.$key_summary->nilai_asumsi_perpanjangan.'"
+                    data-tgl_perpanjangan="'.$key_summary->tgl_perpanjangan.'">
+                    Ubah Data
 	               </button>
 	               <button
 	               type="button"

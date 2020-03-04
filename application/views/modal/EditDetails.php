@@ -1,12 +1,13 @@
 <!-- Main content -->
 <section class="content">
     <div class="container-fluid">
-      <form enctype="multipart/form-data" name="form" role="form">
+        <form enctype="multipart/form-data" name="form" role="form">
             <!-- Input Data  -->
             <div class="card card-secondary">
                 <div class="card-header">
                     <h3 class="card-title">Contract Form</h3>
                     <input type="hidden" name="id" id="eidsummary">
+                    <input type="hidden" name="id" id="idkontrak">
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                         <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
@@ -89,9 +90,9 @@
                             <div class="form-group">
                                 <label>c. 1. Apakah kontrak mengandung opsi perpanjangan ?</label>
                                 <select class="form-control" id="ensc1" name="ns_c1">
-                                      <option value="Yes">Yes</option>
-                                      <option value="No">No</option>
-                                  </select>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -252,6 +253,169 @@
                             <div class="form-group">
                                 <label>Besar nilai kontrak ?</label>
                                 <input class="form-control" type="text" onkeyup="splitInDots(this)" id="enilaikontrak" name="nilai_kontrak">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    * Wajib diisi
+                </div>
+            </div>
+
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <h3 class="card-title">Calculation Form</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Discount Rate</label>
+                                <input class="form-control" type="text" name="dr" id="edr">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Payment Amount Term</label>
+                                <input class="form-control" type="text" name="pat" id="epat">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Term of Payment</label>
+                                <select class="form-control" name="top" id="etop">
+                                    <option value="1">1 (Tahunan)</option>
+                                    <option value="2">2 (Semester)</option>
+                                    <option value="4">4 (Kuartal)</option>
+                                    <option value="12">12 (Bulanan)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Awal Bulan / Akhir Bulan</label>
+                                <select class="form-control" name="awak" id="eawak">
+                                    <option value="1">Awal Bulan</option>
+                                    <option value="0">Akhir Bulan</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Frekuensi Pembayaran</label>
+                                <input type="number" class="form-control" name="frekuensi" id="efrekuensi">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Payment Date</label>
+                                <input class="form-control" name="pd" type="date" id="epd">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Prepaid</label>
+                                <input class="form-control" name="prepaid" type="text" id="eprepaid">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    * Wajib diisi
+                </div>
+            </div>
+
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <h3 class="card-title">Detail Contract Form</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Status PPN</label>
+                                <select class="form-control" name="status_ppn" id="estatus_ppn">
+                                    <option value="0">Belum Termasuk PPN</option>
+                                    <option value="1">Sudah Termasuk PPN</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>PPN %</label>
+                                <input class="form-control" type="text" name="ppn" id="eppn">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Jumlah Unit</label>
+                                <input class="form-control" type="text" name="jumlah_unit" id="ejumlah_unit">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Satuan</label>
+                                <input class="form-control" name="satuan" type="text" id="esatuan">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    * Wajib diisi
+                </div>
+            </div>
+
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <h3 class="card-title">Perpanjangan</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Nilai Asumsi Perpanjang</label>
+                                <input class="form-control" type="text" name="nilai_asumsi_perpanjangan" id="enilai_asumsi_perpanjangan">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Tanggal Perpanjang</label>
+                                <input class="form-control" type="date" name="tgl_perpanjangan" id="etgl_perpanjangan">
                             </div>
                         </div>
                     </div>
