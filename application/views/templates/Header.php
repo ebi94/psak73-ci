@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/AdminLTE'); ?>/plugins/jqvmap/jqvmap.min.css">
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="<?php echo base_url('assets/AdminLTE'); ?>/plugins/sweetalert2/sweetalert2.min.css">
+    <!-- Datatables -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/AdminLTE'); ?>/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <!-- Toastr -->
     <link rel="stylesheet" href="<?php echo base_url('assets/AdminLTE'); ?>/plugins/toastr/toastr.min.css">
     <!-- Theme style -->
@@ -95,6 +97,7 @@
     <script src="<?php echo base_url('assets/AdminLTE'); ?>/plugins/toastr/toastr.min.js"></script>
     <!-- DataTables -->
     <script src="<?php echo base_url('assets/AdminLTE'); ?>/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="<?php echo base_url('assets/AdminLTE'); ?>/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
     <!-- daterangepicker -->
     <script src="<?php echo base_url('assets/AdminLTE'); ?>/plugins/moment/moment.min.js"></script>
     <script src="<?php echo base_url('assets/AdminLTE'); ?>/plugins/daterangepicker/daterangepicker.js"></script>
@@ -240,6 +243,8 @@
           var startdate = $('#startdate').val();
           var enddate = $('#enddate').val();
           var nilaikontrak = $('#nilaikontrak').val();
+          var title = $('#title').val();
+          var idKontrak = $('#id_kontrak').val();
           $.ajax({
               type : "POST",
               url  : "<?php echo site_url('admin/do/add')?>",
@@ -272,7 +277,9 @@
                 summary_lokasi:lokasi,
                 summary_startdate:startdate,
                 summary_enddate:enddate,
-                summary_nilaikontrak:nilaikontrak
+                summary_nilaikontrak:nilaikontrak,
+                summary_title:title,
+                summary_id_kontrak:idKontrak
               },
               success: function(data){
                   var id = data;
