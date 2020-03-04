@@ -215,6 +215,7 @@
 
     // Function Edit
     $(document).on("click", ".modaedit", function() {
+        var idkontrak = $(this).data('idkontrak');
         var idsummary = $(this).data('idsummary');
         var namapt = $(this).data('namapt');
         var nomorkontrak = $(this).data('nomorkontrak');
@@ -238,6 +239,20 @@
         var startdate = $(this).data('startdate');
         var enddate = $(this).data('enddate');
         var nilaikontrak = $(this).data('nilaikontrak');
+        var dr = $(this).data('dr');
+        var pat = $(this).data('pat');
+        var top = $(this).data('top');
+        var awak = $(this).data('awak');
+        var frekuensi = $(this).data('frekuensi');
+        var pd = $(this).data('pd');
+        var prepaid = $(this).data('prepaid');
+        var status_ppn = $(this).data('status_ppn');
+        var ppn = $(this).data('ppn');
+        var jumlah_unit = $(this).data('jumlah_unit');
+        var satuan = $(this).data('satuan');
+        var nilai_asumsi_perpanjangan = $(this).data('nilai_asumsi_perpanjangan');
+        var tgl_perpanjangan = $(this).data('tgl_perpanjangan');
+        $("#idkontrak").val(idkontrak);
         $("#eidsummary").val(idsummary);
         $("#enamapt").val(namapt);
         $("#enomorkontrak").val(nomorkontrak);
@@ -261,6 +276,19 @@
         $("#estartdate").val(startdate);
         $("#eenddate").val(enddate);
         $("#enilaikontrak").val(nilaikontrak);
+        $("#edr").val(dr);
+        $("#epat").val(pat);
+        $("#etop").val(top);
+        $("#eawak").val(awak);
+        $("#efrekuensi").val(frekuensi);
+        $("#epd").val(pd);
+        $("#eprepaid").val(prepaid);
+        $("#estatus_ppn").val(status_ppn);
+        $("#eppn").val(ppn);
+        $("#ejumlah_unit").val(jumlah_unit);
+        $("#esatuan").val(satuan);
+        $("#enilai_asumsi_perpanjangan").val(nilai_asumsi_perpanjangan);
+        $("#etgl_perpanjangan").val(tgl_perpanjangan);
     });
     // Function Edit
     
