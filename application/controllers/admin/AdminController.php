@@ -139,6 +139,7 @@ class AdminController extends CI_Controller{
 
 	function delete_summary(){
 		$data=$this->SummaryModel->summary_delete();
+		echo json_encode($data);
 	}
 
 	function do_edit_summary() {
