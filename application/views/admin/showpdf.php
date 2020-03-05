@@ -1,6 +1,7 @@
 <section>
+    <?php $id_kontrak = '1';?>
 <div id="<?php echo $id_kontrak?>-pdf" class=" pdfobject-container">
-    <embed class="pdfobject" src="https://swingtradingindo.com/wp-content/uploads/2020/01/ebook-jesse-livermore.pdf" type="application/pdf" style="overflow: auto; width: 100%; height: 1900px;">
+    <embed class="pdfobject" src="<?php echo base_url('assets/pdf'); ?>/lease_residential.pdf" type="application/pdf" style="overflow: auto; width: 100%; height: 1900px;">
     </embed>
 </div>
 </section>
@@ -11,5 +12,5 @@ var options = {
     pdfOpenParams: { scrollbar: '1', toolbar: '1', statusbar: '1', navpanes: '1' }
 };
 
-PDFObject.embed("https://swingtradingindo.com/wp-content/uploads/2020/01/ebook-jesse-livermore.pdf", "<?php echo $id_kontrak?>-pdf");
+PDFObject.embed("<?php echo base_url('assets/pdf'); ?>/lease_residential.pdf", "<?php echo $id_kontrak?>-pdf");
 </script>
