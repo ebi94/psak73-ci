@@ -9,6 +9,9 @@
 			  	<a href="<?php echo base_url('admin/add'); ?>">
 					<button class="btn btn-info add_user" type="button"><span class="fas fa-plus"> Add</span></button>
 				</a>
+                <a href="<?php echo base_url('export/summary'); ?>">
+                    <button class="btn btn-success export_summary" type="button"><span class="far fa-file-excel"> Export Summary</span></button>
+                </a>
 				<a href="<?php echo base_url('export/kkp'); ?>">
 					<button class="btn btn-success export_kkp" type="button"><span class="far fa-file-excel"> Export KKP</span></button>
 				</a>

@@ -68,8 +68,8 @@ class SummaryModel extends CI_Model{
 
             $diff = (($y2 - $y1) * 12) + ($m2 - $m1);
 
-            if ($this->input->post('title') == 'Add Summary New') {
-                  $id_kontrak = $this->input->post('idKontrak');
+            if ($this->input->post('summary_title') == 'Add Summary New') {
+                  $id_kontrak = $this->input->post('summary_id_kontrak');
                   $kontrak_int = str_replace(".", "", $this->input->post('summary_nilaikontrak'));
                   $summary_add_data = array(
                           'id_kontrak' => $id_kontrak,
