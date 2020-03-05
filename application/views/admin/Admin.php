@@ -104,7 +104,7 @@
 
 <!-- Modal Lihat -->
 <div class="modal fade" id="modal-lihat">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-lg" style="max-width: 1300px;">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Lihat Data</h4>
