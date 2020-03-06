@@ -7,7 +7,8 @@
     <strong>Success! </strong> Data Successfuly Updated.
 </div>
 <!-- Main content -->
-<form enctype="multipart/form-data" name="form" role="form">
+<!-- <form enctype="multipart/form-data" name="form" role="form"> -->
+<form id="form_add_summary" name="form" role="form">
     <!-- Input Data  -->
     <div class="card card-secondary">
         <div class="card-header">
@@ -32,7 +33,7 @@
                     <div class="form-group">
                         <label for="exampleInputFile">Upload file</label>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="customFile">
+                            <input type="file" class="custom-file-input" id="customFile" name="file">
                             <label class="custom-file-label" for="customFile">Choose file</label>
                         </div>
                     </div>

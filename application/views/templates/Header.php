@@ -89,6 +89,8 @@
     </script>
     <!-- Bootstrap 4 -->
     <script src="<?php echo base_url('assets/AdminLTE'); ?>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo base_url('assets/AdminLTE'); ?>/plugins/bootstrap/js/bootstrap.min.js"></script>
+
     <script src="<?php echo base_url('assets/AdminLTE'); ?>/plugins/sparklines/sparkline.js"></script>
     <script src="<?php echo base_url('assets/AdminLTE'); ?>/plugins/jquery-knob/jquery.knob.min.js"></script>
     <!-- SweetAlert2 -->
@@ -196,73 +198,55 @@
       // ABM SUMMARY MANAGEMENT
 
         //Add Summary
-        $('#add_summary').on('click',function(){
-          var namapt = $('#namapt').val();
-          var nomorkontrak = $('#nomorkontrak').val();
-          var vendor = $('#vendor').val();
-          var jenissewa = $('#jenissewa').val();
-          var serialnumber = $('#serialnumber').val();
-          var nsa = $('#nsa').val();
-          var nsa1 = $('#nsa1').val();
-          var nsb = $('#nsb').val();
-          var nsc1 = $('#nsc1').val();
-          var nsc2 = $('#nsc2').val();
-          var nsd1 = $('#nsd1').val();
-          var nsd2 = $('#nsd2').val();
-          var is1 = $('#is1').val();
-          var is2 = $('#is2').val();
-          var is3 = $('#is3').val();
-          var is4 = $('#is4').val();
-          var is5 = $('#is5').val();
-          var is6 = $('#is6').val();
-          var is7 = $('#is7').val();
-          var k_1 = $('#kontrak_dari_beberapa_komponen').val();
-          var k_2 = $('#komponen_dalam_kontrak').val();
-          var k_3 = $('#komponen_merupakan_sewa').val();
-          var k_4 = $('#penyewa_mendapat_manfaat').val();
-          var k_5 = $('#aset_dasar').val();
-          var lokasi = $('#lokasi').val();
-          var startdate = $('#startdate').val();
-          var enddate = $('#enddate').val();
-          var nilaikontrak = $('#nilaikontrak').val();
-          var title = $('#title').val();
-          var idKontrak = $('#id_kontrak').val();
+        // $('#add_summary').on('click',function(){
+        $('#form_add_summary').submit(function(e){
+          e.preventDefault();
+          // var namapt = $('#namapt').val();
+          // var nomorkontrak = $('#nomorkontrak').val();
+          // var vendor = $('#vendor').val();
+          // var jenissewa = $('#jenissewa').val();
+          // var serialnumber = $('#serialnumber').val();
+          // var nsa = $('#nsa').val();
+          // var nsa1 = $('#nsa1').val();
+          // var nsb = $('#nsb').val();
+          // var nsc1 = $('#nsc1').val();
+          // var nsc2 = $('#nsc2').val();
+          // var nsd1 = $('#nsd1').val();
+          // var nsd2 = $('#nsd2').val();
+          // var is1 = $('#is1').val();
+          // var is2 = $('#is2').val();
+          // var is3 = $('#is3').val();
+          // var is4 = $('#is4').val();
+          // var is5 = $('#is5').val();
+          // var is6 = $('#is6').val();
+          // var is7 = $('#is7').val();
+          // var k_1 = $('#kontrak_dari_beberapa_komponen').val();
+          // var k_2 = $('#komponen_dalam_kontrak').val();
+          // var k_3 = $('#komponen_merupakan_sewa').val();
+          // var k_4 = $('#penyewa_mendapat_manfaat').val();
+          // var k_5 = $('#aset_dasar').val();
+          // var lokasi = $('#lokasi').val();
+          // var startdate = $('#startdate').val();
+          // var enddate = $('#enddate').val();
+          // var nilaikontrak = $('#nilaikontrak').val();
+          // var title = $('#title').val();
+          // var idKontrak = $('#id_kontrak').val();
+
+          // var formData = new FormData();
+          // formData.append('file', $('input[type=file]')[0].files[0]);
           $.ajax({
               type : "POST",
               url  : "<?php echo site_url('admin/do/add')?>",
-              dataType : "JSON",
-              data : {
-                summary_namapt:namapt, 
-                summary_nomorkontrak:nomorkontrak, 
-                summary_vendor:vendor,
-                summary_jenissewa:jenissewa,
-                summary_serialnumber:serialnumber,
-                summary_nsa:nsa,
-                summary_nsa1:nsa1,
-                summary_nsb:nsb,
-                summary_nsc1:nsc1,
-                summary_nsc2:nsc2,
-                summary_nsd1:nsd1,
-                summary_nsd2:nsd2,
-                summary_is1:is1,
-                summary_is2:is2,
-                summary_is3:is3,
-                summary_is4:is4,
-                summary_is5:is5,
-                summary_is6:is6,
-                summary_is7:is7,
-                summary_k_1:k_1,
-                summary_k_2:k_2,
-                summary_k_3:k_3,
-                summary_k_4:k_4,
-                summary_k_5:k_5,
-                summary_lokasi:lokasi,
-                summary_startdate:startdate,
-                summary_enddate:enddate,
-                summary_nilaikontrak:nilaikontrak,
-                summary_title:title,
-                summary_id_kontrak:idKontrak
-              },
+              // dataType : "JSON",
+              // data : {
+                // formData
+              // },
+              // data : formData,
+              data : new FormData(this),
+              processData:false,
+              contentType:false,
+              cache:false,
+              async:false,
               success: function(data){
                   var id = data;
                   window.location.href=('<?php echo base_url('form/calculation/'); ?>' + id);
