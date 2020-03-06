@@ -150,9 +150,8 @@
       $('#summary_list').DataTable({
         "paging": true,
         "lengthChange": false,
-        "searching": false,
-        // "ordering": false,
-        "ordering" :[[9, "asc"]],
+        "searching": true,
+        "ordering": true,
         "info": true,
         "autoWidth": true,
         "scrollX": true,

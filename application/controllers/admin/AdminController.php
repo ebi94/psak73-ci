@@ -148,7 +148,61 @@ class AdminController extends CI_Controller{
 	}
 
 	function do_add_summary() {
-		$data=$this->SummaryModel->summary_add();
+		$config['upload_path']="./assets/pdf";
+        $config['allowed_types']='gif|jpg|png|pdf';
+        $config['encrypt_name'] = TRUE;
+
+        $this->load->library('upload',$config);
+        $this->upload->do_upload('file');
+
+        $data   = array('upload_data' => $this->upload->data());
+        $pdf_up = $data['upload_data']['file_name'];
+
+		$title = $this->input->post('title');
+		$id_kontrak = $this->input->post('id_kontrak');
+
+		$y1 = date('Y',strtotime($this->input->post('start_date')));
+		$y2 = date('Y',strtotime($this->input->post('end_date')));
+
+		$m1 = date('m',strtotime($this->input->post('start_date')));
+		$m2 = date('m',strtotime($this->input->post('end_date')));
+
+		$diff = (($y2 - $y1) * 12) + ($m2 - $m1);
+
+		$nama_pt = $this->input->post('nama_pt');
+		$nomor_kontrak = $this->input->post('nomor_kontrak');
+		$vendor = $this->input->post('vendor');
+		$created_by = $this->session->userdata('ses_id');
+
+
+		$jenis_sewa = $this->input->post('jenis_sewa');
+		$serialnumber = $this->input->post('serialnumber');
+		$ns_a = $this->input->post('nsa');
+		$ns_a1 = $this->input->post('nsa1');
+		$ns_b = $this->input->post('nsb');
+		$ns_c1 = $this->input->post('nsc1');
+		$ns_c2 = $this->input->post('ns_c2');
+		$ns_d1 = $this->input->post('nsd1');
+		$ns_d2 = $this->input->post('ns_d2');
+		$is_1 = $this->input->post('is_1');
+		$is_2 = $this->input->post('is_2');
+		$is_3 = $this->input->post('is_3');
+		$is_4 = $this->input->post('is_4');
+		$is_5 = $this->input->post('is_5');
+		$is_6 = $this->input->post('is_6');
+		$is_7 = $this->input->post('is_7');
+		$k_1 = $this->input->post('kontrak_dari_beberapa_komponen');
+		$k_2 = $this->input->post('komponen_dalam_kontrak');
+		$k_3 = $this->input->post('komponen_merupakan_sewa');
+		$k_4 = $this->input->post('penyewa_mendapat_manfaat');
+		$k_5 = $this->input->post('aset_dasar');
+		$lokasi = $this->input->post('lokasi');
+		$start_date = $this->input->post('start_date');
+		$end_date = $this->input->post('end_date');
+
+		$kontrak_int = str_replace(".", "", $this->input->post('nilai_kontrak'));
+
+		$data=$this->SummaryModel->summary_add($title,$id_kontrak,$diff,$nama_pt,$nomor_kontrak,$vendor,$created_by,$jenis_sewa,$serialnumber,$ns_a,$ns_a1,$ns_b,$ns_c1,$ns_c2,$ns_d1,$ns_d2,$is_1,$is_2,$is_3,$is_4,$is_5,$is_6,$is_7,$k_1,$k_2,$k_3,$k_4,$k_5,$lokasi,$start_date,$end_date,$kontrak_int,$pdf_up);
 		echo json_encode($data);
 	}
 

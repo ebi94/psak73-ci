@@ -980,17 +980,6 @@ class ExportController extends CI_Controller{
 
 		$excel->setActiveSheetIndex(0)->setCellValue('A'.$start_row, '2020');		
 		$excel->setActiveSheetIndex(0)->setCellValue('B'.$start_row, 'Januari');
-		$excel->setActiveSheetIndex(0)->setCellValue('B10', 'Februari');
-		$excel->setActiveSheetIndex(0)->setCellValue('B11', 'Maret');
-		$excel->setActiveSheetIndex(0)->setCellValue('B12', 'April');
-		$excel->setActiveSheetIndex(0)->setCellValue('B13', 'Mei');
-		$excel->setActiveSheetIndex(0)->setCellValue('B14', 'Juni');
-		$excel->setActiveSheetIndex(0)->setCellValue('B15', 'Juli');
-		$excel->setActiveSheetIndex(0)->setCellValue('B16', 'Agustus');
-		$excel->setActiveSheetIndex(0)->setCellValue('B17', 'September');
-		$excel->setActiveSheetIndex(0)->setCellValue('B18', 'Oktober');
-		$excel->setActiveSheetIndex(0)->setCellValue('B19', 'November');
-		$excel->setActiveSheetIndex(0)->setCellValue('B20', 'Desember');
 
 		$excel->setActiveSheetIndex(0)->setCellValue('C'.$start_row, '=PV((Z'.$start_row.'),AA'.$start_row.',AB'.$start_row.',AC'.$start_row.',AD'.$start_row.')');
 		$excel->setActiveSheetIndex(0)->setCellValue('D'.$start_row, '=('.$data_data->payment_amount_per_term.')*(-1)');
@@ -1001,15 +990,29 @@ class ExportController extends CI_Controller{
 		$excel->setActiveSheetIndex(0)->setCellValue('H'.$start_row, '=AF9');	
 		$excel->setActiveSheetIndex(0)->setCellValue('I'.$start_row, '=G'.$start_row.'+H'.$start_row.'');
 
+		$excel->getActiveSheet()->getStyle('A'.$start_row)->applyFromArray($style_row);
+		$excel->getActiveSheet()->getStyle('B'.$start_row)->applyFromArray($style_row);
+		$excel->getActiveSheet()->getStyle('C'.$start_row)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
+		$excel->getActiveSheet()->getStyle('D'.$start_row)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
+		$excel->getActiveSheet()->getStyle('E'.$start_row)->getNumberFormat()->setFormatCode('_-* #,##0.00_-;-* #,##0.00_-;_-* "-"??_-;_-@_-');
+		// $excel->getActiveSheet()->getStyle('F'.$start_row)->applyFromArray($style_row);
+		$excel->getActiveSheet()->getStyle('F'.$start_row)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
+		$excel->getActiveSheet()->getStyle('G'.$start_row)->applyFromArray($style_row);
+		$excel->getActiveSheet()->getStyle('H'.$start_row)->applyFromArray($style_row);
+		$excel->getActiveSheet()->getStyle('I'.$start_row)->applyFromArray($style_row);
+
 		$formatCodeF = '_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-';
-		for ($ix=1; $ix < 100; $ix++) {
+		// for ($ix=1; $ix < 100; $ix++) {
 		// PAKE IF INI LEBIH PAS CUMAN KAGAK BISA W DAPET VALUE DARI CELL NYA
 		// $highestRow = ($excel->setActiveSheetindex(0)->getHighestRow())+1;
-		// $cell_f_high_row = $excel->setActiveSheetindex()->getCell('F'.$highestRow);
-		// $cell_f = $end_balance_pertama_high_row->getValue();
-		// $ix=1; 
+		// $highestRow = $excel->setActiveSheetindex(0)->getHighestRow();
+		// $cell_f = $excel->setActiveSheetindex()->getCell('F'.$start_row)->getValue();
+		// $cell_f = $excel->setActiveSheetindex()->getCell('F'.$highestRow)->getValue();
+		$ix=1;
+		do{
 		// if ($cell_f <= 0) { 
-		// 
+		// for ($ix=1; $ix < 15 ; $ix++) {
+			// $ix++;
 			$row = $start_row+$ix;
 			$row_2 = ($start_row+$ix)-1;
 
@@ -1022,20 +1025,26 @@ class ExportController extends CI_Controller{
 			$excel->setActiveSheetIndex(0)->setCellValue('H'.$row, '=AF9');	
 			$excel->setActiveSheetIndex(0)->setCellValue('I'.$row, '=G'.$row.'+H'.$row.'');
 
-		// $ix++;
-		}
+			// apply isian style
+			$excel->getActiveSheet()->getStyle('A'.$row)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('B'.$row)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('C'.$row)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
+			$excel->getActiveSheet()->getStyle('D'.$row)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
+			$excel->getActiveSheet()->getStyle('E'.$row)->getNumberFormat()->setFormatCode('_-* #,##0.00_-;-* #,##0.00_-;_-* "-"??_-;_-@_-');
+			// $excel->getActiveSheet()->getStyle('F'.$row)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('F'.$row)->getNumberFormat()->setFormatCode('_-* #,##0_-;-* #,##0_-;_-* "-"??_-;_-@_-');
+			$excel->getActiveSheet()->getStyle('G'.$row)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('H'.$row)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('I'.$row)->applyFromArray($style_row);
+
+			$cell_f = $excel->setActiveSheetindex()->getCell('F'.$row)->getFormattedValue();
+
+		$ix++;
+		}while ( $ix < 20);
+
+			$excel->setActiveSheetIndex(0)->setCellValue('J'.$start_row, $cell_f);
 		
-		// apply isian style
-		$excel->getActiveSheet()->getStyle('A'.$start_row)->applyFromArray($style_row);
-		$excel->getActiveSheet()->getStyle('B'.$start_row)->applyFromArray($style_row);
-		$excel->getActiveSheet()->getStyle('C'.$start_row)->applyFromArray($style_row);
-		$excel->getActiveSheet()->getStyle('D'.$start_row)->applyFromArray($style_row);
-		$excel->getActiveSheet()->getStyle('E'.$start_row)->applyFromArray($style_row);
-		// $excel->getActiveSheet()->getStyle('F'.$start_row)->applyFromArray($style_row);
-		$excel->getActiveSheet()->getStyle('F'.$start_row)->getNumberFormat()->setFormatCode($formatCodeF);
-		$excel->getActiveSheet()->getStyle('G'.$start_row)->applyFromArray($style_row);
-		$excel->getActiveSheet()->getStyle('H'.$start_row)->applyFromArray($style_row);
-		$excel->getActiveSheet()->getStyle('I'.$start_row)->applyFromArray($style_row);
+		
 
 		// set column width to auto
 			foreach (range('A','I') as $columnIndex) {
