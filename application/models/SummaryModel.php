@@ -11,6 +11,7 @@ class SummaryModel extends CI_Model{
                     k.nama_pt AS nama_pt,
                     k.nomor_kontrak AS nomor_kontrak,
                     k.vendor AS vendor,
+                    k.pdf_url AS pdf_url,
                     sum.id AS id_summary,
                     sum.jenis_sewa AS jenis_sewa,
                     sum.ns_a AS ns_a,

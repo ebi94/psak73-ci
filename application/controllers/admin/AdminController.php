@@ -70,7 +70,8 @@ class AdminController extends CI_Controller{
 	                data-lokasi="'.$key_summary->lokasi.'"
 	                data-startdate="'.$key_summary->start_date.'"
 	                data-enddate="'.$key_summary->end_date.'"
-	                data-nilaikontrak="'.$key_summary->nilai_kontrak.'">
+					data-nilaikontrak="'.$key_summary->nilai_kontrak.'"
+					data-pdfurl="'.$key_summary->pdf_url.'">
 	                Lihat
 	              </button>
                   <button 
@@ -213,6 +214,23 @@ class AdminController extends CI_Controller{
 	function do_edit_summary() {
 		$data=$this->SummaryModel->summary_edit();
 		echo json_encode($data);
+	}
+
+	function do_upload_summary(){
+		$config['upload_path']="./assets/images";
+        $config['allowed_types']='gif|jpg|png';
+        $config['encrypt_name'] = TRUE;
+         
+        $this->load->library('upload',$config);
+        if($this->upload->do_upload("file")){
+            $data = array('upload_data' => $this->upload->data());
+ 
+            $judul= $this->input->post('judul');
+            $image= $data['upload_data']['file_name']; 
+             
+            $result= $this->SummaryModel->summary_upload($judul,$image);
+            echo json_decode($result);
+        }
 	}
 
 	function edit_summary() {
