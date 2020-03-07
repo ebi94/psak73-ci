@@ -111,7 +111,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Lihat Data</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" id="close-modal-lihat" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -121,7 +121,9 @@
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                <button type="button" class="btn btn-primary" id="tambah_aset">Tambah Asset</button>
+                <a href="" id="addmoreasset">
+                    <button type="button" class="btn btn-primary" >Tambah Asset</button>
+                </a>
             </div>
         </div>
         <!-- /.modal-content -->
@@ -164,7 +166,7 @@
     }
     // Function Show Detail
     $(document).on("click", ".modalihat", function() {
-
+        var idkontrak = $(this).data('idkontrak');
         var title = $(this).data('title');
         var nomorkontrak = $(this).data('nomorkontrak');
         var vendor = $(this).data('vendor');
@@ -182,11 +184,16 @@
         var is5 = $(this).data('is5');
         var is6 = $(this).data('is6');
         var is7 = $(this).data('is7');
+        var pdfpage = $(this).data('pdfpage');
         var komponen = $(this).data('komponen');
         var lokasi = $(this).data('lokasi');
         var startdate = $(this).data('startdate');
         var enddate = $(this).data('enddate');
         var nilaikontrak = $(this).data('nilaikontrak');
+        var pdfurl = $(this).data('pdfurl');
+        var addmoreasset =  '/admin/summary/'+idkontrak;
+        var baseurl = "<?php echo base_url('/assets/pdf/') ?>";
+        var showurl = baseurl+pdfurl+'#page='+pdfpage;
         $("#title").html(title);
         $("#nomorkontrak").html(nomorkontrak);
         $("#vendor").html(vendor);
@@ -209,6 +216,9 @@
         $("#startdate").html(startdate);
         $("#enddate").html(enddate);
         $("#nilaikontrak").html(nilaikontrak);
+        $("#addmoreasset").attr('href', addmoreasset);
+        $("#urlpdf").val(pdfurl);
+        $("#pdfobject").attr('src', showurl);
     });
     // Function Show Detail
 
@@ -327,5 +337,9 @@
     	window.open('export/schedule?id_summary='+id_sum);
     });
     // Function Export Schedule
+
+    // Currency Split
+    // Currency Split
+    
 </script>
 <!-- End Contents -->

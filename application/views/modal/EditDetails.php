@@ -56,10 +56,16 @@
                 <!-- /.card-header -->
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-8">
                             <div class="form-group">
                                 <label>Jenis Sewa</label>
                                 <input class="form-control" id="ejenissewa" name="jenis_sewa" type="text">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Halaman di dalam PDF ?</label>
+                                <input class="form-control" name="epageinpdf" type="number" id="epageinpdf">
                             </div>
                         </div>
                     </div>
@@ -427,7 +433,7 @@
 
             <div class="row">
                 <div class="col-md-2">
-                    <button type="submit" id="edit_summary" class="btn btn-info col-md-12">Lanjutkan</button>
+                    <button type="submit" id="edit_summary" class="btn btn-info col-md-12">Simpan</button>
                 </div>
                 <div class="col-md-2">
                     <input type="button" class="btn btn-block btn-secondary" data-dismiss="modal" value="Batalkan">

@@ -10,7 +10,7 @@
       <div class="modal-body">
         <section class="content">
           <div class="container-fluid">
-            <strong>Are you sure to delete this record?</strong>
+            <strong>Are you sure to delete this user ?</strong>
           </div>
         </section>
       </div>

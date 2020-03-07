@@ -220,11 +220,21 @@
         });
       // END SUMMARY MANAGEMENT
 
+        $('#close-modal-lihat').on('click',function(){
+            location.reload();
+        });
+
+        $('#modal-lihat').on('hidden.bs.modal', function () {
+            location.reload();
+        });
+
+
       //Edit Summary
       $('#edit_summary').on('click',function(){
           var idkontrak = $('#idkontrak').val();
           var idsummary = $('#eidsummary').val();
           var namapt = $('#enamapt').val();
+          var pageinpdf = $('#epageinpdf').val();
           var nomorkontrak = $('#enomorkontrak').val();
           var vendor = $('#evendor').val();
           var jenissewa = $('#ejenissewa').val();
@@ -273,6 +283,7 @@
                 summary_idkontrak:idkontrak, 
                 summary_idsummary:idsummary, 
                 summary_namapt:namapt, 
+                summary_pageinpdf:pageinpdf, 
                 summary_nomorkontrak:nomorkontrak, 
                 summary_vendor:vendor,
                 summary_jenissewa:jenissewa,

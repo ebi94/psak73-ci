@@ -34,10 +34,10 @@
           </a>
         </li> -->
                 <li class="nav-item">
-                    <a href="<?php echo base_url('admin'); ?>" class="nav-link <?php if($title == 'List Kontrak'):?> active <?php endif; ?>">
+                    <a href="<?php echo base_url('admin'); ?>" class="nav-link <?php if($title == 'List Assets'):?> active <?php endif; ?>">
                         <i class="nav-icon fas fa-list"></i>
                         <p>
-                            List Kontrak
+                            List Assets
                         </p>
                     </a>
                 </li>

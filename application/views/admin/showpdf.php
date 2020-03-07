@@ -1,7 +1,8 @@
 <section>
     <?php $id_kontrak = '1';?>
+    <input type="hidden" id="urlpdf">
 <div id="<?php echo $id_kontrak?>-pdf" class=" pdfobject-container">
-    <embed class="pdfobject" src="<?php echo base_url('assets/pdf'); ?>/lease_residential.pdf" type="application/pdf" style="overflow: auto; width: 100%; height: 1900px;">
+    <embed id="pdfobject" class="pdfobject" src="" type="application/pdf" style="overflow: auto; width: 100%; height: 1900px;">
     </embed>
 </div>
 </section>
@@ -12,5 +13,7 @@ var options = {
     pdfOpenParams: { scrollbar: '1', toolbar: '1', statusbar: '1', navpanes: '1' }
 };
 
-PDFObject.embed("<?php echo base_url('assets/pdf'); ?>/lease_residential.pdf", "<?php echo $id_kontrak?>-pdf");
+var showurl = $('embed #pdfobject').attr('src');
+
+PDFObject.embed(showurl, "<?php echo $id_kontrak?>-pdf", option);
 </script>
