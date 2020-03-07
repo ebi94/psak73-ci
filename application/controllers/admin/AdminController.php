@@ -15,7 +15,7 @@ class AdminController extends CI_Controller{
 	}
 
 	function index() {
-		$data['title'] = 'List Kontrak';
+		$data['title'] = 'List Assets';
 		// $data['data_summary'] = $this->db->query('SELECT * FROM abm_summary')->result();
 		$data['view'] = 'admin/Admin';
 		$this->load->view('templates/header', $data);
@@ -47,7 +47,8 @@ class AdminController extends CI_Controller{
 	                type="button" 
 	                class="modalihat btn btn-block btn-outline-primary btn-xs"  
 	                data-toggle="modal" 
-	                data-target="#modal-lihat"
+					data-target="#modal-lihat"
+					data-idkontrak="'.$key_summary->id_id_kontrak.'"
 	                data-idsummary="'.$key_summary->id_summary.'"
 	                data-title="'.$key_summary->nama_pt.'" 
 	                data-nomorkontrak="'.$key_summary->nomor_kontrak.'"
@@ -55,7 +56,7 @@ class AdminController extends CI_Controller{
 	      			data-jenissewa="'.$key_summary->jenis_sewa.'"
 	                data-nsa="'.$key_summary->ns_a.'"
 	                data-nsb="'.$key_summary->ns_b.'"
-	                data-nsc="'.$key_summary->ns_c1.'"
+	                data-nsc1="'.$key_summary->ns_c1.'"
 	                data-nsc2="'.$key_summary->ns_c2.'"
 	                data-nsd1="'.$key_summary->ns_d1.'"
 	                data-nsd2="'.$key_summary->ns_d2.'"
@@ -71,7 +72,8 @@ class AdminController extends CI_Controller{
 	                data-startdate="'.$key_summary->start_date.'"
 	                data-enddate="'.$key_summary->end_date.'"
 					data-nilaikontrak="'.$key_summary->nilai_kontrak.'"
-					data-pdfurl="'.$key_summary->pdf_url.'">
+					data-pdfurl="'.$key_summary->pdf_url.'"
+					data-pdfpage="'.$key_summary->page_in_pdf.'">
 	                Lihat
 	              </button>
                   <button 
@@ -174,7 +176,7 @@ class AdminController extends CI_Controller{
 		$vendor = $this->input->post('vendor');
 		$created_by = $this->session->userdata('ses_id');
 
-
+		$pageinpdf = $this->input->post('pageinpdf');
 		$jenis_sewa = $this->input->post('jenis_sewa');
 		$serialnumber = $this->input->post('serialnumber');
 		$ns_a = $this->input->post('nsa');
@@ -202,7 +204,7 @@ class AdminController extends CI_Controller{
 
 		$kontrak_int = str_replace(".", "", $this->input->post('nilai_kontrak'));
 
-		$data=$this->SummaryModel->summary_add($title,$id_kontrak,$diff,$nama_pt,$nomor_kontrak,$vendor,$created_by,$jenis_sewa,$serialnumber,$ns_a,$ns_a1,$ns_b,$ns_c1,$ns_c2,$ns_d1,$ns_d2,$is_1,$is_2,$is_3,$is_4,$is_5,$is_6,$is_7,$k_1,$k_2,$k_3,$k_4,$k_5,$lokasi,$start_date,$end_date,$kontrak_int,$pdf_up);
+		$data=$this->SummaryModel->summary_add($title,$id_kontrak,$diff,$nama_pt,$nomor_kontrak,$vendor,$created_by,$pageinpdf,$jenis_sewa,$serialnumber,$ns_a,$ns_a1,$ns_b,$ns_c1,$ns_c2,$ns_d1,$ns_d2,$is_1,$is_2,$is_3,$is_4,$is_5,$is_6,$is_7,$k_1,$k_2,$k_3,$k_4,$k_5,$lokasi,$start_date,$end_date,$kontrak_int,$pdf_up);
 		echo json_encode($data);
 	}
 

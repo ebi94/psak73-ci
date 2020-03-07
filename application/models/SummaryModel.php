@@ -37,6 +37,7 @@ class SummaryModel extends CI_Model{
                     sum.end_date AS end_date,
                     sum.nilai_kontrak AS nilai_kontrak,
                     sum.periode_kontrak AS periode_kontrak,
+                    sum.page_in_pdf AS page_in_pdf,
                     k.created_by AS dibuat_kontrak,
                     c.dr AS dr,
                     c.pat AS pat,
@@ -60,12 +61,13 @@ class SummaryModel extends CI_Model{
         return $query;
   }
 
-	function summary_add($title,$id_kontrak,$diff,$nama_pt,$nomor_kontrak,$vendor,$created_by,$jenis_sewa,$serialnumber,$ns_a,$ns_a1,$ns_b,$ns_c1,$ns_c2,$ns_d1,$ns_d2,$is_1,$is_2,$is_3,$is_4,$is_5,$is_6,$is_7,$k_1,$k_2,$k_3,$k_4,$k_5,$lokasi,$start_date,$end_date,$kontrak_int,$pdf_up) {
+	function summary_add($title,$id_kontrak,$diff,$nama_pt,$nomor_kontrak,$vendor,$created_by,$pageinpdf,$jenis_sewa,$serialnumber,$ns_a,$ns_a1,$ns_b,$ns_c1,$ns_c2,$ns_d1,$ns_d2,$is_1,$is_2,$is_3,$is_4,$is_5,$is_6,$is_7,$k_1,$k_2,$k_3,$k_4,$k_5,$lokasi,$start_date,$end_date,$kontrak_int,$pdf_up) {
 
             if ($title == 'Add Summary New') {
                   $id_kontrak_ = $id_kontrak;
                   $summary_add_data = array(
                           'id_kontrak' => $id_kontrak_,
+                          'page_in_pdf' => $pageinpdf,
                           'jenis_sewa' => $jenis_sewa,
                           'serialnumber' => $serialnumber,
                           'ns_a' => $ns_a,
@@ -109,6 +111,7 @@ class SummaryModel extends CI_Model{
 
                   $summary_add_data = array(
                           'id_kontrak' => $id_kontrak_new,
+                          'page_in_pdf' => $pageinpdf,
                           'jenis_sewa' => $jenis_sewa,
                           'serialnumber' => $serialnumber,
                           'ns_a' => $ns_a,
@@ -185,6 +188,7 @@ class SummaryModel extends CI_Model{
 		$summary_edit_data = array(
                   'id_kontrak' => $id_kontrak,
                   'jenis_sewa' => $this->input->post('summary_jenissewa'),
+                  'page_in_pdf' => $this->input->post('summary_pageinpdf'),
                   'serialnumber' => $this->input->post('summary_serialnumber'),
                   'ns_a' => $this->input->post('summary_nsa'),
                   'ns_a1' => $this->input->post('summary_nsa1'),
