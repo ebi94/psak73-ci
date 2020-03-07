@@ -377,7 +377,7 @@
 
     <div class="row">
         <div class="col-md-2">
-            <button type="submit" id="add_summary" class="btn btn-info col-md-12">Lanjutkan</button>
+            <button type="submit" class="btn btn-info col-md-12">Lanjutkan</button>
         </div>
         <div class="col-md-2">
 			<a href="<?php echo base_url(''); ?>">
