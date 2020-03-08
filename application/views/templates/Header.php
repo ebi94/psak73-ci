@@ -200,9 +200,47 @@
         //Add Summary
         $('#form_add_summary').submit(function(e){
           e.preventDefault();
+          // var namapt = $('#namapt').val();
+          // var nomorkontrak = $('#nomorkontrak').val();
+          // var vendor = $('#vendor').val();
+          // var jenissewa = $('#jenissewa').val();
+          // var serialnumber = $('#serialnumber').val();
+          // var nsa = $('#nsa').val();
+          // var nsa1 = $('#nsa1').val();
+          // var nsb = $('#nsb').val();
+          // var nsc1 = $('#nsc1').val();
+          // var nsc2 = $('#nsc2').val();
+          // var nsd1 = $('#nsd1').val();
+          // var nsd2 = $('#nsd2').val();
+          // var is1 = $('#is1').val();
+          // var is2 = $('#is2').val();
+          // var is3 = $('#is3').val();
+          // var is4 = $('#is4').val();
+          // var is5 = $('#is5').val();
+          // var is6 = $('#is6').val();
+          // var is7 = $('#is7').val();
+          // var k_1 = $('#kontrak_dari_beberapa_komponen').val();
+          // var k_2 = $('#komponen_dalam_kontrak').val();
+          // var k_3 = $('#komponen_merupakan_sewa').val();
+          // var k_4 = $('#penyewa_mendapat_manfaat').val();
+          // var k_5 = $('#aset_dasar').val();
+          // var lokasi = $('#lokasi').val();
+          // var startdate = $('#startdate').val();
+          // var enddate = $('#enddate').val();
+          // var nilaikontrak = $('#nilaikontrak').val();
+          // var title = $('#title').val();
+          // var idKontrak = $('#id_kontrak').val();
+
+          // var formData = new FormData();
+          // formData.append('file', $('input[type=file]')[0].files[0]);
           $.ajax({
               type : "POST",
               url  : "<?php echo site_url('admin/do/add')?>",
+              // dataType : "JSON",
+              // data : {
+                // formData
+              // },
+              // data : formData,
               data : new FormData(this),
               processData:false,
               contentType:false,
@@ -217,6 +255,7 @@
               },
           });
           return false;
+
         });
       // END SUMMARY MANAGEMENT
 
