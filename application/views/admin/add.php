@@ -13,7 +13,7 @@
     <div class="card card-secondary">
         <div class="card-header">
             <h3 class="card-title">Contract Form</h3>
-            <input type="text" name="title" value="<?php echo $title; ?>">
+            <input type="hidden" name="title" value="<?php echo $title; ?>">
             <input type="hidden" id="id_kontrak" name="id_kontrak" value="0">
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
@@ -72,10 +72,16 @@
         <!-- /.card-header -->
         <div class="card-body">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-8">
                     <div class="form-group">
                         <label>Jenis Sewa</label>
                         <input class="form-control" name="jenis_sewa" type="text" id="jenissewa">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Halaman di dalam PDF ?</label>
+                        <input class="form-control" name="pageinpdf" type="number" id="pageinpdf">
                     </div>
                 </div>
             </div>
@@ -377,7 +383,7 @@
 
     <div class="row">
         <div class="col-md-2">
-            <button type="submit" id="add_summary" class="btn btn-info col-md-12">Lanjutkan</button>
+            <button type="submit" class="btn btn-info col-md-12">Lanjutkan</button>
         </div>
         <div class="col-md-2">
 			<a href="<?php echo base_url(''); ?>">
