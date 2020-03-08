@@ -1008,6 +1008,9 @@ class ExportController extends CI_Controller{
 		// $highestRow = $excel->setActiveSheetindex(0)->getHighestRow();
 		// $cell_f = $excel->setActiveSheetindex()->getCell('F'.$start_row)->getValue();
 		// $cell_f = $excel->setActiveSheetindex()->getCell('F'.$highestRow)->getValue();
+
+		$cell_f9 = $excel->setActiveSheetindex()->getCell('F'.$start_row)->getFormattedValue();
+		$sudah_nol = 0;
 		$ix=1;
 		do{
 		// if ($cell_f <= 0) { 
@@ -1038,11 +1041,15 @@ class ExportController extends CI_Controller{
 			$excel->getActiveSheet()->getStyle('I'.$row)->applyFromArray($style_row);
 
 			$cell_f = $excel->setActiveSheetindex()->getCell('F'.$row)->getFormattedValue();
-
+			
+			$cell_f9 = $cell_f;
 		$ix++;
-		}while ( $ix < 20);
+		// if ($cell_f > 0) {
+			// $sudah_nol++;
+		// }
+		}while ( 0 >  $cell_f9);
 
-			$excel->setActiveSheetIndex(0)->setCellValue('J'.$start_row, $cell_f);
+			$excel->setActiveSheetIndex(0)->setCellValue('J'.$start_row, $cell_f9);
 		
 		
 
