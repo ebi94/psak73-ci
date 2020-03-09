@@ -253,7 +253,7 @@ class ExportController extends CI_Controller{
 			)
 		);
 
-		$excel->setActiveSheetindex(0)->setCellValue('A2', 'PT. ABM Investama Tbk'); //isian A2 (title)
+		$excel->setActiveSheetindex(0)->setCellValue('A2', 'PT'); //isian A2 (title)
 		$excel->getActiveSheet()->mergeCells('A2:AP2');
 		$excel->getActiveSheet()->getStyle('A2')->getFont()->setBold(TRUE);
 		$excel->getActiveSheet()->getStyle('A2')->getFont()->setSize(20); //set FontSize
