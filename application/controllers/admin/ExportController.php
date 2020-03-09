@@ -180,7 +180,7 @@ class ExportController extends CI_Controller{
 			$excel->setActiveSheetindex($i)->setCellValue('D25', $key_summary->sum_nilai_kontrak); //isian D25 (title)
 
 			// set judul excel
-			$excel->getActiveSheet($i)->setTitle($key_summary->kon_nama_pt);
+			$excel->getActiveSheet($i)->setTitle($i);
 			$i++;
 		}
 
