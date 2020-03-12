@@ -219,7 +219,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Besar nilai kontrak ?</label>
-                                <br/>Rp <span id="nilaikontrak"></span>,-
+                                <br/><span id="nilaikontrak"></span>
                             </div>
                         </div>
 
