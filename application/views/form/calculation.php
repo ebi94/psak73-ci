@@ -28,7 +28,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Payment Amount Term</label>
-                        <input class="form-control" type="text" name="pat" id="pat">
+                        <input class="form-control" onkeyup="splitInDots(this)" type="text" name="pat" id="pat">
                     </div>
                 </div>
             </div>
@@ -76,7 +76,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Prepaid</label>
-                        <input class="form-control" name="prepaid" type="text" id="prepaid">
+                        <input class="form-control" onkeyup="splitInDots(this)" name="prepaid" type="text" id="prepaid">
                     </div>
                 </div>
             </div>

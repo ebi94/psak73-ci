@@ -21,6 +21,13 @@ class AdminController extends CI_Controller{
 		$this->load->view('templates/header', $data);
 	}
 
+	function format_rupiah($angka){
+	
+		$result = "Rp " . number_format($angka,0,',','.');
+		return $result;
+	 
+	}
+
 	function list_summary() {
 		$draw = intval($this->input->get("draw"));
 		$start = intval($this->input->get("start"));
@@ -32,6 +39,153 @@ class AdminController extends CI_Controller{
 		$i = 1;
 
 		foreach ($query->result() as $key_summary) {
+			$created_byId = $key_summary->dibuat_kontrak;
+			$is_superadmin = $this->session->userdata('level');
+			$log_sesId = $this->session->userdata('ses_id');
+			
+			$nilaikontrak = $key_summary->nilai_kontrak;
+			if (is_numeric($nilaikontrak)){
+				$setInt = (int)$nilaikontrak;
+				$set_rupiah = number_format($setInt,0,',','.');
+				$show_nilaikontrak = 'Rp '.$set_rupiah.' ,-';
+			} else {
+				$show_nilaikontrak = $nilaikontrak;
+			}
+			
+			$actionCan = '<button 
+			type="button" 
+			class="modalihat btn btn-block btn-outline-primary btn-xs"  
+			data-toggle="modal" 
+			data-target="#modal-lihat"
+			data-idkontrak="'.$key_summary->id_id_kontrak.'"
+			data-idsummary="'.$key_summary->id_summary.'"
+			data-title="'.$key_summary->nama_pt.'" 
+			data-nomorkontrak="'.$key_summary->nomor_kontrak.'"
+			data-vendor="'.$key_summary->vendor.'"
+			  data-jenissewa="'.$key_summary->jenis_sewa.'"
+			data-nsa="'.$key_summary->ns_a.'"
+			data-nsb="'.$key_summary->ns_b.'"
+			data-nsc1="'.$key_summary->ns_c1.'"
+			data-nsc2="'.$key_summary->ns_c2.'"
+			data-nsd1="'.$key_summary->ns_d1.'"
+			data-nsd2="'.$key_summary->ns_d2.'"
+			data-is1="'.$key_summary->is_1.'"
+			data-is2="'.$key_summary->is_2.'"
+			data-is3="'.$key_summary->is_3.'"
+			data-is4="'.$key_summary->is_4.'"
+			data-is5="'.$key_summary->is_5.'"
+			data-is6="'.$key_summary->is_6.'"
+			data-is7="'.$key_summary->is_7.'"
+			data-komponen="'.$key_summary->komponen.'"
+			data-lokasi="'.$key_summary->lokasi.'"
+			data-startdate="'.$key_summary->start_date.'"
+			data-enddate="'.$key_summary->end_date.'"
+			data-nilaikontrak="'.$show_nilaikontrak.'"
+			data-pdfurl="'.$key_summary->pdf_url.'"
+			data-pdfpage="'.$key_summary->page_in_pdf.'">
+			Lihat
+		  </button>
+		  <button 
+			type="button" 
+			class="modaedit btn btn-block btn-outline-info btn-xs"  
+			data-toggle="modal" 
+			data-target="#modal-edit" 
+			data-idkontrak="'.$key_summary->id_id_kontrak.'"
+			data-idsummary="'.$key_summary->id_summary.'"
+			data-namapt="'.$key_summary->nama_pt.'" 
+			data-nomorkontrak="'.$key_summary->nomor_kontrak.'"
+			data-vendor="'.$key_summary->vendor.'"
+			data-jenissewa="'.$key_summary->jenis_sewa.'"
+			data-nsa="'.$key_summary->ns_a.'"
+			data-nsb="'.$key_summary->ns_b.'"
+			data-nsc="'.$key_summary->ns_c1.'"
+			data-nsc2="'.$key_summary->ns_c2.'"
+			data-nsd1="'.$key_summary->ns_d1.'"
+			data-nsd2="'.$key_summary->ns_d2.'"
+			data-is1="'.$key_summary->is_1.'"
+			data-is2="'.$key_summary->is_2.'"
+			data-is3="'.$key_summary->is_3.'"
+			data-is4="'.$key_summary->is_4.'"
+			data-is5="'.$key_summary->is_5.'"
+			data-is6="'.$key_summary->is_6.'"
+			data-is7="'.$key_summary->is_7.'"
+			data-komponen="'.$key_summary->komponen.'"
+			data-lokasi="'.$key_summary->lokasi.'"
+			data-startdate="'.$key_summary->start_date.'"
+			data-enddate="'.$key_summary->end_date.'"
+			data-nilaikontrak="'.$key_summary->nilai_kontrak.'"
+			data-dr="'.$key_summary->dr.'"
+			data-pat="'.$key_summary->pat.'"
+			data-top="'.$key_summary->top.'"
+			data-awak="'.$key_summary->awak.'"
+			data-frekuensi_pembayaran="'.$key_summary->frekuensi_pembayaran.'"
+			data-pd="'.$key_summary->pd.'"
+			data-prepaid="'.$key_summary->prepaid.'"
+			data-status_ppn="'.$key_summary->status_ppn.'"
+			data-ppn="'.$key_summary->ppn.'"
+			data-jumlah_unit="'.$key_summary->jumlah_unit.'"
+			data-satuan="'.$key_summary->satuan.'"
+			data-nilai_asumsi_perpanjangan="'.$key_summary->nilai_asumsi_perpanjangan.'"
+			data-tgl_perpanjangan="'.$key_summary->tgl_perpanjangan.'">
+			Ubah Data
+		   </button>
+		   <button
+		   type="button"
+		   class="export_schedule btn btn-block btn-outline-success btn-xs"
+		   data-id="'.$key_summary->id_summary.'"
+		   >
+		   Export Schedule
+		   </button>
+		   <a title="Delete Data" href="javascript:void(0);" class="modahapus btn btn-block btn-outline-danger btn-xs" data-id="'.$key_summary->id_summary.'"">Hapus</a>
+		   ';
+		   $actionCannot = '<button 
+			type="button" 
+			class="modalihat btn btn-block btn-outline-primary btn-xs"  
+			data-toggle="modal" 
+			data-target="#modal-lihat"
+			data-idkontrak="'.$key_summary->id_id_kontrak.'"
+			data-idsummary="'.$key_summary->id_summary.'"
+			data-title="'.$key_summary->nama_pt.'" 
+			data-nomorkontrak="'.$key_summary->nomor_kontrak.'"
+			data-vendor="'.$key_summary->vendor.'"
+			  data-jenissewa="'.$key_summary->jenis_sewa.'"
+			data-nsa="'.$key_summary->ns_a.'"
+			data-nsb="'.$key_summary->ns_b.'"
+			data-nsc1="'.$key_summary->ns_c1.'"
+			data-nsc2="'.$key_summary->ns_c2.'"
+			data-nsd1="'.$key_summary->ns_d1.'"
+			data-nsd2="'.$key_summary->ns_d2.'"
+			data-is1="'.$key_summary->is_1.'"
+			data-is2="'.$key_summary->is_2.'"
+			data-is3="'.$key_summary->is_3.'"
+			data-is4="'.$key_summary->is_4.'"
+			data-is5="'.$key_summary->is_5.'"
+			data-is6="'.$key_summary->is_6.'"
+			data-is7="'.$key_summary->is_7.'"
+			data-komponen="'.$key_summary->komponen.'"
+			data-lokasi="'.$key_summary->lokasi.'"
+			data-startdate="'.$key_summary->start_date.'"
+			data-enddate="'.$key_summary->end_date.'"
+			data-nilaikontrak="'.$key_summary->nilai_kontrak.'"
+			data-pdfurl="'.$key_summary->pdf_url.'"
+			data-pdfpage="'.$key_summary->page_in_pdf.'">
+			Lihat
+		  </button>
+		   <button
+		   type="button"
+		   class="export_schedule btn btn-block btn-outline-success btn-xs"
+		   data-id="'.$key_summary->id_summary.'"
+		   >
+		   Export Schedule
+		   </button>
+		   ';
+		   if ($is_superadmin == 0) {
+				$action = $actionCan;
+		   } elseif ($log_sesId == $created_byId) {
+				$action = $actionCan;
+		   } else {
+				$action = $actionCannot;
+		   }
 			$data[] = array(
 				$i++,
 				$key_summary->nama_pt,
@@ -41,94 +195,9 @@ class AdminController extends CI_Controller{
 				$key_summary->lokasi,
 				$key_summary->start_date,
 				$key_summary->end_date,
-				$key_summary->nilai_kontrak,
+				$show_nilaikontrak,
 				auth_name($key_summary->dibuat_kontrak),
-				'<button 
-	                type="button" 
-	                class="modalihat btn btn-block btn-outline-primary btn-xs"  
-	                data-toggle="modal" 
-					data-target="#modal-lihat"
-					data-idkontrak="'.$key_summary->id_id_kontrak.'"
-	                data-idsummary="'.$key_summary->id_summary.'"
-	                data-title="'.$key_summary->nama_pt.'" 
-	                data-nomorkontrak="'.$key_summary->nomor_kontrak.'"
-	                data-vendor="'.$key_summary->vendor.'"
-	      			data-jenissewa="'.$key_summary->jenis_sewa.'"
-	                data-nsa="'.$key_summary->ns_a.'"
-	                data-nsb="'.$key_summary->ns_b.'"
-	                data-nsc1="'.$key_summary->ns_c1.'"
-	                data-nsc2="'.$key_summary->ns_c2.'"
-	                data-nsd1="'.$key_summary->ns_d1.'"
-	                data-nsd2="'.$key_summary->ns_d2.'"
-	                data-is1="'.$key_summary->is_1.'"
-	                data-is2="'.$key_summary->is_2.'"
-	                data-is3="'.$key_summary->is_3.'"
-	                data-is4="'.$key_summary->is_4.'"
-	                data-is5="'.$key_summary->is_5.'"
-	                data-is6="'.$key_summary->is_6.'"
-	                data-is7="'.$key_summary->is_7.'"
-	                data-komponen="'.$key_summary->komponen.'"
-	                data-lokasi="'.$key_summary->lokasi.'"
-	                data-startdate="'.$key_summary->start_date.'"
-	                data-enddate="'.$key_summary->end_date.'"
-					data-nilaikontrak="'.$key_summary->nilai_kontrak.'"
-					data-pdfurl="'.$key_summary->pdf_url.'"
-					data-pdfpage="'.$key_summary->page_in_pdf.'">
-	                Lihat
-	              </button>
-                  <button 
-                    type="button" 
-                    class="modaedit btn btn-block btn-outline-info btn-xs"  
-                    data-toggle="modal" 
-					data-target="#modal-edit" 
-					data-idkontrak="'.$key_summary->id_id_kontrak.'"
-                    data-idsummary="'.$key_summary->id_summary.'"
-					data-namapt="'.$key_summary->nama_pt.'" 
-					data-nomorkontrak="'.$key_summary->nomor_kontrak.'"
-					data-vendor="'.$key_summary->vendor.'"
-					data-jenissewa="'.$key_summary->jenis_sewa.'"
-					data-nsa="'.$key_summary->ns_a.'"
-					data-nsb="'.$key_summary->ns_b.'"
-					data-nsc="'.$key_summary->ns_c1.'"
-					data-nsc2="'.$key_summary->ns_c2.'"
-					data-nsd1="'.$key_summary->ns_d1.'"
-					data-nsd2="'.$key_summary->ns_d2.'"
-					data-is1="'.$key_summary->is_1.'"
-					data-is2="'.$key_summary->is_2.'"
-					data-is3="'.$key_summary->is_3.'"
-					data-is4="'.$key_summary->is_4.'"
-					data-is5="'.$key_summary->is_5.'"
-					data-is6="'.$key_summary->is_6.'"
-					data-is7="'.$key_summary->is_7.'"
-					data-komponen="'.$key_summary->komponen.'"
-					data-lokasi="'.$key_summary->lokasi.'"
-					data-startdate="'.$key_summary->start_date.'"
-					data-enddate="'.$key_summary->end_date.'"
-					data-nilaikontrak="'.$key_summary->nilai_kontrak.'"
-					data-dr="'.$key_summary->dr.'"
-                    data-pat="'.$key_summary->pat.'"
-                    data-top="'.$key_summary->top.'"
-                    data-awak="'.$key_summary->awak.'"
-                    data-frekuensi_pembayaran="'.$key_summary->frekuensi_pembayaran.'"
-                    data-pd="'.$key_summary->pd.'"
-                    data-prepaid="'.$key_summary->prepaid.'"
-                    data-status_ppn="'.$key_summary->status_ppn.'"
-                    data-ppn="'.$key_summary->ppn.'"
-                    data-jumlah_unit="'.$key_summary->jumlah_unit.'"
-                    data-satuan="'.$key_summary->satuan.'"
-                    data-nilai_asumsi_perpanjangan="'.$key_summary->nilai_asumsi_perpanjangan.'"
-                    data-tgl_perpanjangan="'.$key_summary->tgl_perpanjangan.'">
-                    Ubah Data
-	               </button>
-	               <button
-	               type="button"
-	               class="export_schedule btn btn-block btn-outline-success btn-xs"
-	               data-id="'.$key_summary->id_summary.'"
-	               >
-	               Export Schedule
-	               </button>
-	               <a title="Delete Data" href="javascript:void(0);" class="modahapus btn btn-block btn-outline-danger btn-xs" data-id="'.$key_summary->id_summary.'"">Hapus</a>
-	               '
+				$action
 			);
 		}
 
