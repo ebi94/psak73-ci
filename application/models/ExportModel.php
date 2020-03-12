@@ -198,7 +198,8 @@ class ExportModel extends CI_Model{
 			/*pv_mlp dibikin positif AS rou_as_of_31_12_2019*/
 				'60' AS rou_as_of_31_12_2019,
 			/*((pv_mlp-cal.prepaid)+rou_as_of_31_12_2019) AS kosongan_dua*/
-				'0' AS kosongan_dua
+				'0' AS kosongan_dua,
+				'0' AS discount_rate_null
 			FROM
 				t_calculation cal
 				LEFT JOIN abm_summary sum ON cal.id_summary = sum.id
