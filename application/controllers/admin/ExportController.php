@@ -1044,18 +1044,30 @@ class ExportController extends CI_Controller{
 					$effective_monthly_dr = "";
 
 					// $get_decimal = $key_calculation->discount_rate/100;
-					$before_get_decimal = $key_calculation->discount_rate;
-				if($before_get_decimal === null){
-					$get_decimal = $key_calculation->discount_rate_null/100;
-				}else if ($before_get_decimal === 0){
-					$get_decimal = $key_calculation->discount_rate_null/100;
-				}else if ($before_get_decimal === '0'){
-					$get_decimal = $key_calculation->discount_rate_null/100;
-				}else if ($before_get_decimal === ''){
-					$get_decimal = $key_calculation->discount_rate_null/100;
-				}else{
-				    $get_decimal = $key_calculation->discount_rate/100;
-				};
+					$replacements_dr = [
+					    "%" => "",
+					    " " => "",
+					    "," => ".",
+					];
+					$before_get_decimal = strtr($key_calculation->discount_rate, $replacements_dr);
+					// $before_get_decimal = $key_calculation->discount_rate;
+					if($before_get_decimal === null){
+						// $get_decimal = $key_calculation->discount_rate_null/100;
+						$get_decimal = 0/100;
+					}else if ($before_get_decimal === 0){
+						// $get_decimal = $key_calculation->discount_rate_null/100;
+						$get_decimal = 0/100;
+					}else if ($before_get_decimal === '0'){
+						// $get_decimal = $key_calculation->discount_rate_null/100;
+						$get_decimal = 0/100;
+					}else if ($before_get_decimal === ''){
+						// $get_decimal = $key_calculation->discount_rate_null/100;
+						$get_decimal = 0/100;
+					}else{
+					    $get_decimal = $before_get_decimal/100;
+					};
+
+					// var_dump($get_decimal);
 
 					$get_decimal_plus_1 = 1+$get_decimal;
 
@@ -1080,16 +1092,17 @@ class ExportController extends CI_Controller{
 					// $kosongan_dua = (($pv_mlp - $key_calculation->prepaid) + $rou_as_of_31_12_2019);
 					
 					$kosongan_dua = '=(W'.$start_row.'-X'.$start_row.')+AA'.$start_row.'';
+
 					$replacements = [
-			    "," => "",
-			    "." => "",
-			];
-			$pat_nya = strtr($key_calculation->payment_amount_per_term, $replacements);
-			if (is_numeric($pat_nya)) {
-				$pat = (int)$pat_nya;
-			} else {
-				$pat = (int)0;
-			}
+					    "," => "",
+					    "." => "",
+					];
+					$pat_nya = strtr($key_calculation->payment_amount_per_term, $replacements);
+					if (is_numeric($pat_nya)) {
+						$pat = (int)$pat_nya;
+					} else {
+						$pat = (int)0;
+					}
 
 				$excel->setActiveSheetIndex(0)->setCellValue('A'.$start_row, $i);
 				$excel->setActiveSheetIndex(0)->setCellValue('B'.$start_row, $key_calculation->serial_number);
@@ -1111,7 +1124,8 @@ class ExportController extends CI_Controller{
 				// $excel->setActiveSheetIndex(0)->setCellValue('R'.$start_row, $key_calculation->payment_amount_per_term);
 				$excel->setActiveSheetIndex(0)->setCellValue('R'.$start_row, $pat);
 				$excel->setActiveSheetIndex(0)->setCellValue('S'.$start_row, $key_calculation->nilai_residu);
-				$excel->setActiveSheetIndex(0)->setCellValue('T'.$start_row, $key_calculation->discount_rate.'%');
+				// $excel->setActiveSheetIndex(0)->setCellValue('T'.$start_row, $key_calculation->discount_rate);
+				$excel->setActiveSheetIndex(0)->setCellValue('T'.$start_row, $before_get_decimal);
 				$excel->setActiveSheetIndex(0)->setCellValue('U'.$start_row, $effective_monthly_dr);
 				$excel->setActiveSheetIndex(0)->setCellValue('V'.$start_row, $effective_dr);
 				// $excel->setActiveSheetIndex(0)->setCellValue('W'.$start_row, $pv_mlp);
@@ -1129,8 +1143,8 @@ class ExportController extends CI_Controller{
 				$excel->getActiveSheet()->getStyle('C'.$start_row)->applyFromArray($style_row);
 				$excel->getActiveSheet()->getStyle('D'.$start_row)->applyFromArray($style_row);
 				$excel->getActiveSheet()->getStyle('E'.$start_row)->applyFromArray($style_row);
-				$excel->getActiveSheet()->getStyle('F'.$start_row)->applyFromArray($style_row);
-				$excel->getActiveSheet()->getStyle('G'.$start_row)->applyFromArray($style_row);
+				$excel->getActiveSheet()->getStyle('F'.$start_row)->applyFromArray($style_row)->getNumberFormat()->setFormatCode('#,##0');
+				$excel->getActiveSheet()->getStyle('G'.$start_row)->applyFromArray($style_row)->getNumberFormat()->setFormatCode('#,##0');
 				$excel->getActiveSheet()->getStyle('H'.$start_row)->applyFromArray($style_row);
 				$excel->getActiveSheet()->getStyle('I'.$start_row)->applyFromArray($style_row);
 				$excel->getActiveSheet()->getStyle('J'.$start_row)->applyFromArray($style_row);
@@ -1141,25 +1155,32 @@ class ExportController extends CI_Controller{
 				$excel->getActiveSheet()->getStyle('O'.$start_row)->applyFromArray($style_row);
 				$excel->getActiveSheet()->getStyle('P'.$start_row)->applyFromArray($style_row);
 				$excel->getActiveSheet()->getStyle('Q'.$start_row)->applyFromArray($style_row);
-				$excel->getActiveSheet()->getStyle('R'.$start_row)->applyFromArray($style_row);
+				$excel->getActiveSheet()->getStyle('R'.$start_row)->applyFromArray($style_row)->getNumberFormat()->setFormatCode('#,##0');
 				$excel->getActiveSheet()->getStyle('S'.$start_row)->applyFromArray($style_row);
 				$excel->getActiveSheet()->getStyle('T'.$start_row)->applyFromArray($style_row);
 				$excel->getActiveSheet()->getStyle('U'.$start_row)->applyFromArray($style_row);
 				$excel->getActiveSheet()->getStyle('V'.$start_row)->applyFromArray($style_row);
-				$excel->getActiveSheet()->getStyle('W'.$start_row)->applyFromArray($style_row);
-				$excel->getActiveSheet()->getStyle('X'.$start_row)->applyFromArray($style_row);
-				$excel->getActiveSheet()->getStyle('Y'.$start_row)->applyFromArray($style_row);
-				$excel->getActiveSheet()->getStyle('Z'.$start_row)->applyFromArray($style_row);
-				$excel->getActiveSheet()->getStyle('AA'.$start_row)->applyFromArray($style_row);
+				$excel->getActiveSheet()->getStyle('W'.$start_row)->applyFromArray($style_row)->getNumberFormat()->setFormatCode('"Rp"#,##0.00;[Red]-"Rp"#,##0.00');
+				$excel->getActiveSheet()->getStyle('X'.$start_row)->applyFromArray($style_row)->getNumberFormat()->setFormatCode('#,##0');
+				$excel->getActiveSheet()->getStyle('Y'.$start_row)->applyFromArray($style_row)->getNumberFormat()->setFormatCode('"Rp"#,##0.00;[Red]-"Rp"#,##0.00');
+				$excel->getActiveSheet()->getStyle('Z'.$start_row)->applyFromArray($style_row)->getNumberFormat()->setFormatCode('_-[$Rp-3809]* #,##0.00_-;-[$Rp-3809]* #,##0.00_-;_-[$Rp-3809]* "-"??_-;_-@_-');
+				$excel->getActiveSheet()->getStyle('AA'.$start_row)->applyFromArray($style_row)->getNumberFormat()->setFormatCode('#,##0');
 				$excel->getActiveSheet()->getStyle('AB'.$start_row)->applyFromArray($style_row);
 
 				$i++;
 				$start_row++;
 			}
 
+			// baris terakhir
+			$highestRow = $excel->setActiveSheetindex(0)->getHighestRow();
+
+			// column terakhir
+			$highestColumn = $excel->setActiveSheetindex(0)->getHighestColumn();
+
 			// set column width to auto
-			foreach (range('A','AB') as $columnIndex) {
-			  $excel->getActiveSheet()->getColumnDimension($columnIndex)->setAutoSize(true);
+			for ($i='A'; $i != $highestColumn; $i++) { 
+			  // $excel->getActiveSheet()->getColumnDimension($i)->setAutoSize(true);
+				$excel->getActiveSheet()->getStyle(''.$i.'6:'.$i.$highestRow.'')->getAlignment()->setWrapText(true);
 			}
 
 			// set row height to auto
