@@ -139,18 +139,19 @@ class SummaryController extends CI_Controller{
         $this->db->query(
         	'SELECT
 	        	sum.id AS sum_id,
+				sum.id_kontrak AS id_kontrak,
 	        	kon.id AS kon_id,
 	        	kon.nama_pt AS kon_nama_pt,
 	        	kon.nomor_kontrak AS kon_nomor_kontrak,
 	        	kon.vendor AS kon_vendor
 	        FROM
 	        	abm_summary sum
-		        LEFT JOIN t_kontrak kon ON sum.id_kontrak = kon.id WHERE sum.id = '.$id_summary);
+		        LEFT JOIN t_kontrak kon ON sum.id_kontrak = kon.id WHERE sum.id_kontrak = '.$id_summary);
         $row = $query->row();
         $data['nama_pt'] = $row->kon_nama_pt;
-        $data['nomor_kontrak'] = $row->kon_nomor_kontrak;
+		$data['nomor_kontrak'] = $row->kon_nomor_kontrak;
         $data['vendor'] = $row->kon_vendor;
-        $data['id_kontrak'] = $row->kon_id;
+        $data['id_kontrak'] = $row->id_kontrak;
 		$data['view'] = 'admin/summary';
 		$this->load->view('templates/header', $data);
 	}
