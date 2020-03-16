@@ -431,12 +431,12 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-2">
-                    <button type="submit" id="edit_summary" class="btn btn-info col-md-12">Simpan</button>
-                </div>
+            <div class="row justify-content-between">
                 <div class="col-md-2">
                     <input type="button" class="btn btn-block btn-secondary" data-dismiss="modal" value="Batalkan">
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" id="edit_summary" class="btn btn-info col-md-12">Simpan</button>
                 </div>
             </div>
             <div class="col"></div>
