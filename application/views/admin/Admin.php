@@ -82,13 +82,13 @@
 
 <!-- Modal Edit -->
 <div class="modal fade" id="modal-edit">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-lg" style="max-width: 1300px;">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Ubah Data</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                </button>
+                </button> -->
             </div>
             <div class="modal-body">
                 <!-- @include('editdetail') -->
@@ -121,9 +121,16 @@
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                <a href="" id="addmoreasset">
-                    <button type="button" class="btn btn-primary" >Tambah Asset</button>
-                </a>
+                <?php 
+                    $log_sesId = $this->session->userdata('ses_id'); 
+                ?>
+                <input type="hidden" id="logsesid" value="<?php echo $log_sesId?>" />
+                <input type="hidden" id="idusercreate" value="" />
+                <div id="showaddmore">
+                    <a href="" id="addmoreasset">
+                        <button type="button" class="btn btn-primary" >Tambah Asset</button>
+                    </a>
+                </div>
             </div>
         </div>
         <!-- /.modal-content -->
@@ -167,6 +174,7 @@
     // Function Show Detail
     $(document).on("click", ".modalihat", function() {
         var idkontrak = $(this).data('idkontrak');
+        var iduser = $(this).data('iduser');
         var title = $(this).data('title');
         var nomorkontrak = $(this).data('nomorkontrak');
         var vendor = $(this).data('vendor');
@@ -195,6 +203,7 @@
         var baseurl = "<?php echo base_url('/assets/pdf/') ?>";
         var showurl = baseurl+pdfurl+'#page='+pdfpage;
         $("#title").html(title);
+        $("#iduser").val(iduser);
         $("#nomorkontrak").html(nomorkontrak);
         $("#vendor").html(vendor);
         $("#jenissewa").html(jenissewa);
@@ -219,6 +228,13 @@
         $("#addmoreasset").attr('href', addmoreasset);
         $("#urlpdf").val(pdfurl);
         $("#pdfobject").attr('src', showurl);
+
+        var logsesid = $("#logsesid").val();
+        if (logsesid == iduser){
+            $("#showaddmore").show();
+        } else {
+            $("#showaddmore").hide();
+        }
     });
     // Function Show Detail
 
@@ -339,6 +355,7 @@
     // Function Export Schedule
 
     // Currency Split
+    
     // Currency Split
     
 </script>
