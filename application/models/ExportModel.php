@@ -153,7 +153,7 @@ class ExportModel extends CI_Model{
 		return $query;
 	}
 
-	function calculation() {
+	function calculation($param) {
 		$where = '';
 		if (isset($param['id_summary'])) {
 			$where = 'WHERE sum.id = '.$param['id_summary'];
