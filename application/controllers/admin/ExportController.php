@@ -1376,7 +1376,7 @@ class ExportController extends CI_Controller{
 		$excel->setActiveSheetIndex(0)->setCellValue('AF'.$start_row, $depresiasi_exp_per_month);
 
 		// $excel->setActiveSheetIndex(0)->setCellValue('A'.$start_row, '2020');		
-		// $excel->setActiveSheetIndex(0)->setCellValue('B'.$start_row, 'Januari');
+		$excel->setActiveSheetIndex(0)->setCellValue('B'.$start_row, 'January - 2020');
 
 		$excel->setActiveSheetIndex(0)->setCellValue('C'.$start_row, '=PV((Z'.$start_row.'),AA'.$start_row.',AB'.$start_row.',AC'.$start_row.',AD'.$start_row.')');
 		$excel->setActiveSheetIndex(0)->setCellValue('D'.$start_row, '=('.$data_data->payment_amount_per_term.')*(-1)');
@@ -1401,11 +1401,16 @@ class ExportController extends CI_Controller{
 		$sudah_nol = 0;
 		$ix=1;
 		$stop = 0;
-		$bulan_awal = 1;
+		$month = strtotime('2020-02-01');
+		// $end = strtotime('2011-01-01');
 		do{
+			$showMonth = date('F - Y', $month);
+			$month = strtotime("+1 month", $month);
 			$row = $start_row+$ix;
+			$bulan_awal = 1;
 			$row_2 = ($start_row+$ix)-1;
-
+			// $excel->setActiveSheetIndex(0)->setCellValue('A'.$start_row, '2020');
+			$excel->setActiveSheetIndex(0)->setCellValue('B'.$row, ''.$showMonth);
 			$excel->setActiveSheetIndex(0)->setCellValue('C'.$row, '=F'.$row_2);
 			$excel->setActiveSheetIndex(0)->setCellValue('D'.$row, '=('.$data_data->payment_amount_per_term.')*(-1)');
 			$excel->setActiveSheetIndex(0)->setCellValue('E'.$row, '=(C'.$row.')*('.$effective_monthly_dr.')');

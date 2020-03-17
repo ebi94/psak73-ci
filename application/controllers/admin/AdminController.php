@@ -51,6 +51,26 @@ class AdminController extends CI_Controller{
 			} else {
 				$show_nilaikontrak = $nilaikontrak;
 			}
+			// 
+			$lease_non_lease = "";
+			$y1_l = date('Y',strtotime($key_summary->tgl_perpanjangan));
+			$y2_l = date('Y',strtotime('2019-12-31'));
+
+			$m1_l = date('m',strtotime($key_summary->tgl_perpanjangan));
+			$m2_l = date('m',strtotime('2019-12-31'));
+
+			$lease_non_lease_hasil = (($y1_l - $y2_l) * 12) + ($m1_l - $m2_l);
+			if ($lease_non_lease_hasil <= 12) {
+				$btnExportSchedule = '';
+			} else {
+				$btnExportSchedule = '<button
+				type="button"
+				class="export_schedule btn btn-block btn-outline-success btn-xs"
+				data-id="'.$key_summary->id_summary.'"
+				>
+				Export Schedule
+				</button>';
+			}
 			
 			$actionCan = '<button 
 			type="button" 
@@ -132,13 +152,7 @@ class AdminController extends CI_Controller{
 			data-tgl_perpanjangan="'.$key_summary->tgl_perpanjangan.'">
 			Ubah Data
 		   </button>
-		   <button
-		   type="button"
-		   class="export_schedule btn btn-block btn-outline-success btn-xs"
-		   data-id="'.$key_summary->id_summary.'"
-		   >
-		   Export Schedule
-		   </button>
+		   '.$btnExportSchedule.'
 		   <a title="Delete Data" href="javascript:void(0);" class="modahapus btn btn-block btn-outline-danger btn-xs" data-id="'.$key_summary->id_summary.'"">Hapus</a>
 		   ';
 		   $actionCannot = '<button 
@@ -175,14 +189,8 @@ class AdminController extends CI_Controller{
 			data-pdfpage="'.$key_summary->page_in_pdf.'">
 			Lihat
 		  </button>
-		   <button
-		   type="button"
-		   class="export_schedule btn btn-block btn-outline-success btn-xs"
-		   data-id="'.$key_summary->id_summary.'"
-		   >
-		   Export Schedule
-		   </button>
-		   ';
+		 '.$btnExportSchedule.'  
+		  ';
 		   if ($is_superadmin == 0) {
 				$action = $actionCan;
 		   } elseif ($log_sesId == $created_byId) {
