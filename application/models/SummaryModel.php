@@ -63,6 +63,25 @@ class SummaryModel extends CI_Model{
         return $query;
   }
 
+      function check_calculation($id_summary){
+            $where = "WHERE sum.id = '$id_summary'";
+            $queryCheckCalculation = $this->db->query("
+            SELECT
+                  k.id AS id_kontrak,
+                  u.name AS user_name,
+                  sum.id AS id_summary,
+                  c.id AS id_calculation
+            FROM
+                  abm_summary sum
+                  LEFT JOIN t_kontrak k ON sum.id_kontrak = k.id
+                  LEFT JOIN t_calculation c ON c.id_summary = sum.id
+                  LEFT JOIN users u ON u.id = k.created_by
+            $where
+            ");
+
+            return $queryCheckCalculation;
+      }
+
 	function summary_add($title,$id_kontrak,$diff,$nama_pt,$nomor_kontrak,$vendor,$created_by,$pageinpdf,$jenis_sewa,$serialnumber,$ns_a,$ns_a1,$ns_b,$ns_c1,$ns_c2,$ns_d1,$ns_d2,$is_1,$is_2,$is_3,$is_4,$is_5,$is_6,$is_7,$k_1,$k_2,$k_3,$k_4,$k_5,$lokasi,$start_date,$end_date,$kontrak_int,$pdf_up) {
 
             if ($title == 'Add Summary New') {
@@ -167,27 +186,55 @@ class SummaryModel extends CI_Model{
             );
             $this->db->where('id', $id_kontrak);
             $result_kontrak = $this->db->update('t_kontrak',$kontrak_edit_data);
-            $prepaid_int = str_replace(".", "", $this->input->post('summary_prepaid'));
-            $nap_int = str_replace(".", "", $this->input->post('summary_nilai_asumsi_perpanjangan'));
-            $pat_int = str_replace(".", "", $this->input->post('summary_pat'));
-
-            $calculation_edit_data = array(
+            
+            // Check have calculation
+            $checkCalculation = $this->SummaryModel->check_calculation($id_summary);
+            $resCalculation = $checkCalculation->row();
+            $idCalculation = $resCalculation->id_calculation;
+            if($idCalculation !== null){
+                  $prepaid_int = str_replace(".", "", $this->input->post('summary_prepaid'));
+                  $nap_int = str_replace(".", "", $this->input->post('summary_nilai_asumsi_perpanjangan'));
+                  $pat_int = str_replace(".", "", $this->input->post('summary_pat'));
+                  $calculation_edit_data = array(
+                        'dr' => $this->input->post('summary_dr'),
+                        'pat' => $pat_int,
+                        'top' => $this->input->post('summary_top'),
+                        'awak' => $this->input->post('summary_awak'),
+                        'frekuensi_pembayaran' => $this->input->post('summary_frekuensi'),
+                        'pd' => $this->input->post('summary_pd'),
+                        'prepaid' => $prepaid_int,
+                        'status_ppn' => $this->input->post('summary_status_ppn'),
+                        'ppn' => $this->input->post('summary_ppn'),
+                        'jumlah_unit' => $this->input->post('summary_jumlah_unit'),
+                        'satuan' => $this->input->post('summary_satuan'),
+                        'nilai_asumsi_perpanjangan' => $nap_int,
+                        'tgl_perpanjangan' => $this->input->post('summary_tgl_perpanjangan')
+                  );
+                  $this->db->where('id_summary', $id_summary);
+                  $result_calculation = $this->db->update('t_calculation',$calculation_edit_data);
+            } else {
+                  $prepaid_int = str_replace(".", "", $this->input->post('summary_prepaid'));
+                  $nap_int = str_replace(".", "", $this->input->post('summary_nilai_asumsi_perpanjangan'));
+                  $pat_int = str_replace(".", "", $this->input->post('summary_pat'));
+                  $data_add_calculation = array(
                   'dr' => $this->input->post('summary_dr'),
                   'pat' => $pat_int,
                   'top' => $this->input->post('summary_top'),
                   'awak' => $this->input->post('summary_awak'),
-                  'frekuensi_pembayaran' => $this->input->post('summary_frekuensi'),
                   'pd' => $this->input->post('summary_pd'),
+                  'id_summary' => $id_summary,
                   'prepaid' => $prepaid_int,
                   'status_ppn' => $this->input->post('summary_status_ppn'),
                   'ppn' => $this->input->post('summary_ppn'),
                   'jumlah_unit' => $this->input->post('summary_jumlah_unit'),
                   'satuan' => $this->input->post('summary_satuan'),
                   'nilai_asumsi_perpanjangan' => $nap_int,
-                  'tgl_perpanjangan' => $this->input->post('summary_tgl_perpanjangan')
-            );
-            $this->db->where('id_summary', $id_summary);
-            $result_calculation = $this->db->update('t_calculation',$calculation_edit_data);
+                  'tgl_perpanjangan' => $this->input->post('summary_tgl_perpanjangan'),
+                  'frekuensi_pembayaran' => $this->input->post('summary_frekuensi')
+                  );
+                  $result_calculation = $this->db->insert('t_calculation',$data_add_calculation);
+            }
+            // End Check have calculation
 
             $kontrak_int = str_replace(".", "", $this->input->post('summary_nilaikontrak'));
 		$summary_edit_data = array(
