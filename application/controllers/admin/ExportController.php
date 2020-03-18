@@ -63,9 +63,7 @@ class ExportController extends CI_Controller{
 			$excel->getActiveSheet()->getStyle('A4')->getFont()->setSize(20); //set FontSize
 
 			$excel->setActiveSheetindex($i)->setCellValue('B4', 'Kriteria'); //isian B4 (title)
-			$excel->getActiveSheet()->mergeCells('B4:C4');
-			$excel->getActiveSheet()->mergeCells('B4:B5');
-			$excel->getActiveSheet()->mergeCells('C4:C5');
+			$excel->getActiveSheet()->mergeCells('B4:C5');
 			$excel->getActiveSheet()->getStyle('B4')->getFont()->setBold(TRUE);
 			$excel->getActiveSheet()->getStyle('B4')->getFont()->setSize(20); //set FontSize
 
@@ -180,7 +178,8 @@ class ExportController extends CI_Controller{
 			$excel->setActiveSheetindex($i)->setCellValue('D25', $key_summary->sum_nilai_kontrak); //isian D25 (title)
 
 			// set judul excel
-			$excel->getActiveSheet($i)->setTitle($i);
+			// $excel->getActiveSheet($i)->setTitle($i);
+			$excel->getActiveSheet($i)->setTitle("summary");
 			$i++;
 		}
 

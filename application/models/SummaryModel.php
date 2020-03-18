@@ -5,6 +5,7 @@ class SummaryModel extends CI_Model{
 
   function summary_get_all() {
         // $query = $this->db->query("SELECT * FROM abm_summary");
+        $where = "WHERE k.created_by = ".$this->session->userdata('ses_id')."";
         $query = $this->db->query("
               SELECT
                     k.id AS id_id_kontrak,
@@ -56,6 +57,7 @@ class SummaryModel extends CI_Model{
                     abm_summary sum
                     LEFT JOIN t_kontrak k ON sum.id_kontrak = k.id
                     LEFT JOIN t_calculation c ON c.id_summary = sum.id
+                    $where
                     ORDER BY k.created_at ASC
         ");
         return $query;

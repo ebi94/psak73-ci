@@ -368,8 +368,8 @@
 			success: function (data) {
 				$('[name="id_summary_delete"]').val("");
 				$('#modal-hapus').modal('hide');
-				$('#summary_list').DataTable().destroy();
-				fill_datatable_summary();
+				// $('#summary_list').DataTable().destroy();
+				// fill_datatable_summary();
 				$("#delete-summary-success-alert").fadeTo(2000, 500).slideUp(500, function () {
 					$("#delete-summary-success-alert").slideUp(500);
 				});
