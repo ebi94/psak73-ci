@@ -373,6 +373,7 @@
 				$("#delete-summary-success-alert").fadeTo(2000, 500).slideUp(500, function () {
 					$("#delete-summary-success-alert").slideUp(500);
 				});
+				location.reload(true);
 			}
 		});
 		return false;

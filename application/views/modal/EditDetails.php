@@ -299,7 +299,7 @@
 						<div class="col-md-12">
 							<div class="form-group">
 								<label>Payment Amount Term</label>
-								<input class="form-control" type="text" name="pat" id="epat">
+								<input class="form-control" onkeyup="splitInDots(this)" type="text" name="pat" id="epat">
 							</div>
 						</div>
 					</div>
@@ -427,7 +427,7 @@
 						<div class="col-md-12">
 							<div class="form-group">
 								<label>Nilai Asumsi Perpanjang</label>
-								<input class="form-control" type="text" name="nilai_asumsi_perpanjangan"
+								<input class="form-control" type="text" name="nilai_asumsi_perpanjangan"  onkeyup="splitInDots(this)"
 									id="enilai_asumsi_perpanjangan">
 							</div>
 						</div>
