@@ -4,19 +4,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class FormModel extends CI_Model{
 
 	function calculation_add() {
+		$prepaid_int = str_replace(".", "", $this->input->post('calculation_prepaid'));
+		$nap_int = str_replace(".", "", $this->input->post('calculation_nilai_asumsi_perpanjangan'));
+		$pat_int = str_replace(".", "", $this->input->post('calculation_pat'));
 		$data = array(
             'dr' => $this->input->post('calculation_dr'),
-            'pat' => $this->input->post('calculation_pat'),
+            'pat' => $pat_int,
             'top' => $this->input->post('calculation_top'),
             'awak' => $this->input->post('calculation_awak'),
 			'pd' => $this->input->post('calculation_pd'),
 			'id_summary' => $this->input->post('calculation_id_summary'),
-			'prepaid' => $this->input->post('calculation_prepaid'),
+			'prepaid' => $prepaid_int,
 			'status_ppn' => $this->input->post('calculation_status_ppn'),
 			'ppn' => $this->input->post('calculation_ppn'),
 			'jumlah_unit' => $this->input->post('calculation_jumlah_unit'),
 			'satuan' => $this->input->post('calculation_satuan'),
-			'nilai_asumsi_perpanjangan' => $this->input->post('calculation_nilai_asumsi_perpanjangan'),
+			'nilai_asumsi_perpanjangan' => $nap_int,
 			'tgl_perpanjangan' => $this->input->post('calculation_tgl_perpanjangan'),
 			'frekuensi_pembayaran' => $this->input->post('calculation_frekuensi_pembayaran')
 		);

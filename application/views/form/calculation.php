@@ -151,7 +151,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Nilai Asumsi Perpanjang</label>
-                        <input class="form-control" type="text" name="nilai_asumsi_perpanjangan" id="nilai_asumsi_perpanjangan">
+                        <input class="form-control" type="text" onkeyup="splitInDots(this)" name="nilai_asumsi_perpanjangan" id="nilai_asumsi_perpanjangan">
                     </div>
                 </div>
             </div>

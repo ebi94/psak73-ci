@@ -165,20 +165,23 @@ class SummaryModel extends CI_Model{
             );
             $this->db->where('id', $id_kontrak);
             $result_kontrak = $this->db->update('t_kontrak',$kontrak_edit_data);
+            $prepaid_int = str_replace(".", "", $this->input->post('summary_prepaid'));
+            $nap_int = str_replace(".", "", $this->input->post('summary_nilai_asumsi_perpanjangan'));
+            $pat_int = str_replace(".", "", $this->input->post('summary_pat'));
 
             $calculation_edit_data = array(
                   'dr' => $this->input->post('summary_dr'),
-                  'pat' => $this->input->post('summary_pat'),
+                  'pat' => $pat_int,
                   'top' => $this->input->post('summary_top'),
                   'awak' => $this->input->post('summary_awak'),
                   'frekuensi_pembayaran' => $this->input->post('summary_frekuensi'),
                   'pd' => $this->input->post('summary_pd'),
-                  'prepaid' => $this->input->post('summary_prepaid'),
+                  'prepaid' => $prepaid_int,
                   'status_ppn' => $this->input->post('summary_status_ppn'),
                   'ppn' => $this->input->post('summary_ppn'),
                   'jumlah_unit' => $this->input->post('summary_jumlah_unit'),
                   'satuan' => $this->input->post('summary_satuan'),
-                  'nilai_asumsi_perpanjangan' => $this->input->post('summary_nilai_asumsi_perpanjangan'),
+                  'nilai_asumsi_perpanjangan' => $nap_int,
                   'tgl_perpanjangan' => $this->input->post('summary_tgl_perpanjangan')
             );
             $this->db->where('id_summary', $id_summary);
