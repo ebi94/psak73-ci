@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ExportModel extends CI_Model{
 	function summary(){
+		$where = "WHERE kon.created_by = ".$this->session->userdata('ses_id')."";
 		$query = $this->db->query(
 			"SELECT
 				kon.nama_pt AS kon_nama_pt,
@@ -100,13 +101,15 @@ class ExportModel extends CI_Model{
 				sum.nilai_kontrak AS sum_nilai_kontrak 
 			FROM
 				abm_summary sum
-			LEFT JOIN t_kontrak kon ON sum.id_kontrak = kon.id"
+			LEFT JOIN t_kontrak kon ON sum.id_kontrak = kon.id
+			$where"
 		);
 
 		return $query;
 	}
 
 	function kkp(){
+		$where = "WHERE kon.created_by = ".$this->session->userdata('ses_id')."";
 		$query = $this->db->query(
 			"SELECT
 				kon.nomor_kontrak AS no_kontrak,
@@ -147,16 +150,18 @@ class ExportModel extends CI_Model{
 				cal.jumlah_unit AS jumlah_unit_jumlah,
 				cal.satuan AS jumlah_unit_satuan
 			FROM
-				abm_summary sum LEFT JOIN t_kontrak kon ON sum.id_kontrak = kon.id LEFT JOIN t_calculation cal ON cal.id_summary = sum.id"
+				abm_summary sum LEFT JOIN t_kontrak kon ON sum.id_kontrak = kon.id LEFT JOIN t_calculation cal ON cal.id_summary = sum.id
+				$where"
 		);
 
 		return $query;
 	}
 
 	function calculation($param = array()) {
+		$where_by = "WHERE kon.created_by = ".$this->session->userdata('ses_id')."";
 		$where = '';
 		if (isset($param['id_summary'])) {
-			$where = 'WHERE sum.id = '.$param['id_summary'];
+			$where = 'AND sum.id = '.$param['id_summary'];
 		}
 		$query = $this->db->query(
 			"SELECT
@@ -204,6 +209,7 @@ class ExportModel extends CI_Model{
 				t_calculation cal
 				LEFT JOIN abm_summary sum ON cal.id_summary = sum.id
 				LEFT JOIN t_kontrak kon ON sum.id_kontrak = kon.id
+			$where_by
 			$where"
 		);
 

@@ -366,8 +366,8 @@
               },
               success: function(data){
                   $('#modal-edit').modal('hide');
-                  $('#summary_list').DataTable().destroy();
-                  fill_datatable_summary();
+                  // $('#summary_list').DataTable().destroy();
+                  // fill_datatable_summary();
                   window.alert('Data berhasil di ubah !');
                   window.location.href=('<?php echo base_url('admin'); ?>');
                   // $("#add-summary-success-edit").fadeTo(2000, 500).slideUp(500, function() {
