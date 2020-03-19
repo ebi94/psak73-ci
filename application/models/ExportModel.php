@@ -2,8 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ExportModel extends CI_Model{
-	function summary(){
+	function summary($param = array()){
 		$where = "WHERE kon.created_by = ".$this->session->userdata('ses_id')."";
+		$where_pt = '';
+		if (isset($param['nama_pt']) && ($param['nama_pt'] != '' || $param['nama_pt'] != null)) {
+			$where_pt = 'AND kon.nama_pt LIKE "%'.$param["nama_pt"].'%"';
+		}
 		$query = $this->db->query(
 			"SELECT
 				kon.nama_pt AS kon_nama_pt,
@@ -102,14 +106,20 @@ class ExportModel extends CI_Model{
 			FROM
 				abm_summary sum
 			LEFT JOIN t_kontrak kon ON sum.id_kontrak = kon.id
-			$where"
+			$where
+			$where_pt
+			ORDER BY kon.created_at ASC"
 		);
 
 		return $query;
 	}
 
-	function kkp(){
+	function kkp($param = array()){
 		$where = "WHERE kon.created_by = ".$this->session->userdata('ses_id')."";
+		$where_pt = '';
+		if (isset($param['nama_pt']) && ($param['nama_pt'] != '' || $param['nama_pt'] != null)) {
+			$where_pt = 'AND kon.nama_pt LIKE "%'.$param["nama_pt"].'%"';
+		}
 		$query = $this->db->query(
 			"SELECT
 				kon.nomor_kontrak AS no_kontrak,
@@ -151,7 +161,9 @@ class ExportModel extends CI_Model{
 				cal.satuan AS jumlah_unit_satuan
 			FROM
 				abm_summary sum LEFT JOIN t_kontrak kon ON sum.id_kontrak = kon.id LEFT JOIN t_calculation cal ON cal.id_summary = sum.id
-				$where"
+				$where
+				$where_pt
+				ORDER BY kon.created_at ASC"
 		);
 
 		return $query;
@@ -162,6 +174,10 @@ class ExportModel extends CI_Model{
 		$where = '';
 		if (isset($param['id_summary'])) {
 			$where = 'AND sum.id = '.$param['id_summary'];
+		}
+		$where_pt = '';
+		if (isset($param['nama_pt']) && ($param['nama_pt'] != '' || $param['nama_pt'] != null)) {
+			$where_pt = 'AND kon.nama_pt LIKE "%'.$param["nama_pt"].'%"';
 		}
 		$query = $this->db->query(
 			"SELECT
@@ -210,7 +226,9 @@ class ExportModel extends CI_Model{
 				LEFT JOIN abm_summary sum ON cal.id_summary = sum.id
 				LEFT JOIN t_kontrak kon ON sum.id_kontrak = kon.id
 			$where_by
-			$where"
+			$where
+			$where_pt
+			ORDER BY kon.created_at ASC"
 		);
 
 		return $query;

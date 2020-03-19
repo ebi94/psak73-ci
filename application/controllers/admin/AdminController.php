@@ -29,11 +29,14 @@ class AdminController extends CI_Controller{
 	}
 
 	function list_summary() {
+		$pt = $this->input->get('pt');
+		$param = array('nama_pt'=>$pt);
+
 		$draw = intval($this->input->get("draw"));
 		$start = intval($this->input->get("start"));
 		$length = intval($this->input->get("length"));
 
-		$query = $this->SummaryModel->summary_get_all();
+		$query = $this->SummaryModel->summary_get_all($param);
 
 		$data = [];
 		$i = 1;

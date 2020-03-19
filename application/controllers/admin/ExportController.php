@@ -15,7 +15,9 @@ class ExportController extends CI_Controller{
 	}
 
 	function summary_export(){
-		$data_summary = $this->ExportModel->summary();
+		$pt = $this->input->get('pt');
+		$param = array('nama_pt'=>$pt);
+		$data_summary = $this->ExportModel->summary($param);
 
 		$creator = $this->session->userdata('ses_nama');
 		$title_excel = "ABM Summary Contract Leasse";
@@ -195,7 +197,9 @@ class ExportController extends CI_Controller{
 	}
 
 	function kkp_export(){
-		$data_kkp = $this->ExportModel->kkp();
+		$pt = $this->input->get('pt');
+		$param = array('nama_pt'=>$pt);
+		$data_kkp = $this->ExportModel->kkp($param);
 
 		$creator = $this->session->userdata('ses_nama');
 		$title_excel = "KKP Assessment Leasing";
@@ -882,7 +886,9 @@ class ExportController extends CI_Controller{
 	// }
 
 	function calculation_export(){
-			$data_calculation = $this->ExportModel->calculation();
+		$pt = $this->input->get('pt');
+		$param = array('nama_pt'=>$pt);
+			$data_calculation = $this->ExportModel->calculation($param);
 
 			$creator = $this->session->userdata('ses_nama');
 			$title_excel = "Calculation IFRS16 - PSAK73";
