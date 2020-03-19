@@ -183,6 +183,7 @@
 		var nomorkontrak = $(this).data('nomorkontrak');
 		var vendor = $(this).data('vendor');
 		var jenissewa = $(this).data('jenissewa');
+		var serialnumber = $(this).data('serialnumber');
 		var nsa = $(this).data('nsa');
 		var nsb = $(this).data('nsb');
 		var nsc1 = $(this).data('nsc1');
@@ -224,6 +225,7 @@
 		$("#nomorkontrak").html(nomorkontrak);
 		$("#vendor").html(vendor);
 		$("#jenissewa").html(jenissewa);
+		$("#serialnumber").html(serialnumber);
 		$("#nsa").html(nsa);
 		$("#nsb").html(nsb);
 		$("#nsc1").html(nsc1);
@@ -276,6 +278,7 @@
 		var nomorkontrak = $(this).data('nomorkontrak');
 		var vendor = $(this).data('vendor');
 		var jenissewa = $(this).data('jenissewa');
+		var serialnumber = $(this).data('serialnumber');
 		var nsa = $(this).data('nsa');
 		var nsb = $(this).data('nsb');
 		var nsc = $(this).data('nsc1');
@@ -313,6 +316,7 @@
 		$("#enomorkontrak").val(nomorkontrak);
 		$("#evendor").val(vendor);
 		$("#ejenissewa").val(jenissewa);
+		$("#eserialnumber").val(serialnumber);
 		$("#ensa").val(nsa);
 		$("#ensb").val(nsb);
 		$("#ensc").val(nsc1);

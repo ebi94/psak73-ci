@@ -116,7 +116,7 @@ class AdminController extends CI_Controller{
 				data-pd="'.$key_summary->pd.'" data-prepaid="'.$showprepaid.'" data-ppn="'.$key_summary->ppn.'"
 				data-statusppn="'.$key_summary->status_ppn.'" data-jumlahunit="'.$key_summary->jumlah_unit.'"
 				data-satuan="'.$key_summary->satuan.'" data-nilaiasumsi="'.$shownap.'"
-				data-tglperpanjangan="'.$key_summary->tgl_perpanjangan.'">
+				data-tglperpanjangan="'.$key_summary->tgl_perpanjangan.'" data-serialnumber="'.$key_summary->serialnumber.'">
 				Lihat
 			</button>';
 
@@ -164,7 +164,8 @@ class AdminController extends CI_Controller{
 			data-jumlah_unit="'.$key_summary->jumlah_unit.'"
 			data-satuan="'.$key_summary->satuan.'"
 			data-nilai_asumsi_perpanjangan="'.$key_summary->nilai_asumsi_perpanjangan.'"
-			data-tgl_perpanjangan="'.$key_summary->tgl_perpanjangan.'">
+			data-tgl_perpanjangan="'.$key_summary->tgl_perpanjangan.'"
+			data-serialnumber="'.$key_summary->serialnumber.'">
 			Ubah Data
 		   </button>
 		   '.$btnExportSchedule.'

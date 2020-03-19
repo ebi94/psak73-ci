@@ -42,10 +42,16 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-md-8">
+							<div class="col-md-6">
 								<div class="form-group">
 									<label>Jenis Sewa</label>
 									<br /><span id="jenissewa"></span>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Serial Number / Nomor Polisi</label>
+									<br /><span id="serialnumber"></span>
 								</div>
 							</div>
 						</div>
