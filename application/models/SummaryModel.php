@@ -19,6 +19,7 @@ class SummaryModel extends CI_Model{
                     k.pdf_url AS pdf_url,
                     sum.id AS id_summary,
                     sum.jenis_sewa AS jenis_sewa,
+                    sum.serialnumber AS serialnumber,
                     sum.ns_a AS ns_a,
                     sum.ns_b AS ns_b,
                     sum.ns_c1 AS ns_c1,

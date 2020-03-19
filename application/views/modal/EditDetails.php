@@ -76,6 +76,14 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
+								<label>Serial Number / Nomor Polisi</label>
+								<input class="form-control" id="eserialnumber" name="serialnumber" type="text">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
 								<label>a. Apakah terdapat modifikasi ?</label>
 								<select class="form-control" id="ensa" name="ns_a">
 									<option value="Yes">Yes</option>
