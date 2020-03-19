@@ -3,9 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class SummaryModel extends CI_Model{
 
-  function summary_get_all() {
+  function summary_get_all($param = array()) {
         // $query = $this->db->query("SELECT * FROM abm_summary");
         $where = "WHERE k.created_by = ".$this->session->userdata('ses_id')."";
+        $where_pt = '';
+        if (isset($param['nama_pt']) && ($param['nama_pt'] != '' || $param['nama_pt'] != null)) {
+          $where_pt = 'AND k.nama_pt LIKE "%'.$param["nama_pt"].'%"';
+        }
         $query = $this->db->query("
               SELECT
                     k.id AS id_id_kontrak,
@@ -58,6 +62,7 @@ class SummaryModel extends CI_Model{
                     LEFT JOIN t_kontrak k ON sum.id_kontrak = k.id
                     LEFT JOIN t_calculation c ON c.id_summary = sum.id
                     $where
+                    $where_pt
                     ORDER BY k.created_at ASC
         ");
         return $query;

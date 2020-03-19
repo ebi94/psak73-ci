@@ -10,27 +10,52 @@
 						<button class="btn btn-info add_user" type="button"><span class="fas fa-plus">
 								Add</span></button>
 					</a>
-					<a href="<?php echo base_url('export/summary'); ?>">
+					<!-- <a href="<?php echo base_url('export/summary'); ?>">
 						<button class="btn btn-success export_summary" type="button"><span class="far fa-file-excel">
 								Export Summary</span></button>
-					</a>
-					<a href="<?php echo base_url('export/kkp'); ?>">
+					</a> -->
+					<!-- <a href="<?php echo base_url('export/kkp'); ?>">
 						<button class="btn btn-success export_kkp" type="button"><span class="far fa-file-excel"> Export
 								KKP</span></button>
-					</a>
-					<a href="<?php echo base_url('export/calculation'); ?>">
+					</a> -->
+					<!-- <a href="<?php echo base_url('export/calculation'); ?>">
 						<button class="btn btn-success export_kkp" type="button"><span class="far fa-file-excel"> Export
 								Calculation</span></button>
-					</a>
+					</a> -->
 				</div>
 			</div>
+            <div style="margin-bottom: 1%;margin-top: 1%;padding: 2%;" class="bg-light">
+                <label class="control-label" style="margin-bottom: 1%;">Filter List Aset:  </label>
+                <form class="form-inline container" style="width: 100%;">
+                    <div style="margin-right: 1%;">
+                      <input type="text" name="pt" id="pt" class="form-control" placeholder="Nama PT">
+                    </div>
+                    <div style="margin-right: 1%;">
+                      <button class="btn btn-primary search_aset" id="search_aset" type="button"><span class="fa fa-search"> Cari</span></button> <small style="color: red;">* klik cari untuk menampilkan data</small>
+                    </div>
+                </form>
+                <form class="form-inline container" style="width: 100%;margin-top: 1%;">
+                    <div style="margin-right: 1%;">
+                      <button class="btn btn-success export_summary" id="export_summary" type="button"><span class="far fa-file-excel">
+                            Export Summary</span></button>
+                    </div>
+                    <div style="margin-right: 1%;">
+                      <button class="btn btn-success export_kkp" id="export_kkp" type="button"><span class="far fa-file-excel"> Export
+                                KKP</span></button>
+                    </div>
+                    <div style="margin-right: 1%;">
+                      <button class="btn btn-success export_calculation" id="export_calculation" type="button"><span class="far fa-file-excel"> Export
+                                Calculation</span></button>
+                    </div>
+                </form>
+            </div>
 			<div class="alert alert-success" style="display: none" id="delete-summary-success-alert" role="alert">
 				<button type="button" class="close" data-dismiss="alert">x</button>
 				<strong>Success! </strong> Data Berhasil Dihapus!
 			</div>
 			<!-- /.card-header -->
 			<div class="card-body">
-				<table id="summary_list" class="table table-bordered table-striped">
+				<table id="summary_list" class="table table-bordered table-striped table-hover summary_list" cellspacing="0" style="width: 100%;">
 					<thead>
 						<tr>
 							<th>No</th>
@@ -157,13 +182,13 @@
 <script src="<?php echo base_url('assets/AdminLTE'); ?>/dist/js/demo.js"></script>
 <!-- page script -->
 <script>
-	fill_datatable_summary();
+	// fill_datatable_summary();
 
-	function fill_datatable_summary() {
+	function fill_datatable_summary(pt = '') {
 		$('#summary_list').DataTable({
 			"paging": true,
 			"lengthChange": false,
-			"searching": true,
+			"searching": false,
 			"ordering": true,
 			"info": true,
 			"autoWidth": true,
@@ -172,9 +197,42 @@
 			"ajax": {
 				url: "<?php echo base_url('admin/list') ?>",
 				type: "GET",
+                data: {pt:pt}
 			},
 		});
 	}
+
+    $('#search_aset').on('click',function(){
+        var pt = $('#pt').val();
+
+        $('#summary_list').DataTable().destroy();
+        fill_datatable_summary(pt);
+    });
+
+    // export summary
+    $('#export_summary').on('click',function(){
+        var pt = $('#pt').val();
+        // alert(pt);
+        window.open('export/summary?pt=' + pt);
+    });
+
+    // export kkp
+    $('#export_kkp').on('click',function(){
+        var pt = $('#pt').val();
+        // alert(pt);
+        window.open('export/kkp?pt=' + pt);
+    });
+
+    // export calculation
+    $('#export_calculation').on('click',function(){
+        var pt = $('#pt').val();
+        // alert(pt);
+        window.open('export/calculation?pt=' + pt);
+    });
+
+
+
+
 	// Function Show Detail
 	$(document).on("click", ".modalihat", function () {
 		var idkontrak = $(this).data('idkontrak');
