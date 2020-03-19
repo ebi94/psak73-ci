@@ -14,7 +14,7 @@
           </div>
         </section>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer justify-content-between">
         <input type="hidden" name="id_summary_delete" id="id_summary_delete" class="form-control">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
         <button type="button" type="submit" id="btn_summary_delete" class="btn btn-primary">Iya</button>

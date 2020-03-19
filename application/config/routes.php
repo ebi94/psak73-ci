@@ -89,6 +89,8 @@ $route['export/kkp'] = 'admin/ExportController/kkp_export';
 $route['export/calculation'] = 'admin/ExportController/calculation_export';
 $route['export/schedule'] = 'admin/ExportController/schedule_export';
 
+$route['dashboard'] = 'DashboardController';
+$route['admin/configuration'] = 'admin/ConfigurationController';
 
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
