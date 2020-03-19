@@ -285,7 +285,10 @@ class SummaryModel extends CI_Model{
     if (! $this->db->delete('abm_summary')) {
       return false;
     }
-    
+    $this->db->where('id_summary', $id_summary);
+    if (! $this->db->delete('t_calculation')) {
+          return false;
+    }
     return true;
   }
 

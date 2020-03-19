@@ -20,28 +20,11 @@
                 <table id="summary_list" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>Nope</th>
+                            <th>No</th>
                             <th>Nama PT</th>
                             <th>Nomor Kontrak</th>
                             <th>Vendor</th>
                             <th>Jenis Sewa</th>
-                            <!-- <th>Apakah terdapat modifikasi ?</th>
-	              <th>Apakah kontrak dinegosiasikan dengan kontrak lain ?</th>
-	              <th>Apakah kontrak mengandung opsi perpanjangan ?</th>
-	              <th>Penyewa cukup pasti untuk mengeksekusi Opsi tersebut ?</th>
-	              <th>Apakah kontrak mengandung Opsi terminasi ?</th>
-	              <th>Penyewa cukup pasti untuk tidak mengeksekusi Opsi tersebut ?</th>
-	              <th>Certain Asset ?</th>
-	              <th>Right to Operate ?</th>
-	              <th>Control of the Output or other utility ?</th>
-	              <th>Control Physical Asset ?</th>
-	              <th>Contract Price ?</th>
-	              <th>Output used by third party ?</th>
-	              <th>Right to control the use of Asset ?</th>
-	              <th>Apakah kontrak Sewa terdiri dari beberapa komponen ?</th> -->
-                            <th>Lokasi sewa ?</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
                             <th>Besar nilai kontrak ?</th>
                             <th>Action</th>
                         </tr>
@@ -56,23 +39,6 @@
                             <th>Nomor Kontrak</th>
                             <th>Vendor</th>
                             <th>Jenis Sewa</th>
-                            <!-- <th>Apakah terdapat modifikasi ?</th>
-	              <th>Apakah kontrak dinegosiasikan dengan kontrak lain ?</th>
-	              <th>Apakah kontrak mengandung opsi perpanjangan ?</th>
-	              <th>Penyewa cukup pasti untuk mengeksekusi Opsi tersebut ?</th>
-	              <th>Apakah kontrak mengandung Opsi terminasi ?</th>
-	              <th>Penyewa cukup pasti untuk tidak mengeksekusi Opsi tersebut ?</th>
-	              <th>Certain Asset ?</th>
-	              <th>Right to Operate ?</th>
-	              <th>Control of the Output or other utility ?</th>
-	              <th>Control Physical Asset ?</th>
-	              <th>Contract Price ?</th>
-	              <th>Output used by third party ?</th>
-	              <th>Right to control the use of Asset ?</th>
-	              <th>Apakah kontrak Sewa terdiri dari beberapa komponen ?</th> -->
-                            <th>Lokasi sewa ?</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
                             <th>Besar nilai kontrak ?</th>
                             <th>Action</th>
                         </tr>
