@@ -28,7 +28,7 @@
                 <label class="control-label" style="margin-bottom: 1%;">Filter List Aset:  </label>
                 <form class="form-inline container" style="width: 100%;">
                     <div style="margin-right: 1%;">
-                      <input type="text" name="pt" id="pt" class="form-control" placeholder="Nama PT">
+					  <input type="text" name="pt" id="pt" class="form-control" placeholder="Nama PT">
                     </div>
                     <div style="margin-right: 1%;">
                       <button class="btn btn-primary search_aset" id="search_aset" type="button"><span class="fa fa-search"> Cari</span></button> <small style="color: red;">* klik cari untuk menampilkan data</small>
@@ -449,9 +449,14 @@
 	});
 	// Function Export Schedule
 
-	// Currency Split
-
-	// Currency Split
+	// Autocomplete Search PT
+	$( function() {
+	var listPT = <?php echo $pete;?>;
+    $( "#pt" ).autocomplete({
+      source: listPT
+    });
+  } );
+	// Autocomplete Search PT
 
 </script>
 <!-- End Contents -->
