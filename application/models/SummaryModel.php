@@ -69,6 +69,20 @@ class SummaryModel extends CI_Model{
         return $query;
   }
 
+      function summary_get_pt() {
+            $sesLevel = $this->session->userdata('level');
+            if($sesLevel == 0){
+                  $where = "WHERE `nama_pt` IS NOT NULL";
+            } else {
+                  $where = "WHERE `created_by` = '".$this->session->userdata('ses_id')."' AND `nama_pt` IS NOT NULL";
+            }
+            
+            $query = $this->db->query("
+            SELECT `nama_pt` FROM `t_kontrak` $where GROUP BY `nama_pt`
+            ");
+            return $query;
+      }
+
       function check_calculation($id_summary){
             $where = "WHERE sum.id = '$id_summary'";
             $queryCheckCalculation = $this->db->query("

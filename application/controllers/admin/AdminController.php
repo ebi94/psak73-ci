@@ -17,6 +17,12 @@ class AdminController extends CI_Controller{
 	function index() {
 		$data['title'] = 'List Assets';
 		// $data['data_summary'] = $this->db->query('SELECT * FROM abm_summary')->result();
+		$arrayPT = $this->SummaryModel->summary_get_pt()->result();
+		foreach ($arrayPT as $row) {
+			$arr_result[] = $row->nama_pt;
+			$sPT = json_encode($arr_result);
+		}
+		$data['pete'] = $sPT;
 		$data['view'] = 'admin/Admin';
 		$this->load->view('templates/header', $data);
 	}

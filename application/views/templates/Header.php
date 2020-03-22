@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/AdminLTE'); ?>/plugins/toastr/toastr.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo base_url('assets/AdminLTE'); ?>/dist/css/adminlte.min.css">
+    <!-- Jquery-UI CSS -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/AdminLTE'); ?>/plugins/jquery-ui/jquery-ui.min.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="<?php echo base_url('assets/AdminLTE'); ?>/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->
