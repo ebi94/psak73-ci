@@ -262,7 +262,7 @@
 		var enddate = $(this).data('enddate');
 		var nilaikontrak = $(this).data('nilaikontrak');
 		var pdfurl = $(this).data('pdfurl');
-		var addmoreasset = '/admin/summary/' + idkontrak;
+		var addmoreasset = '<?php echo base_url('/admin/summary/'); ?>' + idkontrak;
 		var baseurl = "<?php echo base_url('/assets/pdf/') ?>";
 		var showurl = baseurl + pdfurl + '#page=' + pdfpage;
 		var dr = $(this).data('dr');

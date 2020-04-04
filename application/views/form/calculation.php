@@ -202,7 +202,7 @@
                 <a href="<?php echo base_url('admin'); ?>">
                     <button type="button" class="btn btn-secondary">Tidak</button>
                 </a>
-                <a href="<?php echo base_url('admin/summary/'); echo $id_summary ?>">
+                <a href="<?php echo base_url('admin/summary/'); echo $id_kontrak ?>">
                     <button type="button" class="btn btn-primary" id="tambah_aset">Iya</button>
                 </a>
             </div>

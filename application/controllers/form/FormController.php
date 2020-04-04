@@ -18,8 +18,9 @@ class FormController extends CI_Controller{
 		$data['title'] = 'Add Calculation';
 		$data['id_summary'] = $id_summary;
 		$query =
-        $this->db->query('SELECT sum.id, cont.id, cont.nama_pt, cont.nomor_kontrak, cont.vendor FROM abm_summary AS sum, t_kontrak AS cont WHERE sum.id = '.$id_summary.' AND cont.id = sum.id_kontrak');
-        $row = $query->row();
+        $this->db->query('SELECT sum.id AS id_summary, cont.id AS id_kontrak, cont.nama_pt, cont.nomor_kontrak, cont.vendor FROM abm_summary AS sum, t_kontrak AS cont WHERE sum.id = '.$id_summary.' AND cont.id = sum.id_kontrak');
+		$row = $query->row();
+		$data['id_kontrak'] = $row->id_kontrak;
         $data['nama_pt'] = $row->nama_pt;
         $data['nomor_kontrak'] = $row->nomor_kontrak;
         $data['vendor'] = $row->vendor;
